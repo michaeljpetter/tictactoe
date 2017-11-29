@@ -1,0 +1,119 @@
+$base03: #002b36;
+$base02: #073642;
+$base01: #586e75;
+$base00: #657b83;
+$base0: #839496;
+$base1: #93a1a1;
+$base2: #eee8d5;
+$base3: #fdf6e3;
+$yellow: #b58900;
+$orange: #cb4b16;
+$red: #d30102;
+$magenta: #d33682;
+$violet: #6c71c4;
+$blue: #268bd2;
+$cyan: #2aa198;
+$green: #859900;
+
+body {
+  font: 14px "Century Gothic", Futura, sans-serif;
+  margin: 20px;
+  background: $base03;
+  color: $base1;
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.game-board {
+  align-self: flex-start;
+  border: 2px solid $yellow;
+  padding-top: 1px;
+  padding-right: 1px;
+  border-radius: 5px;
+  background: $base2;
+}
+
+.board-row {
+  &:first-child {
+    .square:first-child {
+      border-top-left-radius: 3px;
+    }
+    .square:last-child {
+      border-top-right-radius: 3px;
+    }
+  }
+
+  &:last-child {
+    .square:first-child {
+      border-bottom-left-radius: 3px;
+    }
+    .square:last-child {
+      border-bottom-right-radius: 3px;
+    }
+  }
+
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+.square {
+  color: $base02;
+  border: 1px solid $yellow;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-top: -1px;
+  margin-right: -1px;
+  text-align: center;
+  width: 34px;
+
+  &.highlight {
+    background: $cyan;
+  }
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.config {
+ margin-bottom: 20px;
+}
+
+.config .dim:before {
+  content: 'Size: '
+}
+
+.config select {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+
+.game-info .moves .current button {
+  font-weight: bold;
+}
+
+.moves ol {
+  margin: 1px 0 0 0;
+}
+
+.moves .reverse {
+  padding: 0;
+  margin-left: 5px;
+}
