@@ -5,22 +5,27 @@ import './extensions.js';
 import LinkedList from './linked_list.js';
 
 function Square(props) {
-  const { value, highlight, onClick } = props;
+  const { value, win, onClick } = props;
   return (
-    <div role="button" className={'square' + (highlight ? ' highlight' : '')} onClick={onClick}>
+    <div role="button"
+         className={'square' +
+           (win ? ' win' : '') +
+           (value ? '' : ' empty')
+         }
+         onClick={onClick}>
       {value}
     </div>
   );
 }
 
 class Board extends React.Component {
-  static defaultProps = { highlight: [] };
+  static defaultProps = { winLine: [] };
 
   render() {
-    const { dim, squares, highlight, onClick } = this.props;
+    const { dim, squares, winLine, onClick } = this.props;
     return (
       Array.from(squares.length.times(), i =>
-        <Square value={squares[i]} key={i} highlight={highlight.includes(i)}
+        <Square value={squares[i]} key={i} win={winLine.includes(i)}
                 onClick={() => onClick(i)}/>
       ).tap(squares => Array.from(dim.times(), r =>
         squares.slice(r * dim, (r + 1) * dim)
@@ -82,7 +87,7 @@ class Game extends React.Component {
           const prev = moves[index - 1];
           const [x, y] = move.squares.findIndex((s, i) => s && !prev.squares[i])
                                      .tap(i => [1 + i % dim, 1 + i / dim|0])
-          return `${prev.player.value} => (${x}, ${y})`;
+          return `${prev.player.value} → (${x}, ${y})`;
         })()
         : 'Game start';
       return (
@@ -101,7 +106,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board dim={dim}
                  squares={move.squares}
-                 highlight={winner && winner.line}
+                 winLine={winner && winner.line}
                  onClick={i => this.makeMove(i)}/>
         </div>
         <div className="game-info">
