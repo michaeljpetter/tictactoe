@@ -57,21 +57,25 @@ class Game extends React.Component {
         player: new LinkedList(['X', 'O']).cycle().head
       }],
       moveIndex: 0,
-      lines: this.findLines(dim)
+      lines: this.findLines(dim, dim)
     };
   }
 
-  findLines(dim) {
-    const line = Array.from(dim.times());
+  findLines(dim, length) {
+    const line = Array.from(length.times());
+    const dims = Array.from(dim.times());
+    const shifts = Array.from((dim - length + 1).times());
 
-    const rows = Array.from(dim.times(), r => line.map(i => r * dim + i));
-    const columns = Array.from(dim.times(), r => line.map(i => r + dim * i));
-    const diagonals = [
-      line.map(i => i * (dim + 1)),
-      line.map(i => (i + 1) * (dim - 1))
-    ];
-
-    return [...rows, ...columns, ...diagonals];
+    return [].concat(...shifts.map(s => [
+      //rows —
+      ...dims.map(r => line.map(i => r * dim + (i + s))),
+      //columns |
+      ...dims.map(c => line.map(i => c + dim * (i + s))),
+      //diagonals \
+      ...shifts.map(d => line.map(i => s * dim + d + i * (dim + 1))),
+      //diagonals /
+      ...shifts.map(d => line.map(i => s * dim - d + (i + 1) * (dim - 1)))
+    ]));
   }
 
   render() {
