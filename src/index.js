@@ -19,13 +19,14 @@ function Square(props) {
 }
 
 class Board extends React.Component {
-  static defaultProps = { winLine: [] };
+  static defaultProps = { winLines: [] };
 
   render() {
-    const { dim, squares, winLine, onClick } = this.props;
+    const { dim, squares, winLines, onClick } = this.props;
+    const winSquares = new Set([].concat(...winLines));
     return (
       Array.from(squares.length.times(), i =>
-        <Square value={squares[i]} key={i} win={winLine.includes(i)}
+        <Square value={squares[i]} key={i} win={winSquares.has(i)}
                 onClick={() => onClick(i)}/>
       ).tap(squares => Array.from(dim.times(), r =>
         squares.slice(r * dim, (r + 1) * dim)
@@ -81,7 +82,7 @@ class Game extends React.Component {
   render() {
     const { moves, moveIndex, reverseMoves } = this.state;
     const move = moves[moveIndex];
-    const winner = this.findWinner();
+    const wins = this.findWins();
 
     const dim = this.props.dim;
 
@@ -101,8 +102,8 @@ class Game extends React.Component {
       );
     });
 
-    const status = winner
-      ? 'Winner: ' + winner.player
+    const status = wins.length
+      ? 'Winner: ' + wins[0].player
       : 'Next player: ' + move.player.value;
 
     return (
@@ -110,7 +111,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board dim={dim}
                  squares={move.squares}
-                 winLine={winner && winner.line}
+                 winLines={wins.map(w => w.line)}
                  onClick={i => this.makeMove(i)}/>
         </div>
         <div className="game-info">
@@ -132,7 +133,7 @@ class Game extends React.Component {
     let { moves, moveIndex } = this.state;
     const move = moves[moveIndex];
 
-    if(this.findWinner() || move.squares[i])
+    if(this.findWins().length || move.squares[i])
       return;
 
     ++moveIndex;
@@ -152,15 +153,15 @@ class Game extends React.Component {
     this.setState({ reverseMoves: !this.state.reverseMoves });
   }
 
-  findWinner() {
+  findWins() {
     const { moves, moveIndex, lines } = this.state;
     const squares = moves[moveIndex].squares;
-    for(const line of lines) {
+    return lines.reduce((wins, line) => {
       const uniq = new Set(line.map(i => squares[i]))
       const winner = uniq.size === 1 && uniq.values().next().value;
-      if(winner)
-        return { player: winner, line };
-    }
+      winner && wins.push({ player: winner, line });
+      return wins;
+    }, []);
   }
 }
 
