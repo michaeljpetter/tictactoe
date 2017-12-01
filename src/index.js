@@ -49,15 +49,15 @@ class Game extends React.Component {
   }
 
   reset(props) {
-    const { dim } = props;
+    const { dim, toWin } = props;
 
     return {
       moves: [{
-        squares: Array(Math.pow(props.dim, 2)).fill(null),
+        squares: Array(Math.pow(dim, 2)).fill(null),
         player: new LinkedList(['X', 'O']).cycle().head
       }],
       moveIndex: 0,
-      lines: this.findLines(dim, dim)
+      lines: this.findLines(dim, toWin)
     };
   }
 
@@ -167,17 +167,22 @@ class Game extends React.Component {
 class Controller extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { dim: props.dim };
+    this.state = { dim: 3, toWin: 3 };
   }
 
   onDimChanged(e) {
     const dim = parseInt(e.target.value, 10);
+    const toWin = Math.min(this.state.toWin, dim);
+    this.setState({ dim, toWin });
+  }
 
-    this.setState({ dim });
+  onToWinChanged(e) {
+    const toWin = parseInt(e.target.value, 10);
+    this.setState({ toWin });
   }
 
   render() {
-    const { dim } = this.state;
+    const { dim, toWin } = this.state;
 
     return (
       <div className="controller">
@@ -189,8 +194,15 @@ class Controller extends React.Component {
               )}
             </select>
           </div>
+          <div className="to-win">
+            <select value={toWin} onChange={e => this.onToWinChanged(e)}>
+              {Array.from((3).upto(dim), toWin =>
+                <option key={toWin} value={toWin}>{toWin}</option>
+              )}
+            </select>
+          </div>
         </div>
-        <Game dim={dim}/>
+        <Game dim={dim} toWin={toWin}/>
       </div>
     );
   }
@@ -199,6 +211,6 @@ class Controller extends React.Component {
 // ========================================
 
 ReactDOM.render(
-  <Controller dim={3}/>,
+  <Controller/>,
   document.getElementById('root')
 );

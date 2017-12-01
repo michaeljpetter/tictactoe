@@ -28,13 +28,17 @@ ol, ul {
 
 .config {
   margin-bottom: 20px;
-}
+  display: flex;
+  flex-direction: row;
 
-.dim {
-  &:before {
-    content: 'Size: '
+  > div {
+    margin-right: 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
-
+  
   select {
     border: none;
     background: $orange;
@@ -45,6 +49,14 @@ ol, ul {
     &:focus {
       outline: none;
     }
+  }
+
+  .dim:before {
+    content: 'Size: '
+  }
+
+  .to-win:before {
+    content: 'To win: '
   }
 }
 
