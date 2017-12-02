@@ -50,12 +50,12 @@ class Game extends React.Component {
   }
 
   reset(props) {
-    const { dim, toWin } = props;
+    const { dim, toWin, players } = props;
 
     return {
       moves: [{
         squares: Array(Math.pow(dim, 2)).fill(null),
-        player: new LinkedList(['X', 'O']).cycle().head
+        player: new LinkedList(players).cycle().head
       }],
       moveIndex: 0,
       lines: this.findLines(dim, toWin)
@@ -166,9 +166,13 @@ class Game extends React.Component {
 }
 
 class Controller extends React.Component {
+  static defaultProps = {
+    playerGlyphs: ['X', 'O', '▲', '◉']
+  };
+
   constructor(props) {
     super(props);
-    this.state = { dim: 3, toWin: 3 };
+    this.state = { dim: 3, toWin: 3, players: 2 };
   }
 
   onDimChanged(e) {
@@ -182,8 +186,14 @@ class Controller extends React.Component {
     this.setState({ toWin });
   }
 
+  onPlayersChanged(e) {
+    const players = parseInt(e.target.value, 10);
+    this.setState({ players });
+  }
+
   render() {
-    const { dim, toWin } = this.state;
+    const { playerGlyphs } = this.props;
+    const { dim, toWin, players } = this.state;
 
     return (
       <div className="controller">
@@ -202,8 +212,15 @@ class Controller extends React.Component {
               )}
             </select>
           </div>
+          <div className="players">
+            <select value={players} onChange={e => this.onPlayersChanged(e)}>
+              {Array.from((2).upto(playerGlyphs.length), players =>
+                <option key={players} value={players}>{players}</option>
+              )}
+            </select>
+          </div>
         </div>
-        <Game dim={dim} toWin={toWin}/>
+        <Game dim={dim} toWin={toWin} players={playerGlyphs.slice(0, players)}/>
       </div>
     );
   }

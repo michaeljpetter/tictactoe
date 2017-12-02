@@ -58,6 +58,10 @@ ol, ul {
   .to-win:before {
     content: 'To win: '
   }
+
+  .players:before {
+    content: 'Players: '
+  }
 }
 
 .game {
@@ -129,6 +133,7 @@ ol, ul {
 
 .status {
   margin-bottom: 10px;
+  line-height: 1.15rem;
 }
 
 .moves {
