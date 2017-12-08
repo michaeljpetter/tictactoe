@@ -11,7 +11,7 @@ export default class Board extends React.Component {
     return (
       Array.from(squares.length.times(), i =>
         <Square value={squares[i]} key={i} win={winSquares.has(i)}
-                onClick={() => onClick(i)}/>
+                onClick={() => onClick(i)} />
       ).tap(squares => Array.from(dim.times(), r =>
         squares.slice(r * dim, (r + 1) * dim)
       )).map((row, index) =>

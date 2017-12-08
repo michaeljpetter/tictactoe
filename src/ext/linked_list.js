@@ -7,9 +7,11 @@ export default class LinkedList {
   };
 
   constructor(values) {
-    this.head = this.tail = null;
-    let i = (values || []).length;
-    if(i === 0) return;
+    if(!values || !values.length) {
+      this.head = this.tail = null;
+      return;
+    }
+    let i = values.length;
     this.head = this.tail = new LinkedList.Node(values[--i], null);
     while(i > 0)
       this.head = new LinkedList.Node(values[--i], this.head);

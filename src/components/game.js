@@ -78,7 +78,7 @@ export default class Game extends React.Component {
           <Board dim={dim}
                  squares={move.squares}
                  winLines={wins.map(w => w.line)}
-                 onClick={i => this.makeMove(i)}/>
+                 onClick={i => this.makeMove(i)} />
         </div>
         <div className="game-info">
           <div className="status">{status}</div>
