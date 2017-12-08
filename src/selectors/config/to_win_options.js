@@ -3,5 +3,5 @@ import '../../ext/ruby';
 
 export default createSelector(
   state => state.config.dim,
-  dim => ({ toWinOptions: [...(3).upto(dim)] })
+  dim => [...(3).upto(dim)]
 );

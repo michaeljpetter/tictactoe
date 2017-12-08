@@ -5,7 +5,7 @@ import selectPlayers from '../../actions/config/select_players';
 
 const mapStateToProps = state => ({
   players: state.config.players,
-  ...playersOptions(state)
+  playersOptions: playersOptions(state)
 });
 
 const mapDispatchToProps = { selectPlayers };

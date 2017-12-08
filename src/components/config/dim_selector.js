@@ -5,7 +5,7 @@ import selectDim from '../../actions/config/select_dim';
 
 const mapStateToProps = state => ({
   dim: state.config.dim,
-  ...dimOptions(state)
+  dimOptions: dimOptions(state)
 });
 
 const mapDispatchToProps = { selectDim };

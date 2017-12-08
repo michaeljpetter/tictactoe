@@ -5,7 +5,7 @@ import selectToWin from '../../actions/config/select_to_win';
 
 const mapStateToProps = state => ({
   toWin: state.config.toWin,
-  ...toWinOptions(state)
+  toWinOptions: toWinOptions(state)
 });
 
 const mapDispatchToProps = { selectToWin };
