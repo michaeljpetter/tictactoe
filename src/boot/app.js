@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import Config from '../components/config';
 import Game from '../components/game';
@@ -11,10 +11,10 @@ const mapStateToProps = state => ({
 const playerGlyphs = ['X', 'O', '▲', '◉'];
 
 const App = ({ dim, toWin, players }) => (
-  <div className="app">
+  <Fragment>
     <Config />
     <Game dim={dim} toWin={toWin} players={playerGlyphs.slice(0, players)} />
-  </div>
+  </Fragment>
 );
 
 export default connect(mapStateToProps)(App);
