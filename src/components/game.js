@@ -1,14 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Board from './board';
 import LinkedList from '../ext/linked_list';
+import lines from '../selectors/game/lines';
 import '../ext/ruby';
 
-export default class Game extends React.Component {
+const mapStateToProps = state => ({
+  lines: lines(state)
+});
+
+class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({
-      reverseMoves: false
-    }, this.reset(props));
+    this.state = {
+      reverseMoves: false,
+      ...this.reset(props)
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -16,33 +23,15 @@ export default class Game extends React.Component {
   }
 
   reset(props) {
-    const { dim, toWin, players } = props;
+    const { dim, players } = props;
 
     return {
       moves: [{
         squares: Array(Math.pow(dim, 2)).fill(null),
         player: new LinkedList(players).cycle().head
       }],
-      moveIndex: 0,
-      lines: this.findLines(dim, toWin)
+      moveIndex: 0
     };
-  }
-
-  findLines(dim, length) {
-    const line = Array.from(length.times());
-    const dims = Array.from(dim.times());
-    const shifts = Array.from((dim - length + 1).times());
-
-    return [].concat(...shifts.map(s => [
-      //rows —
-      ...dims.map(r => line.map(i => r * dim + (i + s))),
-      //columns |
-      ...dims.map(c => line.map(i => c + dim * (i + s))),
-      //diagonals \
-      ...shifts.map(d => line.map(i => s * dim + d + i * (dim + 1))),
-      //diagonals /
-      ...shifts.map(d => line.map(i => s * dim - d + (i + 1) * (dim - 1)))
-    ]));
   }
 
   render() {
@@ -50,7 +39,7 @@ export default class Game extends React.Component {
     const move = moves[moveIndex];
     const wins = this.findWins();
 
-    const dim = this.props.dim;
+    const { dim } = this.props;
 
     const moveButtons = moves.map((move, index) => {
       const desc = index
@@ -120,7 +109,8 @@ export default class Game extends React.Component {
   }
 
   findWins() {
-    const { moves, moveIndex, lines } = this.state;
+    const { moves, moveIndex } = this.state;
+    const { lines } = this.props;
     const squares = moves[moveIndex].squares;
     return lines.reduce((wins, line) => {
       const uniq = new Set(line.map(i => squares[i]))
@@ -131,3 +121,4 @@ export default class Game extends React.Component {
   }
 }
 
+export default connect(mapStateToProps)(Game);
