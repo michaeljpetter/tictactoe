@@ -3,7 +3,7 @@ import DimSelector from './config/dim_selector';
 import ToWinSelector from './config/to_win_selector';
 import PlayersSelector from './config/players_selector';
 
-export default () => (
+const Config = () => (
   <div className="config">
     <div className="dim">
       <DimSelector />
@@ -16,3 +16,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default Config;
