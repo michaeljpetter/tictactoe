@@ -12,8 +12,12 @@ const playerGlyphs = ['X', 'O', '▲', '◉'];
 
 const App = ({ dim, players }) => (
   <Fragment>
-    <Config />
-    <Game dim={dim} players={playerGlyphs.slice(0, players)} />
+    <div className="header">
+      <Config />
+    </div>
+    <div className="content">
+      <Game dim={dim} players={playerGlyphs.slice(0, players)} />
+    </div>
   </Fragment>
 );
 
