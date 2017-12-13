@@ -7,12 +7,12 @@ const defaultState = {
 };
 
 export default createReducer(defaultState, {
-  'DIM_SELECTED': (state, { dim }) =>
+  'DIM_CHANGED': (state, { dim }) =>
     ({ ...state, dim, toWin: Math.min(state.toWin, dim) }),
 
-  'TO_WIN_SELECTED': (state, { toWin }) =>
+  'TO_WIN_CHANGED': (state, { toWin }) =>
     ({ ...state, toWin }),
 
-  'PLAYERS_SELECTED': (state, { players }) =>
+  'PLAYERS_CHANGED': (state, { players }) =>
     ({ ...state, players })
 });
