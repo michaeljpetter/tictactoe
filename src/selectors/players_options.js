@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import '../ext/ruby';
+import { range } from 'lodash';
 
 export default createSelector(
-  () => [...(2).upto(4)]
+  () => range(2, 5)
 );

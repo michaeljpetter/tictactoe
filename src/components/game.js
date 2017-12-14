@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { chain, spread, negate, eq } from 'lodash';
 import Board from './board';
 import LinkedList from '../ext/linked_list';
 import lines from '../selectors/lines';
-import '../ext/ruby';
 
 const mapStateToProps = state => ({
   lines: lines(state)
@@ -27,7 +27,7 @@ class Game extends React.Component {
 
     return {
       moves: [{
-        squares: Array(Math.pow(dim, 2)).fill(null),
+        squares: Array(dim * dim).fill(null),
         player: new LinkedList(players).cycle().head
       }],
       moveIndex: 0
@@ -45,8 +45,9 @@ class Game extends React.Component {
       const desc = index
         ? (() => {
           const prev = moves[index - 1];
-          const [x, y] = move.squares.findIndex((s, i) => s && !prev.squares[i])
-                                     .tap(i => [1 + i % dim, 1 + i / dim|0])
+          const [x, y] = chain(move.squares).zip(prev.squares)
+            .map(spread(negate(eq))).findIndex()
+            .thru(i => [1 + i % dim, 1 + i / dim|0]);
           return `${prev.player.value} → (${x}, ${y})`;
         })()
         : 'Game start';
@@ -93,7 +94,7 @@ class Game extends React.Component {
 
     ++moveIndex;
     moves = moves.slice(0, moveIndex).concat([{
-      squares: move.squares.slice().tap(s => { s[i] = move.player.value }),
+      squares: chain([...move.squares]).tap(s => { s[i] = move.player.value }).value(),
       player: move.player.next
     }]);
 

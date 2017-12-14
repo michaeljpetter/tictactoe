@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
-import '../ext/ruby';
+import { range } from 'lodash';
 
 export default createSelector(
   state => state.dim,
   state => state.toWin,
   (dim, toWin) => {
-    const line = [...toWin.times()];
-    const dims = [...dim.times()];
-    const shifts = [...(dim - toWin + 1).times()];
+    const line = range(toWin); 
+    const dims = range(dim);
+    const shifts = range(dim - toWin + 1);
 
     return [].concat(...shifts.map(s => [
       //rows —

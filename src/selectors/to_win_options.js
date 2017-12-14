@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import '../ext/ruby';
+import { range } from 'lodash';
 
 export default createSelector(
   state => state.dim,
-  dim => [...(3).upto(dim)]
+  dim => range(3, dim + 1)
 );
