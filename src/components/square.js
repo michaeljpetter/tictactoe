@@ -1,13 +1,11 @@
 import React from 'react';
+import classNames from 'classnames';
 
 const Square = ({
   value, win, onClick
 }) => (
   <div role="button"
-       className={'square' +
-         (win ? ' win' : '') +
-         (value ? '' : ' empty')
-       }
+       className={classNames('square', { win })}
        onClick={onClick}>
     {value}
   </div>

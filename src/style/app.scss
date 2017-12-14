@@ -122,7 +122,7 @@ ol, ul {
   width: 1.5em;
   cursor: default;
 
-  &.empty {
+  &:empty {
     cursor: pointer;
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { chain, spread, negate, eq } from 'lodash';
 import Board from './board';
 import LinkedList from '../ext/linked_list';
@@ -52,7 +53,7 @@ class Game extends React.Component {
         })()
         : 'Game start';
       return (
-        <li key={index} className={index === moveIndex ? 'current' : ''}>
+        <li key={index} className={classNames({ current: index === moveIndex })}>
           <button onClick={() => this.jumpTo(index)}>{desc}</button>
         </li>
       );
