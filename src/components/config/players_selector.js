@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Selector from '../primitives/selector';
-import playersOptions from '../../selectors/config/players_options';
-import playersChanged from '../../actions/config/players_changed';
+import playersOptions from '../../selectors/players_options';
+import playersChanged from '../../actions/players_changed';
 
 const mapStateToProps = state => ({
-  value: state.config.players,
+  value: state.players,
   options: playersOptions(state)
 });
 

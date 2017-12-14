@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Board from './board';
 import LinkedList from '../ext/linked_list';
-import lines from '../selectors/game/lines';
+import lines from '../selectors/lines';
 import '../ext/ruby';
 
 const mapStateToProps = state => ({

@@ -1,7 +1,7 @@
 import React from 'react';
-import DimSelector from './config/dim_selector';
-import ToWinSelector from './config/to_win_selector';
-import PlayersSelector from './config/players_selector';
+import DimSelector from './dim_selector';
+import ToWinSelector from './to_win_selector';
+import PlayersSelector from './players_selector';
 
 const Config = () => (
   <div className="config">

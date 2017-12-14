@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
-import '../../ext/ruby';
+import '../ext/ruby';
 
 export default createSelector(
-  state => state.config.dim,
-  state => state.config.toWin,
+  state => state.dim,
+  state => state.toWin,
   (dim, toWin) => {
     const line = [...toWin.times()];
     const dims = [...dim.times()];

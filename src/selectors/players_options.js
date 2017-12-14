@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import '../../ext/ruby';
+import '../ext/ruby';
 
 export default createSelector(
-  () => [...(3).upto(5)]
+  () => [...(2).upto(4)]
 );

@@ -4,8 +4,8 @@ import Config from '../components/config';
 import Game from '../components/game';
 import '../style/app.css';
 
-const mapStateToProps = state => ({
-  ...state.config
+const mapStateToProps = ({ dim, players }) => ({
+  dim, players
 });
 
 const playerGlyphs = ['X', 'O', '▲', '◉'];
