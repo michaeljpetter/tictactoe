@@ -1,18 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { chain } from 'lodash';
+import activeMove from '../selectors/active_move';
 import Square from './square';
 
 const mapStateToProps = state => ({
   dim: state.dim,
-  squaresLength: state.moves[state.moveIndex].squares.length
+  squaresLength: activeMove(state).squares.length 
 });
 
 const Board = ({
   dim, squaresLength
 }) => (
   <div className="board">
-    {chain().range(squaresLength)
+    {chain(squaresLength).range()
        .map(i =>
          <Square key={i} index={i} />
        )

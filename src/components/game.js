@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { chain, spread, negate, eq } from 'lodash';
 import wins from '../selectors/wins';
+import activeMove from '../selectors/active_move';
 import jumpToMove from '../actions/jump_to_move';
 import PlayerGlyph from './player_glyph';
 import Board from './board';
@@ -10,7 +11,7 @@ import Board from './board';
 const mapStateToProps = state => ({
   dim: state.dim,
   moves: state.moves,
-  currentMove: state.moves[state.moveIndex],
+  activeMove: activeMove(state),
   wins: wins(state)
 });
 
@@ -31,7 +32,7 @@ class Game extends React.Component {
   }
 
   render() {
-    const { dim, moves, currentMove, wins, jumpToMove } = this.props;
+    const { dim, moves, activeMove, wins, jumpToMove } = this.props;
     const { reverseMoves } = this.state;
 
     const moveButtons = moves.map((move, index) => {
@@ -49,7 +50,7 @@ class Game extends React.Component {
         })()
         : 'Game start';
       return (
-        <li key={index} className={classNames({ current: move === currentMove })}>
+        <li key={index} className={classNames({ active: move === activeMove })}>
           <button onClick={() => jumpToMove(index)}>{desc}</button>
         </li>
       );
@@ -57,7 +58,7 @@ class Game extends React.Component {
 
     const status = wins.length
       ? <Fragment>Winner: <PlayerGlyph player={wins[0].player} /></Fragment>
-      : <Fragment>Next player: <PlayerGlyph player={currentMove.player} /></Fragment>;
+      : <Fragment>Next player: <PlayerGlyph player={activeMove.player} /></Fragment>;
 
     return (
       <div className="game">

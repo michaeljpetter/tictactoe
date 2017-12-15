@@ -1,2 +1,2 @@
-export default moveIndex =>
-  ({ type: 'JUMP_TO_MOVE', moveIndex });
+export default index  =>
+  ({ type: 'JUMP_TO_MOVE', index });

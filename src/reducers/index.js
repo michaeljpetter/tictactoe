@@ -7,7 +7,7 @@ const reset = dim => ({
     squares: Array(dim * dim),
     player: 1
   }],
-  moveIndex: 0
+  activeMoveIndex: 0
 });
 
 const defaultState = {
@@ -38,27 +38,27 @@ export default createReducer(defaultState, {
   }),
 
   'MAKE_MOVE': (state, { index }) => {
-    const { moves, moveIndex } = state;
+    const { moves, activeMoveIndex } = state;
     const alreadyWon = wins(state).length;
-    const prev = moves[moveIndex];
+    const active = moves[activeMoveIndex];
 
-    if(alreadyWon || prev.squares[index])
+    if(alreadyWon || active.squares[index])
       return state;
 
     const move = {
-      squares: chain([...prev.squares]).tap(s => { s[index] = prev.player }).value(),
-      player: prev.player % state.players + 1
+      squares: chain([...active.squares]).tap(s => { s[index] = active.player }).value(),
+      player: active.player % state.players + 1
     };
 
     return ({
       ...state,
-      moveIndex: state.moveIndex + 1,
-      moves: [...state.moves.slice(0, state.moveIndex + 1), move]
+      activeMoveIndex: activeMoveIndex + 1,
+      moves: [...state.moves.slice(0, activeMoveIndex + 1), move]
     });
   },
 
-  'JUMP_TO_MOVE': (state, { moveIndex }) => ({
+  'JUMP_TO_MOVE': (state, { index }) => ({
     ...state,
-    moveIndex
+    activeMoveIndex: index
   })
 });
