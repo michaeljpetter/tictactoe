@@ -1,35 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { chain, flatten } from 'lodash';
-import wins from '../selectors/wins';
-import makeMove from '../actions/make_move';
+import { chain } from 'lodash';
 import Square from './square';
 
 const mapStateToProps = state => ({
   dim: state.dim,
-  squares: state.moves[state.moveIndex].squares,
-  winSquares: new Set(flatten(wins(state).map(w => w.line)))
+  squaresLength: state.moves[state.moveIndex].squares.length
 });
 
-const mapDispatchToProps = {
-  makeMove
-};
-
 const Board = ({
-  dim, squares, winSquares, makeMove
+  dim, squaresLength
 }) => (
   <div className="board">
-    {chain(squares)
-       .map((p, i) =>
-         <Square player={p} key={i} win={winSquares.has(i)}
-                 onClick={() => makeMove(i)} />
+    {chain().range(squaresLength)
+       .map(i =>
+         <Square key={i} index={i} />
        )
        .chunk(dim).map((row, i) =>
-         <div className="board-row" key={i}>{row}</div>
+         <div key={i} className="board-row">{row}</div>
        )
        .value()
     }
   </div>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default connect(mapStateToProps)(Board);

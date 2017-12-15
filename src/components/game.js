@@ -10,7 +10,7 @@ import Board from './board';
 const mapStateToProps = state => ({
   dim: state.dim,
   moves: state.moves,
-  moveIndex: state.moveIndex,
+  currentMove: state.moves[state.moveIndex],
   wins: wins(state)
 });
 
@@ -31,11 +31,8 @@ class Game extends React.Component {
   }
 
   render() {
-    const { moves, moveIndex, wins, jumpToMove } = this.props;
+    const { dim, moves, currentMove, wins, jumpToMove } = this.props;
     const { reverseMoves } = this.state;
-    const move = moves[moveIndex];
-
-    const { dim } = this.props;
 
     const moveButtons = moves.map((move, index) => {
       const desc = index
@@ -52,7 +49,7 @@ class Game extends React.Component {
         })()
         : 'Game start';
       return (
-        <li key={index} className={classNames({ current: index === moveIndex })}>
+        <li key={index} className={classNames({ current: move === currentMove })}>
           <button onClick={() => jumpToMove(index)}>{desc}</button>
         </li>
       );
@@ -60,7 +57,7 @@ class Game extends React.Component {
 
     const status = wins.length
       ? <Fragment>Winner: <PlayerGlyph player={wins[0].player} /></Fragment>
-      : <Fragment>Next player: <PlayerGlyph player={move.player} /></Fragment>;
+      : <Fragment>Next player: <PlayerGlyph player={currentMove.player} /></Fragment>;
 
     return (
       <div className="game">
