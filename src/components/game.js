@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { chain, spread, negate, eq } from 'lodash';
+import PlayerGlyph from './player_glyph';
 import Board from './board';
-import LinkedList from '../ext/linked_list';
 import lines from '../selectors/lines';
 
 const mapStateToProps = state => ({
@@ -24,12 +24,12 @@ class Game extends React.Component {
   }
 
   reset(props) {
-    const { dim, players } = props;
+    const { dim } = props;
 
     return {
       moves: [{
-        squares: Array(dim * dim).fill(null),
-        player: new LinkedList(players).cycle().head
+        squares: Array(dim * dim),
+        player: 1
       }],
       moveIndex: 0
     };
@@ -49,7 +49,11 @@ class Game extends React.Component {
           const [x, y] = chain(move.squares).zip(prev.squares)
             .map(spread(negate(eq))).findIndex()
             .thru(i => [1 + i % dim, 1 + i / dim|0]);
-          return `${prev.player.value} → (${x}, ${y})`;
+          return (
+            <Fragment>
+              <PlayerGlyph player={prev.player} />{` → (${x}, ${y})`}
+            </Fragment>
+          );
         })()
         : 'Game start';
       return (
@@ -60,8 +64,8 @@ class Game extends React.Component {
     });
 
     const status = wins.length
-      ? 'Winner: ' + wins[0].player
-      : 'Next player: ' + move.player.value;
+      ? <Fragment>Winner: <PlayerGlyph player={wins[0].player} /></Fragment>
+      : <Fragment>Next player: <PlayerGlyph player={move.player} /></Fragment>;
 
     return (
       <div className="game">
@@ -95,8 +99,8 @@ class Game extends React.Component {
 
     ++moveIndex;
     moves = moves.slice(0, moveIndex).concat([{
-      squares: chain([...move.squares]).tap(s => { s[i] = move.player.value }).value(),
-      player: move.player.next
+      squares: chain([...move.squares]).tap(s => { s[i] = move.player }).value(),
+      player: move.player % this.props.players + 1
     }]);
 
     this.setState({ moves, moveIndex });

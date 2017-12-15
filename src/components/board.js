@@ -7,8 +7,8 @@ const Board = ({
 }) => {
   const winSquares = new Set(flatten(winLines));
   return chain(squares)
-    .map((s, i) =>
-      <Square value={s} key={i} win={winSquares.has(i)}
+    .map((p, i) =>
+      <Square player={p} key={i} win={winSquares.has(i)}
               onClick={() => onClick(i)} />
     )
     .chunk(dim).map((row, i) =>

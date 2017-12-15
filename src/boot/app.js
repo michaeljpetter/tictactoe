@@ -8,15 +8,13 @@ const mapStateToProps = ({ dim, players }) => ({
   dim, players
 });
 
-const playerGlyphs = ['X', 'O', '▲', '◉'];
-
 const App = ({ dim, players }) => (
   <Fragment>
     <div className="header">
       <Config />
     </div>
     <div className="content">
-      <Game dim={dim} players={playerGlyphs.slice(0, players)} />
+      <Game dim={dim} players={players}/>
     </div>
   </Fragment>
 );

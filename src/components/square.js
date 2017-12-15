@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
+import PlayerGlyph from './player_glyph';
 
 const Square = ({
-  value, win, onClick
+  player, win, onClick
 }) => (
   <div role="button"
        className={classNames('square', { win })}
        onClick={onClick}>
-    {value}
+    {player ? <PlayerGlyph player={player} /> : null}
   </div>
 );
 
