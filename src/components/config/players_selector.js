@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Selector from '../primitives/selector';
 import playersOptions from '../../selectors/players_options';
-import playersChanged from '../../actions/players_changed';
+import changePlayers from '../../actions/change_players';
 
 const mapStateToProps = state => ({
   value: state.players,
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onChange: playersChanged
+  onChange: changePlayers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Selector);

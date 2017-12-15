@@ -2,43 +2,41 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { chain, spread, negate, eq } from 'lodash';
+import wins from '../selectors/wins';
+import makeMove from '../actions/make_move';
+import jumpToMove from '../actions/jump_to_move';
 import PlayerGlyph from './player_glyph';
 import Board from './board';
-import lines from '../selectors/lines';
 
 const mapStateToProps = state => ({
-  lines: lines(state)
+  dim: state.dim,
+  players: state.players,
+  moves: state.moves,
+  moveIndex: state.moveIndex,
+  wins: wins(state)
 });
+
+const mapDispatchToProps = {
+  makeMove,
+  jumpToMove
+};
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reverseMoves: false,
-      ...this.reset(props)
+      reverseMoves: false
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(this.reset(nextProps));
-  }
-
-  reset(props) {
-    const { dim } = props;
-
-    return {
-      moves: [{
-        squares: Array(dim * dim),
-        player: 1
-      }],
-      moveIndex: 0
-    };
+  reverseMoves() {
+    this.setState({ reverseMoves: !this.state.reverseMoves });
   }
 
   render() {
-    const { moves, moveIndex, reverseMoves } = this.state;
+    const { moves, moveIndex, wins, makeMove, jumpToMove } = this.props;
+    const { reverseMoves } = this.state;
     const move = moves[moveIndex];
-    const wins = this.findWins();
 
     const { dim } = this.props;
 
@@ -58,7 +56,7 @@ class Game extends React.Component {
         : 'Game start';
       return (
         <li key={index} className={classNames({ current: index === moveIndex })}>
-          <button onClick={() => this.jumpTo(index)}>{desc}</button>
+          <button onClick={() => jumpToMove(index)}>{desc}</button>
         </li>
       );
     });
@@ -69,12 +67,10 @@ class Game extends React.Component {
 
     return (
       <div className="game">
-        <div className="game-board">
-          <Board dim={dim}
-                 squares={move.squares}
-                 winLines={wins.map(w => w.line)}
-                 onClick={i => this.makeMove(i)} />
-        </div>
+        <Board dim={dim}
+               squares={move.squares}
+               winLines={wins.map(w => w.line)}
+               onClick={makeMove} />
         <div className="game-info">
           <div className="status">{status}</div>
           <div className="moves">Moves:
@@ -89,42 +85,6 @@ class Game extends React.Component {
       </div>
     );
   }
-
-  makeMove(i) {
-    let { moves, moveIndex } = this.state;
-    const move = moves[moveIndex];
-
-    if(this.findWins().length || move.squares[i])
-      return;
-
-    ++moveIndex;
-    moves = moves.slice(0, moveIndex).concat([{
-      squares: chain([...move.squares]).tap(s => { s[i] = move.player }).value(),
-      player: move.player % this.props.players + 1
-    }]);
-
-    this.setState({ moves, moveIndex });
-  }
-
-  jumpTo(moveIndex) {
-    this.setState({ moveIndex });
-  }
-
-  reverseMoves() {
-    this.setState({ reverseMoves: !this.state.reverseMoves });
-  }
-
-  findWins() {
-    const { moves, moveIndex } = this.state;
-    const { lines } = this.props;
-    const squares = moves[moveIndex].squares;
-    return lines.reduce((wins, line) => {
-      const uniq = new Set(line.map(i => squares[i]))
-      const winner = uniq.size === 1 && uniq.values().next().value;
-      winner && wins.push({ player: winner, line });
-      return wins;
-    }, []);
-  }
 }
 
-export default connect(mapStateToProps)(Game);
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

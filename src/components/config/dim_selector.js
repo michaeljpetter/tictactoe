@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Selector from '../primitives/selector';
 import dimOptions from '../../selectors/dim_options';
-import dimChanged from '../../actions/dim_changed';
+import changeDim from '../../actions/change_dim';
 
 const mapStateToProps = state => ({
   value: state.dim,
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  onChange: dimChanged
+  onChange: changeDim
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Selector);
