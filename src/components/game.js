@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { chain, spread, negate, eq } from 'lodash';
-import wins from '../selectors/wins';
-import activeMove from '../selectors/active_move';
+import getPlayer from '../selectors/get_player';
+import nextPlayer from '../selectors/next_player';
+import winner from '../selectors/winner';
 import jumpToMove from '../actions/jump_to_move';
 import PlayerGlyph from './player_glyph';
 import Board from './board';
 
 const mapStateToProps = state => ({
   dim: state.dim,
+  nextPlayer: nextPlayer(state),
   moves: state.moves,
-  activeMove: activeMove(state),
-  wins: wins(state)
+  moveIndex: state.moveIndex,
+  getPlayer: getPlayer(state),
+  winner: winner(state)
 });
 
 const mapDispatchToProps = {
@@ -32,33 +34,25 @@ class Game extends React.Component {
   }
 
   render() {
-    const { dim, moves, activeMove, wins, jumpToMove } = this.props;
+    const { dim, nextPlayer, moves, moveIndex, getPlayer, winner, jumpToMove } = this.props;
     const { reverseMoves } = this.state;
 
-    const moveButtons = moves.map((move, index) => {
-      const desc = index
-        ? (() => {
-          const prev = moves[index - 1];
-          const [x, y] = chain(move.squares).zip(prev.squares)
-            .map(spread(negate(eq))).findIndex()
-            .thru(i => [1 + i % dim, 1 + i / dim|0]);
-          return (
-            <Fragment>
-              <PlayerGlyph player={prev.player} />{` → (${x}, ${y})`}
-            </Fragment>
-          );
-        })()
-        : 'Game start';
+    const moveButtons = ['Game start', ...moves.map((move, index) => {
+      const [x, y] = [1 + move % dim, 1 + move / dim|0];
       return (
-        <li key={index} className={classNames({ active: move === activeMove })}>
-          <button onClick={() => jumpToMove(index)}>{desc}</button>
-        </li>
+        <Fragment>
+          <PlayerGlyph player={getPlayer(index)} />{` → (${x}, ${y})`}
+        </Fragment>
       );
-    });
+    })].map((desc, i) => (
+        <li key={i} className={classNames({ active: i === moveIndex })}>
+          <button onClick={() => jumpToMove(i)}>{desc}</button>
+        </li>
+    ));
 
-    const status = wins.length
-      ? <Fragment>Winner: <PlayerGlyph player={wins[0].player} /></Fragment>
-      : <Fragment>Next player: <PlayerGlyph player={activeMove.player} /></Fragment>;
+    const status = winner
+      ? <Fragment>Winner: <PlayerGlyph player={winner} /></Fragment>
+      : <Fragment>Next player: <PlayerGlyph player={nextPlayer} /></Fragment>;
 
     return (
       <div className="game">

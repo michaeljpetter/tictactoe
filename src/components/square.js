@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { flatten } from 'lodash';
 import classNames from 'classnames';
-import activeMove from '../selectors/active_move';
-import wins from '../selectors/wins';
+import squares from '../selectors/squares';
+import isWinSquare from '../selectors/is_win_square';
 import makeMove from '../actions/make_move';
 import PlayerGlyph from './player_glyph';
 
 const mapStateToProps = (state, ownProps) => ({
-  player: activeMove(state).squares[ownProps.index],
-  win: new Set(flatten(wins(state).map(w => w.line))).has(ownProps.index)
+  player: squares(state)[ownProps.index],
+  win: isWinSquare(state)(ownProps.index)
 });
 
 const mapDispatchToProps = {

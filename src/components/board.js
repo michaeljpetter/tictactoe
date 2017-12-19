@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { chain } from 'lodash';
-import activeMove from '../selectors/active_move';
+import squares from '../selectors/squares';
 import Square from './square';
 
 const mapStateToProps = state => ({
   dim: state.dim,
-  squaresLength: activeMove(state).squares.length 
+  squaresLength: squares(state).length
 });
 
 const Board = ({

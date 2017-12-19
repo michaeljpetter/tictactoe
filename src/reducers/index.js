@@ -1,64 +1,53 @@
-import { chain } from 'lodash';
 import { createReducer } from '../ext/redux';
-import wins from '../selectors/wins';
+import winner from '../selectors/winner';
+import squares from '../selectors/squares';
 
-const reset = dim => ({
-  moves: [{
-    squares: Array(dim * dim),
-    player: 1
-  }],
-  activeMoveIndex: 0
-});
+const newGame = {
+  moves: [],
+  moveIndex: 0
+};
 
-const defaultState = {
+const defaultState = ({
   dim: 3,
   toWin: 3,
   players: 2,
-  ...reset(3)
-};
+  ...newGame
+});
 
 export default createReducer(defaultState, {
   'CHANGE_DIM': (state, { dim }) => ({
     ...state,
     dim,
     toWin: Math.min(state.toWin, dim),
-    ...reset(dim)
+    ...newGame
   }),
 
   'CHANGE_TO_WIN': (state, { toWin }) => ({
     ...state,
     toWin,
-    ...reset(state.dim)
+    ...newGame
   }),
 
   'CHANGE_PLAYERS': (state, { players }) => ({
     ...state,
     players,
-    ...reset(state.dim)
+    ...newGame
   }),
 
   'MAKE_MOVE': (state, { index }) => {
-    const { moves, activeMoveIndex } = state;
-    const alreadyWon = wins(state).length;
-    const active = moves[activeMoveIndex];
-
-    if(alreadyWon || active.squares[index])
+    if(winner(state) || squares(state)[index])
       return state;
 
-    const move = {
-      squares: chain([...active.squares]).tap(s => { s[index] = active.player }).value(),
-      player: active.player % state.players + 1
-    };
-
+    const { moves, moveIndex } = state;
     return ({
       ...state,
-      activeMoveIndex: activeMoveIndex + 1,
-      moves: [...state.moves.slice(0, activeMoveIndex + 1), move]
+      moveIndex: moveIndex + 1,
+      moves: [...moves.slice(0, moveIndex), index]
     });
   },
 
   'JUMP_TO_MOVE': (state, { index }) => ({
     ...state,
-    activeMoveIndex: index
+    moveIndex: index
   })
 });
