@@ -7,6 +7,6 @@ export default createSelector(
   squares,
   (lines, squares) =>
     lines.map(line => ({ line, sq: line.map(i => squares[i]) }))
-         .filter(({ sq }) => sq[0] && new Set(sq).size === 1)
+         .filter(({ sq }) => sq[0] && sq.every(s => s === sq[0]))
          .map(({ line }) => line)
 );
