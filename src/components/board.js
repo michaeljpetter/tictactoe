@@ -1,28 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { chain } from 'lodash';
-import squares from '../selectors/squares';
+import rows from '../selectors/rows';
 import Square from './square';
 
 const mapStateToProps = state => ({
-  dim: state.dim,
-  squaresLength: squares(state).length
+  rows: rows(state)
 });
 
 const Board = ({
-  dim, squaresLength
+  rows
 }) => (
-  <div className="board">
-    {chain(squaresLength).range()
-       .map(i =>
-         <Square key={i} index={i} />
-       )
-       .chunk(dim).map((row, i) =>
-         <div key={i} className="board-row">{row}</div>
-       )
-       .value()
-    }
-  </div>
+  <div className="board">{rows.map(row =>
+    <div key={row} className="board-row">{row.map(i =>
+      <Square key={i} index={i} />
+    )}</div>
+  )}</div>
 );
 
 export default connect(mapStateToProps)(Board);
