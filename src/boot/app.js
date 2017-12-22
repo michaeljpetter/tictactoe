@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import Config from '../components/config';
 import Game from '../components/game';
-import '../style/app.css';
+import '../style/app.scss';
 
 const App = () => (
   <Fragment>
