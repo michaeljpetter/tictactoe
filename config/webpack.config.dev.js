@@ -190,11 +190,14 @@ module.exports = {
           },
           {
             test: /\.scss$/,
-            include: paths.appSrc,
-            use: ExtractTextPlugin.extract([
-              { loader: require.resolve('css-loader'), options: { sourceMap: true } },
-              { loader: require.resolve('sass-loader'), options: { sourceMap: true } }
-            ])
+            include: path.resolve(paths.appSrc, 'style'),
+            use: ExtractTextPlugin.extract({
+              fallback: 'style-loader',
+              use: [
+                { loader: 'css-loader', options: { sourceMap: true } },
+                { loader: 'sass-loader', options: { sourceMap: true } }
+              ]
+            })
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
@@ -253,7 +256,8 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new ExtractTextPlugin({
       filename: 'static/css/bundle.css',
-      allChunks: true
+      allChunks: true,
+      disable: true
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.

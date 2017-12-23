@@ -206,7 +206,7 @@ module.exports = {
           },
           {
             test: /\.scss$/,
-            include: paths.appSrc,
+            include: path.resolve(paths.appSrc, 'style'),
             use: ExtractTextPlugin.extract([
               { loader: require.resolve('css-loader'), options: { sourceMap: true } },
               { loader: require.resolve('sass-loader'), options: { sourceMap: true } }
