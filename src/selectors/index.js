@@ -1,3 +1,5 @@
+export { default as canRedo } from './can_redo';
+export { default as canUndo } from './can_undo';
 export { default as dimOptions } from './dim_options';
 export { default as getPlayer } from './get_player';
 export { default as isWinSquare } from './is_win_square';

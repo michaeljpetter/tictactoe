@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { rows } from '../selectors';
+import { rows } from '../../selectors';
 import Square from './square';
 
 const mapStateToProps = state => ({

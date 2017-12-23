@@ -1,13 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
 const glyphs = ['X', 'O', '▲', '◉'];
 
 const PlayerGlyph = ({
   player
 }) => (
-  <Fragment>
-    {glyphs[player - 1]}
-  </Fragment>
+  <div className="glyph">{glyphs[player - 1]}</div>
 );
 
 export default PlayerGlyph;

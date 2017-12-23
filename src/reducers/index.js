@@ -45,8 +45,23 @@ export default createReducer(defaultState, {
     });
   },
 
-  'JUMP_TO_MOVE': (state, { index }) => ({
+  'UNDO': state => ({
     ...state,
-    moveIndex: index
+    moveIndex: Math.max(0, state.moveIndex - 1)
+  }),
+
+  'UNDO_ALL': state => ({
+    ...state,
+    moveIndex: 0
+  }),
+
+  'REDO': state => ({
+    ...state,
+    moveIndex: Math.min(state.moves.length, state.moveIndex + 1)
+  }),
+
+  'REDO_ALL': state => ({
+    ...state,
+    moveIndex: state.moves.length
   })
 });
