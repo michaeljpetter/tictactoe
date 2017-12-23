@@ -1,6 +1,5 @@
 import { createReducer } from '../ext/redux';
-import winner from '../selectors/winner';
-import squares from '../selectors/squares';
+import { winner, squares } from '../selectors';
 
 const newGame = {
   moves: [],

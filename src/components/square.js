@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import squares from '../selectors/squares';
-import isWinSquare from '../selectors/is_win_square';
-import makeMove from '../actions/make_move';
+import { squares, isWinSquare } from '../selectors';
+import { makeMove } from '../actions';
 import PlayerGlyph from './player_glyph';
 
 const mapStateToProps = (state, ownProps) => ({

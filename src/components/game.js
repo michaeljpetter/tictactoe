@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import getPlayer from '../selectors/get_player';
-import nextPlayer from '../selectors/next_player';
-import winner from '../selectors/winner';
-import jumpToMove from '../actions/jump_to_move';
+import { getPlayer, nextPlayer, winner } from '../selectors';
+import { jumpToMove } from '../actions';
 import PlayerGlyph from './player_glyph';
 import Board from './board';
 
