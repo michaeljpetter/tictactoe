@@ -88,11 +88,15 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.js', '.svg'],
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
+      '@selectors': path.resolve(paths.appSrc, 'selectors'),
+      '@actions': path.resolve(paths.appSrc, 'actions'),
+      '@images': path.resolve(paths.appSrc, 'images'),
+      '@ext': path.resolve(paths.appSrc, 'ext')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
