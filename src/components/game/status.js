@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import { nextPlayer, winner } from '../../selectors';
+import { nextPlayer, winner } from '@selectors';
 import PlayerGlyph from './player_glyph';
 
 const mapStateToProps = state => ({

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { dimOptions } from '@selectors';
+import { changeDim } from '@actions';
 import Selector from '../primitives/selector';
-import { dimOptions } from '../../selectors';
-import { changeDim } from '../../actions';
 
 const mapStateToProps = state => ({
   value: state.dim,

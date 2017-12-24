@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { playersOptions } from '@selectors';
+import { changePlayers } from '@actions';
 import Selector from '../primitives/selector';
-import { playersOptions } from '../../selectors';
-import { changePlayers } from '../../actions';
 
 const mapStateToProps = state => ({
   value: state.players,

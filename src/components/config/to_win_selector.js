@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
+import { toWinOptions } from '@selectors';
+import { changeToWin } from '@actions';
 import Selector from '../primitives/selector';
-import { toWinOptions } from '../../selectors';
-import { changeToWin } from '../../actions';
 
 const mapStateToProps = state => ({
   value: state.toWin,

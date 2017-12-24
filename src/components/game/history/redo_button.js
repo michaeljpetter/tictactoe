@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { canRedo } from '../../../selectors';
-import { redo } from '../../../actions';
-import Icon from '../../../images/redo_icon.svg';
+import { canRedo } from '@selectors';
+import { redo } from '@actions';
+import Icon from '@images/redo_icon';
 
 const mapStateToProps = state => ({
   canRedo: canRedo(state)

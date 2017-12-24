@@ -1,5 +1,5 @@
-import { createReducer } from '../ext/redux';
-import { winner, squares } from '../selectors';
+import { createReducer } from '@ext/redux';
+import { winner, squares } from '@selectors';
 
 const newGame = {
   moves: [],

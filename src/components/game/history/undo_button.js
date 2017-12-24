@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { canUndo } from '../../../selectors';
-import { undo } from '../../../actions';
-import Icon from '../../../images/undo_icon.svg';
+import { canUndo } from '@selectors';
+import { undo } from '@actions';
+import Icon from '@images/undo_icon';
 
 const mapStateToProps = state => ({
   canUndo: canUndo(state)
