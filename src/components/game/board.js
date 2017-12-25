@@ -10,11 +10,15 @@ const mapStateToProps = state => ({
 const Board = ({
   rows
 }) => (
-  <div className="board">{rows.map(row =>
-    <div key={row} className="board-row">{row.map(i =>
-      <Square key={i} index={i} />
-    )}</div>
-  )}</div>
+  <div className="board">
+    {rows.map(row =>
+      <div key={row} className="board-row">
+        {row.map(i =>
+          <Square key={i} index={i} />
+        )}
+      </div>
+    )}
+  </div>
 );
 
 export default connect(mapStateToProps)(Board);

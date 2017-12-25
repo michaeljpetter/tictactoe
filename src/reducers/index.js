@@ -38,11 +38,11 @@ export default createReducer(defaultState, {
       return state;
 
     const { moves, moveIndex } = state;
-    return ({
+    return {
       ...state,
       moveIndex: moveIndex + 1,
       moves: [...moves.slice(0, moveIndex), index]
-    });
+    };
   },
 
   'UNDO': state => ({
