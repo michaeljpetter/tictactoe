@@ -1,23 +1,18 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { nextPlayer, winner } from '@selectors';
-import PlayerGlyph from './player_glyph';
+import { status } from '@selectors';
+import MixedText from './mixed_text';
 
 const mapStateToProps = state => ({
-  nextPlayer: nextPlayer(state),
-  winner: winner(state)
+  status: status(state)
 });
 
 const Status = ({
-  nextPlayer, winner
-}) => {
-  const status = winner
-    ? <Fragment>Winner: <PlayerGlyph player={winner} /></Fragment>
-    : <Fragment>Next player: <PlayerGlyph player={nextPlayer} /></Fragment>;
-
-  return (
-    <div className="status">{status}</div>
-  );
-};
+  status
+}) => (
+  <div className="status">
+    <MixedText text={status} />
+  </div>
+);
 
 export default connect(mapStateToProps)(Status);
