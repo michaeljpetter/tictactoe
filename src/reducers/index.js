@@ -1,5 +1,4 @@
 import { createReducer } from '@ext/redux';
-import { winner, squares } from '@selectors';
 
 const newGame = {
   moves: [],
@@ -33,21 +32,15 @@ export default createReducer(defaultState, {
     ...newGame
   }),
 
-  'MAKE_MOVE': (state, { index }) => {
-    if(winner(state) || squares(state)[index])
-      return state;
-
-    const { moves, moveIndex } = state;
-    return {
-      ...state,
-      moveIndex: moveIndex + 1,
-      moves: [...moves.slice(0, moveIndex), index]
-    };
-  },
+  'MAKE_MOVE': (state, { index }) => ({
+    ...state,
+    moveIndex: state.moveIndex + 1,
+    moves: [...state.moves.slice(0, state.moveIndex), index]
+  }),
 
   'UNDO': state => ({
     ...state,
-    moveIndex: Math.max(0, state.moveIndex - 1)
+    moveIndex: state.moveIndex - 1
   }),
 
   'UNDO_ALL': state => ({
@@ -57,7 +50,7 @@ export default createReducer(defaultState, {
 
   'REDO': state => ({
     ...state,
-    moveIndex: Math.min(state.moves.length, state.moveIndex + 1)
+    moveIndex: state.moveIndex + 1
   }),
 
   'REDO_ALL': state => ({

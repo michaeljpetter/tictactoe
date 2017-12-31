@@ -1,3 +1,4 @@
+export { default as canMakeMove } from './can_make_move';
 export { default as canRedo } from './can_redo';
 export { default as canUndo } from './can_undo';
 export { default as dimOptions } from './dim_options';

@@ -1,24 +1,26 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import { squares, isWinSquare } from '@selectors';
+import { squares, isWinSquare, canMakeMove } from '@selectors';
 import { makeMove } from '@actions';
 import PlayerGlyph from './player_glyph';
 
-const mapStateToProps = (state, ownProps) => ({
-  player: squares(state)[ownProps.index],
-  win: isWinSquare(state)(ownProps.index)
+const mapStateToProps = (state, { index }) => ({
+  player: squares(state)[index],
+  win: isWinSquare(state)(index),
+  canMakeMove: canMakeMove(state)(index)
 });
 
-const mapDispatchToProps = {
-  makeMove
-};
+const mapDispatchToProps = (dispatch, { index }) => bindActionCreators({
+  makeMove: () => makeMove(index)
+}, dispatch);
 
 const Square = ({
-  index, player, win, makeMove
+  player, win, canMakeMove, makeMove
 }) => (
   <button className={classNames('square', { win })}
-          onClick={() => makeMove(index)}>
+          disabled={!canMakeMove} onClick={makeMove}>
     {player ? <PlayerGlyph player={player} /> : null}
   </button>
 );
