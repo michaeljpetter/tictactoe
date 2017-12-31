@@ -17,11 +17,10 @@ const mapDispatchToProps = {
 const Square = ({
   index, player, win, makeMove
 }) => (
-  <div role="button"
-       className={classNames('square', { win })}
-       onClick={() => makeMove(index)}>
+  <button className={classNames('square', { win })}
+          onClick={() => makeMove(index)}>
     {player ? <PlayerGlyph player={player} /> : null}
-  </div>
+  </button>
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Square);

@@ -120,6 +120,9 @@ button, select {
 }
 
 .board-row {
+  display: flex;
+  flex-direction: row;
+
   &:first-child .square {
     &:first-child {
       border-top-left-radius: 3px;
@@ -140,17 +143,16 @@ button, select {
 }
 
 .square {
-  float: left;
   width: 1.5em;
   height: 1.5em;
   margin-top: -1px;
   margin-right: -1px;
+  padding: 0;
   color: $base02;
   border: 1px solid $yellow;
+  font-family: inherit;
   font-size: 2em;
   font-weight: bold;
-  line-height: 1.5em;
-  text-align: center;
   cursor: default;
 
   &:empty {
