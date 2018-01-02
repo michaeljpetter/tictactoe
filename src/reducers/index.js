@@ -6,17 +6,19 @@ const newGame = {
 };
 
 const defaultState = ({
-  dim: 3,
+  width: 3,
+  height: 3,
   toWin: 3,
   players: 2,
   ...newGame
 });
 
 export default createReducer(defaultState, {
-  'CHANGE_DIM': (state, { dim }) => ({
+  'CHANGE_DIM': (state, { width, height }) => ({
     ...state,
-    dim,
-    toWin: Math.min(state.toWin, dim),
+    width,
+    height,
+    toWin: Math.min(state.toWin, width, height),
     ...newGame
   }),
 

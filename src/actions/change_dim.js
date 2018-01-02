@@ -1,2 +1,2 @@
-export default dim =>
-  ({ type: 'CHANGE_DIM', dim });
+export default (width, height) =>
+  ({ type: 'CHANGE_DIM', width, height });

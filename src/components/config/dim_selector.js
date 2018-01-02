@@ -4,13 +4,13 @@ import { changeDim } from '@actions';
 import Selector from '../primitives/selector';
 
 const mapStateToProps = state => ({
-  value: state.dim,
+  value: state.width,
   options: dimOptions(state),
   optionText: dim => `${dim} x ${dim}`
 });
 
 const mapDispatchToProps = {
-  onChange: changeDim
+  onChange: dim => changeDim(dim, dim)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Selector);
