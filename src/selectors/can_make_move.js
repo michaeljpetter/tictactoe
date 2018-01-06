@@ -1,9 +1,10 @@
 import { createSelector } from 'reselect';
-import winner from './winner';
+import gameOver from './game_over';
 import squares from './squares';
 
 export default createSelector(
-  winner,
+  gameOver,
   squares,
-  (winner, squares) => index => !winner && !squares[index] 
+  (gameOver, squares) =>
+    gameOver ? () => false : index => !squares[index]
 );

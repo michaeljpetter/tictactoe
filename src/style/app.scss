@@ -179,7 +179,7 @@ button, select {
   font-weight: bold;
   cursor: default;
 
-  &:empty {
+  &:enabled {
     cursor: pointer;
   }
 
