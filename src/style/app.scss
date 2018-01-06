@@ -44,10 +44,10 @@ button, select {
 
 .config {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 450px;
+  max-width: 500px;
   margin: 0 auto;
+  text-align: center;
+  white-space: nowrap;
 
   select {
     background: $orange;
@@ -55,16 +55,42 @@ button, select {
     font-weight: bold;
   }
 
-  .dim:before {
-    content: 'Size: '
+  .dim {
+    flex: 1.2;
+    text-align: left;
+
+    &:before {
+      content: 'Size: '
+    }
+
+    .lock {
+      width: 20px;
+      margin-right: 1px;
+      padding: 0;
+      border: none;
+      vertical-align: middle;
+    }
+
+    svg {
+      fill: $base03;
+    }
   }
 
-  .to-win:before {
-    content: 'To win: '
+  .to-win {
+    flex: 1;
+
+    &:before {
+      content: 'To win: '
+    }
   }
 
-  .players:before {
-    content: 'Players: '
+  .players {
+    flex: 1;
+    text-align: right;
+
+    &:before {
+      content: 'Players: '
+    }
   }
 }
 
@@ -86,7 +112,6 @@ button, select {
 
 .history {
   display: flex;
-  flex-direction: row;
   align-items: center;
 
   button {
@@ -121,7 +146,6 @@ button, select {
 
 .board-row {
   display: flex;
-  flex-direction: row;
 
   &:first-child .square {
     &:first-child {
