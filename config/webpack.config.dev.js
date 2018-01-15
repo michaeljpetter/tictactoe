@@ -265,7 +265,6 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new ExtractTextPlugin({
       filename: 'static/css/bundle.css',
-      allChunks: true,
       disable: true
     })
   ],
