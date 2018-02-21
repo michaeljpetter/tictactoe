@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { canRedo } from '@selectors';
 import { redo } from '@actions';
-import Icon from '@images/redo_icon';
+import { RedoIcon } from '@images';
 
 const mapStateToProps = state => ({
   canRedo: canRedo(state)
@@ -15,7 +15,7 @@ const mapDispatchToProps = {
 const RedoButton = ({
   canRedo, redo
 }) => (
-  <button disabled={!canRedo} onClick={redo}><Icon /></button>
+  <button disabled={!canRedo} onClick={redo}><RedoIcon /></button>
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(RedoButton);

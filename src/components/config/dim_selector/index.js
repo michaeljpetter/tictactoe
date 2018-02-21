@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import LockIcon from '@images/lock_icon';
-import UnlockIcon from '@images/unlock_icon';
+import { LockIcon, UnlockIcon } from '@images';
 import LockedSelector from './locked_selector';
 import UnlockedSelector from './unlocked_selector';
 
