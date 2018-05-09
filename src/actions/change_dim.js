@@ -3,6 +3,6 @@ export default (width, height) => {
 
   return (dispatch, getState) => {
     if(width !== getState().width || height !== getState().height)
-      dispatch({ type: 'CHANGE_DIM', width, height });
+      dispatch({ type: 'CHANGE_DIM', payload: { width, height } });
   };
 };

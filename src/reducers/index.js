@@ -14,7 +14,7 @@ const defaultState = ({
 });
 
 export default createReducer(defaultState, {
-  'CHANGE_DIM': (state, { width, height }) => ({
+  'CHANGE_DIM': (state, { payload: { width, height } }) => ({
     ...state,
     width,
     height,
@@ -22,19 +22,19 @@ export default createReducer(defaultState, {
     ...newGame
   }),
 
-  'CHANGE_TO_WIN': (state, { toWin }) => ({
+  'CHANGE_TO_WIN': (state, { payload: toWin }) => ({
     ...state,
     toWin,
     ...newGame
   }),
 
-  'CHANGE_PLAYERS': (state, { players }) => ({
+  'CHANGE_PLAYERS': (state, { payload: players }) => ({
     ...state,
     players,
     ...newGame
   }),
 
-  'MAKE_MOVE': (state, { index }) => ({
+  'MAKE_MOVE': (state, { payload: index }) => ({
     ...state,
     moveIndex: state.moveIndex + 1,
     moves: [...state.moves.slice(0, state.moveIndex), index]

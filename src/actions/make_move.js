@@ -1,2 +1,2 @@
 export default index =>
-  ({ type: 'MAKE_MOVE', index });
+  ({ type: 'MAKE_MOVE', payload: index });
