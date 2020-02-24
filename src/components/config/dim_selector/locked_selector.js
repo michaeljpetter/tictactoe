@@ -14,7 +14,7 @@ const mapDispatchToProps = {
 };
 
 class LockedSelector extends React.Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { width, changeDim } = this.props;
     changeDim(width);
   }
