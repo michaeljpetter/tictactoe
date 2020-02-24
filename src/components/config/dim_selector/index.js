@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { LockIcon, UnlockIcon } from '@images';
 import LockedSelector from './locked_selector';
 import UnlockedSelector from './unlocked_selector';
@@ -16,12 +16,12 @@ class DimSelector extends React.Component {
   render() {
     const { locked } = this.state;
     return (
-      <Fragment>
+      <>
         <button className="lock" onClick={() => this.toggleLock()}>
           {locked ? <LockIcon /> : <UnlockIcon />}
         </button>
         {locked ? <LockedSelector /> : <UnlockedSelector />}
-      </Fragment>
+      </>
     );
   }
 }
