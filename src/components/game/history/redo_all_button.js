@@ -13,7 +13,8 @@ const mapDispatchToProps = {
 };
 
 const RedoAllButton = ({
-  canRedo, redoAll
+  canRedo,
+  redoAll
 }) => (
   <button disabled={!canRedo} onClick={redoAll}><RedoAllIcon /></button>
 );

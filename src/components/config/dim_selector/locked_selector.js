@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { dimOptions } from '@selectors';
 import { changeDim } from '@actions';
@@ -13,20 +13,18 @@ const mapDispatchToProps = {
   changeDim
 };
 
-class LockedSelector extends React.Component {
-  UNSAFE_componentWillMount() {
-    const { width, changeDim } = this.props;
-    changeDim(width);
-  }
+const LockedSelector = ({
+  width,
+  options,
+  changeDim
+}) => {
+  useEffect(() => changeDim(width), []);
 
-  render() {
-    const { width, options, changeDim } = this.props;
-    return (
-      <Selector value={width} options={options}
-                optionText={dim => `${dim} x ${dim}`}
-                onChange={changeDim} />
-    );
-  }
-}
+  return (
+    <Selector value={width} options={options}
+              optionText={dim => `${dim} x ${dim}`}
+              onChange={changeDim} />
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LockedSelector);

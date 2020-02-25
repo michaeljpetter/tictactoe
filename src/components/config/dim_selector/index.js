@@ -1,29 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LockIcon, UnlockIcon } from '@images';
 import LockedSelector from './locked_selector';
 import UnlockedSelector from './unlocked_selector';
 
-class DimSelector extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { locked: true };
-  }
+const DimSelector = () => {
+  const [locked, setLocked] = useState(true);
 
-  toggleLock() {
-    this.setState(({ locked }) => ({ locked: !locked }));
-  }
+  const toggleLock = () => setLocked(x => !x);
 
-  render() {
-    const { locked } = this.state;
-    return (
-      <>
-        <button className="lock" onClick={() => this.toggleLock()}>
-          {locked ? <LockIcon /> : <UnlockIcon />}
-        </button>
-        {locked ? <LockedSelector /> : <UnlockedSelector />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <button className="lock" onClick={toggleLock}>
+        {locked ? <LockIcon /> : <UnlockIcon />}
+      </button>
+      {locked ? <LockedSelector /> : <UnlockedSelector />}
+    </>
+  );
+};
 
 export default DimSelector;

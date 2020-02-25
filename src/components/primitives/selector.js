@@ -1,7 +1,11 @@
 import React from 'react';
+import { identity } from 'lodash/fp';
 
 const Selector = ({
-  value, options, optionText, onChange
+  value,
+  options,
+  optionText = identity,
+  onChange
 }) => (
   <select value={value}
           onChange={e => onChange(options[e.target.selectedIndex])}>
@@ -10,9 +14,5 @@ const Selector = ({
     )}
   </select>
 );
-
-Selector.defaultProps = {
-  optionText: opt => opt
-};
 
 export default Selector;

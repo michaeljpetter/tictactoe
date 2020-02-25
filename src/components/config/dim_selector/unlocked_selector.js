@@ -15,7 +15,10 @@ const mapDispatchToProps = {
 };
 
 const UnlockedSelector = ({
-  width, height, options, changeDim
+  width,
+  height,
+  options,
+  changeDim
 }) => (
   <>
     <Selector value={width} options={options}

@@ -17,7 +17,10 @@ const mapDispatchToProps = (dispatch, { index }) => bindActionCreators({
 }, dispatch);
 
 const Square = ({
-  player, win, canMakeMove, makeMove
+  player,
+  win,
+  canMakeMove,
+  makeMove
 }) => (
   <button className={classNames('square', { win })}
           disabled={!canMakeMove} onClick={makeMove}>

@@ -13,7 +13,8 @@ const mapDispatchToProps = {
 };
 
 const UndoAllButton = ({
-  canUndo, undoAll
+  canUndo,
+  undoAll
 }) => (
   <button disabled={!canUndo} onClick={undoAll}><UndoAllIcon /></button>
 );
