@@ -1,32 +1,30 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { dimOptions } from '@selectors';
+import React, { useCallback } from 'react';
+import { useSelector } from 'react-redux';
+import { useAction } from '@ext/redux';
+import { dim, dimOptions } from '@selectors';
 import { changeDim } from '@actions';
 import Selector from '../../primitives/selector';
+import { __ } from 'lodash/fp';
 
-const mapStateToProps = state => ({
-  width: state.width,
-  height: state.height,
-  options: dimOptions(state)
-});
+const UnlockedSelector = () => {
+  const options = useSelector(dimOptions);
+  const [width, height] = useSelector(dim);
+  const handleOnChange = useAction(changeDim);
 
-const mapDispatchToProps = {
-  changeDim
+  const handleOnChangeWidth = useCallback(handleOnChange(__, height), [handleOnChange, height]);
+  const handleOnChangeHeight = useCallback(handleOnChange(width), [handleOnChange, width]);
+
+  return (
+    <>
+      <Selector options={options}
+                value={width}
+                onChange={handleOnChangeWidth} />
+      x
+      <Selector options={options}
+                value={height}
+                onChange={handleOnChangeHeight} />
+    </>
+  );
 };
 
-const UnlockedSelector = ({
-  width,
-  height,
-  options,
-  changeDim
-}) => (
-  <>
-    <Selector value={width} options={options}
-              onChange={width => changeDim(width, height)} />
-    x
-    <Selector value={height} options={options}
-              onChange={height => changeDim(width, height)} />
-  </>
-);
-
-export default connect(mapStateToProps, mapDispatchToProps)(UnlockedSelector);
+export default UnlockedSelector;

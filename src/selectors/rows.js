@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
-import { chain } from 'lodash';
+import dim from './dim';
+import { range, chunk } from 'lodash/fp';
 
 export default createSelector(
-  state => state.width,
-  state => state.height,
-  (width, height) => chain(width * height).range().chunk(width).value()
+  dim,
+  ([width, height]) => chunk(width, range(0, width * height))
 );

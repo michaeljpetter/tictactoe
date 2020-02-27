@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
 import winLines from './win_lines';
+import dim from './dim';
+import { get } from 'lodash/fp';
 
 export default createSelector(
   winLines,
-  state => state.moveIndex,
-  state => state.width,
-  state => state.height,
-  (winLines, moveIndex, width, height) =>
+  get('moveIndex'),
+  dim,
+  (winLines, moveIndex, [width, height]) =>
     winLines.length || moveIndex === width * height
 );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { LockIcon, UnlockIcon } from '@images';
 import LockedSelector from './locked_selector';
 import UnlockedSelector from './unlocked_selector';
@@ -6,7 +6,7 @@ import UnlockedSelector from './unlocked_selector';
 const DimSelector = () => {
   const [locked, setLocked] = useState(true);
 
-  const toggleLock = () => setLocked(x => !x);
+  const toggleLock = useCallback(() => setLocked(x => !x), [setLocked]);
 
   return (
     <>

@@ -1,15 +1,14 @@
-import { connect } from 'react-redux';
-import { toWinOptions } from '@selectors';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useAction } from '@ext/redux';
+import { toWin, toWinOptions } from '@selectors';
 import { changeToWin } from '@actions';
 import Selector from '../primitives/selector';
 
-const mapStateToProps = state => ({
-  value: state.toWin,
-  options: toWinOptions(state)
-});
+const ToWinSelector = () => (
+  <Selector options={useSelector(toWinOptions)}
+            value={useSelector(toWin)}
+            onChange={useAction(changeToWin)} />
+);
 
-const mapDispatchToProps = {
-  onChange: changeToWin
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Selector);
+export default ToWinSelector;

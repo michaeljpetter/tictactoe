@@ -1,15 +1,14 @@
-import { connect } from 'react-redux';
-import { playersOptions } from '@selectors';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useAction } from '@ext/redux';
+import { players, playersOptions } from '@selectors';
 import { changePlayers } from '@actions';
 import Selector from '../primitives/selector';
 
-const mapStateToProps = state => ({
-  value: state.players,
-  options: playersOptions(state)
-});
+const PlayersSelector = () => (
+  <Selector options={useSelector(playersOptions)}
+            value={useSelector(players)}
+            onChange={useAction(changePlayers)} />
+);
 
-const mapDispatchToProps = {
-  onChange: changePlayers
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Selector);
+export default PlayersSelector;

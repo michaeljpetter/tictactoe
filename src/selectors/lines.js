@@ -1,22 +1,23 @@
 import { createSelector } from 'reselect';
-import { range } from 'lodash';
+import dim from './dim';
+import toWin from './to_win';
+import { range } from 'lodash/fp';
 
 export default createSelector(
-  state => state.width,
-  state => state.height,
-  state => state.toWin,
-  (width, height, toWin) => {
-    const line = range(toWin); 
-    const wshifts = range(width - toWin + 1);
-    const hshifts = range(height - toWin + 1);
+  dim,
+  toWin,
+  ([width, height], toWin) => {
+    const line = range(0, toWin);
+    const wshifts = range(0, width - toWin + 1);
+    const hshifts = range(0, height - toWin + 1);
 
     return [].concat(
       //rows —
-      ...wshifts.map(s => range(height).map(r =>
+      ...wshifts.map(s => range(0, height).map(r =>
         line.map(i => r * width + (i + s))
       )),
       //columns |
-      ...hshifts.map(s => range(width).map(c =>
+      ...hshifts.map(s => range(0, width).map(c =>
         line.map(i => c + width * (i + s))
       )),
       //diagonals \

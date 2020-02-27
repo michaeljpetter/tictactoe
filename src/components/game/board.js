@@ -1,17 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { rows } from '@selectors';
 import Square from './square';
 
-const mapStateToProps = state => ({
-  rows: rows(state)
-});
-
-const Board = ({
-  rows
-}) => (
+const Board = () => (
   <div className="board">
-    {rows.map(row =>
+    {useSelector(rows).map(row =>
       <div key={row} className="board-row">
         {row.map(i =>
           <Square key={i} index={i} />
@@ -21,4 +15,4 @@ const Board = ({
   </div>
 );
 
-export default connect(mapStateToProps)(Board);
+export default Board;

@@ -1,22 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAction } from '@ext/redux';
 import { canRedo } from '@selectors';
 import { redoAll } from '@actions';
 import { RedoAllIcon } from '@images';
 
-const mapStateToProps = state => ({
-  canRedo: canRedo(state)
-});
-
-const mapDispatchToProps = {
-  redoAll
-};
-
-const RedoAllButton = ({
-  canRedo,
-  redoAll
-}) => (
-  <button disabled={!canRedo} onClick={redoAll}><RedoAllIcon /></button>
+const RedoAllButton = () => (
+  <button disabled={!useSelector(canRedo)}
+          onClick={useAction(redoAll)}>
+    <RedoAllIcon />
+  </button>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(RedoAllButton);
+export default RedoAllButton;

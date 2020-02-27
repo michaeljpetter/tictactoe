@@ -1,8 +1,8 @@
-export default (width, height) => {
-  height = height || width;
+import { dim } from '@selectors';
 
-  return (dispatch, getState) => {
-    if(width !== getState().width || height !== getState().height)
+export default (width, height) =>
+  (dispatch, getState) => {
+    const [w, h] = dim(getState());
+    if(width !== w || height !== h)
       dispatch({ type: 'CHANGE_DIM', payload: { width, height } });
   };
-};

@@ -3,6 +3,7 @@ import winLines from './win_lines';
 import squares from './squares';
 import gameOver from './game_over';
 import getPlayer from './get_player';
+import { get } from 'lodash/fp';
 
 const winner = createSelector(
   winLines,
@@ -14,7 +15,7 @@ const winner = createSelector(
 const player = createSelector(
   gameOver,
   getPlayer,
-  state => state.moveIndex,
+  get('moveIndex'),
   (gameOver, getPlayer, moveIndex) =>
     gameOver ? undefined : getPlayer(moveIndex)
 );

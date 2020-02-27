@@ -1,30 +1,25 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { dimOptions } from '@selectors';
+import { useSelector } from 'react-redux';
+import { useAction } from '@ext/redux';
+import { dim, dimOptions } from '@selectors';
 import { changeDim } from '@actions';
 import Selector from '../../primitives/selector';
 
-const mapStateToProps = state => ({
-  width: state.width,
-  options: dimOptions(state)
-});
+const optionText = value => `${value} x ${value}`;
+const changeValue = value => changeDim(value, value);
 
-const mapDispatchToProps = {
-  changeDim
-};
+const LockedSelector = () => {
+  const [value] = useSelector(dim);
+  const handleOnChange = useAction(changeValue);
 
-const LockedSelector = ({
-  width,
-  options,
-  changeDim
-}) => {
-  useEffect(() => changeDim(width), []);
+  useEffect(() => handleOnChange(value), []);
 
   return (
-    <Selector value={width} options={options}
-              optionText={dim => `${dim} x ${dim}`}
-              onChange={changeDim} />
+    <Selector options={useSelector(dimOptions)}
+              optionText={optionText}
+              value={value}
+              onChange={handleOnChange} />
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LockedSelector);
+export default LockedSelector;
