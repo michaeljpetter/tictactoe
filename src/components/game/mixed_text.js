@@ -1,11 +1,12 @@
 import React from 'react';
 import { createRenderer } from '@ext/mixed_text';
 import PlayerGlyph from './player_glyph';
+import { flow, get } from 'lodash/fp';
 
-const render = createRenderer({
+/* eslint-disable react/display-name */
+
+const MixedText = flow(get('parts'), createRenderer({
   player: (k, v) => <PlayerGlyph key={k} player={v} />
-});
-
-const MixedText = ({ text }) => render(text);
+}));
 
 export default MixedText;

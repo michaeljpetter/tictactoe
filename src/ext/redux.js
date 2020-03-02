@@ -4,7 +4,7 @@ import { curryN, flow } from 'lodash/fp';
 
 export const createReducer = (defaultState, handlers) =>
   (state = defaultState, action) =>
-    handlers.hasOwnProperty(action.type)
+    Object.prototype.hasOwnProperty.call(handlers, action.type)
       ? handlers[action.type](state, action)
       : state;
 

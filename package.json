@@ -18,10 +18,10 @@
     "css-loader": "^3.0.0",
     "eslint": "^6.8.0",
     "eslint-loader": "^2.2.1",
-    "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.5.0",
     "file-loader": "0.11.2",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "^4.0.0-beta.5",
@@ -64,7 +64,8 @@
     "start": "node --trace-deprecation scripts/start.js",
     "build": "node --trace-deprecation scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "index": "node scripts/index.js"
+    "index": "node scripts/index.js",
+    "lint": "eslint src"
   },
   "jest": {
     "collectCoverageFrom": [

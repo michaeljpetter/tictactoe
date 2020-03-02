@@ -14,7 +14,7 @@ const LockedSelector = ({
   const [value] = useSelector(dim);
   const handleOnChange = useAction(changeValue);
 
-  useEffect(() => handleOnChange(value), []);
+  useEffect(() => { handleOnChange(value); }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Select className={className}

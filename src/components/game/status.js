@@ -15,7 +15,7 @@ const Status = () => {
 
   return (
     <div className={c.status}>
-      <MixedText text={useSelector(status)} />
+      <MixedText parts={useSelector(status)} />
     </div>
   );
 };

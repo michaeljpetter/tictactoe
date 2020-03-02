@@ -1,13 +1,4 @@
 {
-  "plugins": ["react"],
-  "extends": [
-    "plugin:react/recommended"
-  ],
-  "rules": {
-    "react/prop-types": "off",
-    "react/display-name": "off",
-    "react/jsx-key": "off"
-  },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -16,9 +7,34 @@
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "jest"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
   "settings": {
     "react": {
       "version": "detect"
     }
+  },
+  "env": {
+    "browser": true,
+    "es2017": true,
+    "jest": true
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "react/prop-types": ["warn", { "skipUndeclared": true }],
+    "react/display-name": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/no-onchange": "off"
   }
 }
