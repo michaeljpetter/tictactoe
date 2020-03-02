@@ -3,12 +3,15 @@ import { useSelector } from 'react-redux';
 import { useAction } from '@ext/redux';
 import { players, playersOptions } from '@selectors';
 import { changePlayers } from '@actions';
-import Selector from '../primitives/selector';
+import Select from '../primitives/select';
 
-const PlayersSelector = () => (
-  <Selector options={useSelector(playersOptions)}
-            value={useSelector(players)}
-            onChange={useAction(changePlayers)} />
+const PlayersSelector = ({
+  className
+}) => (
+  <Select className={className}
+          options={useSelector(playersOptions)}
+          value={useSelector(players)}
+          onChange={useAction(changePlayers)} />
 );
 
 export default PlayersSelector;

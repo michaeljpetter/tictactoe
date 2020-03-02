@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux';
 import { useAction } from '@ext/redux';
 import { dim, dimOptions } from '@selectors';
 import { changeDim } from '@actions';
-import Selector from '../../primitives/selector';
+import { Select } from '@primitives';
 import { __ } from 'lodash/fp';
 
-const UnlockedSelector = () => {
+const UnlockedSelector = ({
+  className
+}) => {
   const options = useSelector(dimOptions);
   const [width, height] = useSelector(dim);
   const handleOnChange = useAction(changeDim);
@@ -16,13 +18,15 @@ const UnlockedSelector = () => {
 
   return (
     <>
-      <Selector options={options}
-                value={width}
-                onChange={handleOnChangeWidth} />
+      <Select className={className}
+              options={options}
+              value={width}
+              onChange={handleOnChangeWidth} />
       x
-      <Selector options={options}
-                value={height}
-                onChange={handleOnChangeHeight} />
+      <Select className={className}
+              options={options}
+              value={height}
+              onChange={handleOnChangeHeight} />
     </>
   );
 };

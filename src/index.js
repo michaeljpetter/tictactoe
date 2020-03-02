@@ -1,12 +1,28 @@
 import React from 'react';
+import { createUseStyles } from 'react-jss';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import createStore from './boot/store';
-import App from './boot/app';
+import TicTacToe from './app';
+
+const useStyles = createUseStyles({
+  '@global': {
+    body: {
+      margin: 0,
+    }
+  },
+  fill: {
+    height: '100vh'
+  }
+});
+
+const Root = () => {
+  const c = useStyles();
+  
+  return (
+    <TicTacToe className={c.fill} />
+  );
+};
 
 render(
-  <Provider store={createStore()}>
-    <App />
-  </Provider>,
+  <Root />,
   document.getElementById('root')
 );
