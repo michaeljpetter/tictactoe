@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
 
 const Root = () => {
   const c = useStyles();
-  
+
   return (
     <TicTacToe className={c.fill} />
   );

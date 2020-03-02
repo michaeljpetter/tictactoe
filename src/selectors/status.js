@@ -15,7 +15,7 @@ const winner = createSelector(
 const player = createSelector(
   gameOver,
   getPlayer,
-  get('moveIndex'),
+  get('app.moveIndex'),
   (gameOver, getPlayer, moveIndex) =>
     gameOver ? undefined : getPlayer(moveIndex)
 );

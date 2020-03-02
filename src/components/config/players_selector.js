@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAction } from '@ext/redux';
 import { players, playersOptions } from '@selectors';
 import { changePlayers } from '@actions';
-import Select from '../primitives/select';
+import { Select } from '@primitives';
 
 const PlayersSelector = ({
   className

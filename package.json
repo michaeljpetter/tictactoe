@@ -58,7 +58,8 @@
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "reselect": "^3.0.1"
+    "reselect": "^3.0.1",
+    "to-capital-case": "^1.0.0"
   },
   "scripts": {
     "start": "node --trace-deprecation scripts/start.js",

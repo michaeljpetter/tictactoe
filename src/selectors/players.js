@@ -1,3 +1,3 @@
 import { get } from 'lodash/fp';
 
-export default get('players');
+export default get('app.players');

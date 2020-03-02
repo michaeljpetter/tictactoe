@@ -1,3 +1,3 @@
 import { get } from 'lodash/fp';
 
-export default get('app.toWin');
+export default get('theme');

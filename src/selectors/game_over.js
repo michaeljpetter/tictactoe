@@ -5,7 +5,7 @@ import { get } from 'lodash/fp';
 
 export default createSelector(
   winLines,
-  get('moveIndex'),
+  get('app.moveIndex'),
   dim,
   (winLines, moveIndex, [width, height]) =>
     winLines.length || moveIndex === width * height

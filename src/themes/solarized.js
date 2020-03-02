@@ -40,9 +40,9 @@ export default (({
   'config.selector.backgroundColor': orange,
   board: {
     color: base02,
-    borderColor: yellow,
     backgroundColor: base2,
-    winBackgroundColor: cyan
+    winBackgroundColor: cyan,
+    borderColor: yellow
   },
   'history.button': {
     color: base03,

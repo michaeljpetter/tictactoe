@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useAction } from '@ext/redux';
 import { squares, isWinSquare, canMakeMove } from '@selectors';
 import { makeMove } from '@actions';
-import { Button } from '../primitives';
+import { Button } from '@primitives';
 import PlayerGlyph from './player_glyph';
 import classNames from 'classnames';
 

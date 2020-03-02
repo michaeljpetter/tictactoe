@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { get, lt } from 'lodash/fp';
 
 export default createSelector(
-  get('moveIndex'),
-  get('moves.length'),
+  get('app.moveIndex'),
+  get('app.moves.length'),
   lt
 );
