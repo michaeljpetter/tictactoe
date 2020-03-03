@@ -26,7 +26,7 @@ export default (({
     color: black,
     backgroundColor: white,
     winBackgroundColor: yellow,
-    borderColor: black
+    borderWidth: 1
   },
   'history.button': {
     color: black,

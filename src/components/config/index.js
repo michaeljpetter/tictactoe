@@ -36,9 +36,9 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   selector: {
-    border: 'none',
     backgroundColor: theme['config.selector.backgroundColor'],
-    borderRadius: 5,
+    borderWidth: theme['config.selector.borderWidth'],
+    borderRadius: theme['borderRadius'],
   }
 }));
 

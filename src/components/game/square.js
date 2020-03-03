@@ -15,7 +15,7 @@ const useStyles = createUseStyles(theme => ({
     marginTop: -1,
     marginRight: -1,
     padding: 0,
-    border: '1px solid',
+    border: [1, 'solid'],
     fontSize: '2.5rem',
     fontWeight: 'bold',
     cursor: 'default',

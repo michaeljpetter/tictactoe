@@ -7,7 +7,9 @@ const useStyles = createUseStyles({
     color: 'inherit',
     background: 'inherit',
     fontFamily: 'inherit',
-    fontSize: '1.25rem',
+    fontSize: 'inherit',
+    border: [1, 'solid'],
+    borderRadius: 0,
 
     '&:focus': {
       outline: 'none'

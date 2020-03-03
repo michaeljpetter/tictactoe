@@ -17,7 +17,9 @@ const useStyles = createUseStyles(theme => ({
   header: {
     padding: [15, 0],
     color: theme['header.color'],
-    backgroundColor: theme['header.backgroundColor']
+    backgroundColor: theme['header.backgroundColor'],
+    borderBottom: [1, 'solid'],
+    borderColor: theme['header.color']
   },
   content: {
     padding: 20
@@ -31,7 +33,7 @@ const useStyles = createUseStyles(theme => ({
   },
   themeSelector: {
     borderColor: theme['app.color'],
-    borderRadius: 5
+    borderRadius: theme['borderRadius']
   }
 }));
 

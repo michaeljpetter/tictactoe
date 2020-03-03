@@ -3,37 +3,46 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { rows } from '@selectors';
 import Square from './square';
+import { cond, identity, flow, subtract, concat, max } from 'lodash/fp';
 
-const useStyles = createUseStyles(theme => ({
-  board: {
-    margin: [10, 0],
-    paddingTop: 1,
-    paddingRight: 1,
-    border: '2px solid',
-    borderRadius: 5,
-    borderColor: theme['board.borderColor'],
-  },
-  row: {
-    display: 'flex',
+const calcInnerRadius = cond([[identity, flow(subtract, concat(0), max)]]);
 
-    '&:first-child': {
-      '& :first-child': {
-        borderTopLeftRadius: 3
-      },
-      '& :last-child': {
-        borderTopRightRadius: 3
-      }
+const useStyles = createUseStyles(theme => {
+  const borderWidth = theme['board.borderWidth'];
+  const borderRadius = theme['borderRadius'];
+  const innerRadius = calcInnerRadius(borderRadius, borderWidth);
+
+  return {
+    board: {
+      margin: [10, 0],
+      paddingTop: 1,
+      paddingRight: 1,
+      border: [borderWidth|0, 'solid'],
+      borderColor: theme['board.borderColor'],
+      borderRadius
     },
-    '&:last-child': {
-      '& :first-child': {
-        borderBottomLeftRadius: 3
+    row: {
+      display: 'flex',
+
+      '&:first-child': {
+        '& :first-child': {
+          borderTopLeftRadius: innerRadius
+        },
+        '& :last-child': {
+          borderTopRightRadius: innerRadius
+        }
       },
-      '& :last-child': {
-        borderBottomRightRadius: 3
+      '&:last-child': {
+        '& :first-child': {
+          borderBottomLeftRadius: innerRadius
+        },
+        '& :last-child': {
+          borderBottomRightRadius: innerRadius
+        }
       }
     }
-  }
-}));
+  };
+});
 
 const Board = () => {
   const c = useStyles();

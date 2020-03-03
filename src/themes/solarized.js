@@ -29,6 +29,7 @@ export default (({
   orange,
   cyan
 }) => flatten({
+  borderRadius: 7,
   app: {
     color: base1,
     backgroundColor: base03
@@ -37,16 +38,21 @@ export default (({
     color: base03,
     backgroundColor: base1
   },
-  'config.selector.backgroundColor': orange,
+  'config.selector': {
+    backgroundColor: orange,
+    borderWidth: 0
+  },
   board: {
     color: base02,
     backgroundColor: base2,
     winBackgroundColor: cyan,
-    borderColor: yellow
+    borderColor: yellow,
+    borderWidth: 3
   },
   'history.button': {
     color: base03,
     backgroundColor: yellow,
-    disabledBackgroundColor: base01
+    disabledBackgroundColor: base01,
+    borderWidth: 0
   }
 }))(palette);
