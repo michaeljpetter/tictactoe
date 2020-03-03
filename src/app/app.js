@@ -30,7 +30,8 @@ const useStyles = createUseStyles(theme => ({
     margin: [0, 10, 10, 0]
   },
   themeSelector: {
-    borderColor: theme['app.color']
+    borderColor: theme['app.color'],
+    borderRadius: 5
   }
 }));
 

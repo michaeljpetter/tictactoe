@@ -37,7 +37,8 @@ const useStyles = createUseStyles(theme => ({
   },
   selector: {
     border: 'none',
-    backgroundColor: theme['config.selector.backgroundColor']
+    backgroundColor: theme['config.selector.backgroundColor'],
+    borderRadius: 5,
   }
 }));
 

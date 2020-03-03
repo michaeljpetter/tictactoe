@@ -8,11 +8,15 @@ const useStyles = createUseStyles({
     color: 'inherit',
     background: 'inherit',
     fontFamily: 'inherit',
-    fontSize: '1.25rem',
+    fontSize: 'inherit',
+    padding: [2, 7],
+    border: [1, 'solid'],
+    borderRadius: 0,
+    '-webkit-appearance': 'none',
 
     '&:focus': {
       outline: 'none'
-    } 
+    }
   }
 });
 
