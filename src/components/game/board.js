@@ -3,13 +3,14 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { rows } from '@selectors';
 import Square from './square';
-import { cond, identity, flow, subtract, concat, max } from 'lodash/fp';
+import { cond, identity, flow, subtract, add, concat, max } from 'lodash/fp';
 
-const calcInnerRadius = cond([[identity, flow(subtract, concat(0), max)]]);
+const calcInnerRadius = cond([[identity, flow(subtract, add(1), concat(0), max)]]);
 
 const useStyles = createUseStyles(theme => {
   const borderWidth = theme['board.borderWidth'];
   const borderRadius = theme['borderRadius'];
+  const borderColor = theme['board.borderColor'];
   const innerRadius = calcInnerRadius(borderRadius, borderWidth);
 
   return {
@@ -17,8 +18,9 @@ const useStyles = createUseStyles(theme => {
       margin: [10, 0],
       paddingTop: 1,
       paddingRight: 1,
+      backgroundColor: borderColor,
       border: [borderWidth|0, 'solid'],
-      borderColor: theme['board.borderColor'],
+      borderColor,
       borderRadius
     },
     row: {

@@ -32,6 +32,7 @@ const useStyles = createUseStyles(theme => ({
     margin: [0, 10, 10, 0]
   },
   themeSelector: {
+    textAlignLast: 'center',
     borderColor: theme['app.color'],
     borderRadius: theme['borderRadius']
   }
