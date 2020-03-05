@@ -20,7 +20,7 @@ const useStyles = createUseStyles(theme => ({
     fontSize: '1rem',
     borderWidth: theme['history.button.borderWidth'],
     borderColor: theme['history.button.borderColor'],
-    borderRadius: theme['borderRadius'],
+    borderRadius: theme['app.borderRadius'],
     backgroundColor: theme['history.button.backgroundColor'],
 
     '&:disabled': {

@@ -14,6 +14,8 @@ export default (({
   white
 }) => flatten({
   app: {
+    font: 'bold 12pt Monaco, sans-serif',
+    letterSpacing: -1,
     color: black,
     backgroundColor: red
   },

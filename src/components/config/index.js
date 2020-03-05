@@ -17,14 +17,15 @@ const useStyles = createUseStyles(theme => ({
     textAlign: 'left',
 
     '&:before': {
-      content: '"Size: "'
+      content: '"Size:"'
     }
   },
   toWin: {
     flex: 1,
 
     '&:before': {
-      content: '"To win: "'
+      content: '"To win:"',
+      marginRight: 5
     }
   },
   players: {
@@ -32,13 +33,14 @@ const useStyles = createUseStyles(theme => ({
     textAlign: 'right',
 
     '&:before': {
-      content: '"Players: "'
+      content: '"Players:"',
+      marginRight: 5
     }
   },
   selector: {
     backgroundColor: theme['config.selector.backgroundColor'],
     borderWidth: theme['config.selector.borderWidth'],
-    borderRadius: theme['borderRadius'],
+    borderRadius: theme['app.borderRadius'],
   }
 }));
 

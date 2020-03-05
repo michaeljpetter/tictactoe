@@ -9,7 +9,7 @@ const calcInnerRadius = cond([[identity, flow(subtract, add(1), concat(0), max)]
 
 const useStyles = createUseStyles(theme => {
   const borderWidth = theme['board.borderWidth'];
-  const borderRadius = theme['borderRadius'];
+  const borderRadius = theme['app.borderRadius'];
   const borderColor = theme['board.borderColor'];
   const innerRadius = calcInnerRadius(borderRadius, borderWidth);
 

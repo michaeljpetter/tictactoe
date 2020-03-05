@@ -9,13 +9,13 @@ const useStyles = createUseStyles(theme => ({
   app: {
     display: 'flex',
     flexDirection: 'column',
-    fontFamily: '"Century Gothic", Futura, sans-serif',
-    fontSize: 20,
+    font: theme['app.font'],
+    letterSpacing: theme['app.letterSpacing'],
     color: theme['app.color'],
     backgroundColor: theme['app.backgroundColor']
   },
   header: {
-    padding: [15, 0],
+    padding: [15, 5],
     color: theme['header.color'],
     backgroundColor: theme['header.backgroundColor'],
     borderBottom: [1, 'solid'],
@@ -34,7 +34,7 @@ const useStyles = createUseStyles(theme => ({
   themeSelector: {
     textAlignLast: 'center',
     borderColor: theme['app.color'],
-    borderRadius: theme['borderRadius']
+    borderRadius: theme['app.borderRadius']
   }
 }));
 

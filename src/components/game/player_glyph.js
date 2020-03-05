@@ -5,6 +5,7 @@ const glyphs = ['X', 'O', '▲', '◉'];
 
 const useStyles = createUseStyles({
   glyph: {
+    fontFamily: '"Century Gothic", Futura, sans-serif',
     display: 'inline-block',
     minWidth: 20,
     textAlign: 'center'

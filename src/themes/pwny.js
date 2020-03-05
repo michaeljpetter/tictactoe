@@ -17,10 +17,11 @@ export default (({
   lightBlue,
   white
 }) => flatten({
-  borderRadius: 15,
   app: {
+    font: '14pt "Comic Sans MS", cursive',
     color: pink,
-    backgroundColor: darkPurple
+    backgroundColor: darkPurple,
+    borderRadius: 15
   },
   header: {
     color: darkPurple,

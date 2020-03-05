@@ -29,10 +29,11 @@ export default (({
   orange,
   cyan
 }) => flatten({
-  borderRadius: 7,
   app: {
+    font: '14pt "Century Gothic", Futura, sans-serif',
     color: base1,
-    backgroundColor: base03
+    backgroundColor: base03,
+    borderRadius: 7
   },
   header: {
     color: base03,
