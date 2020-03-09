@@ -11,13 +11,15 @@
     "react",
     "react-hooks",
     "jsx-a11y",
+    "lodash-fp",
     "jest"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jest/recommended",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:lodash-fp/recommended"
   ],
   "settings": {
     "react": {
