@@ -2,13 +2,7 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { curryN, flow } from 'lodash/fp';
 
-export const createReducer = (defaultState, handlers) =>
-  (state = defaultState, action) =>
-    Object.prototype.hasOwnProperty.call(handlers, action.type)
-      ? handlers[action.type](state, action)
-      : state;
-
-export const useAction = action => {
+export default action => {
   const dispatch = useDispatch();
   return useCallback(
     curryN(action.length, flow(action, dispatch)),

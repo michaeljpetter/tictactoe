@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { render } from 'react-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import TicTacToe from './app';
 
 const useStyles = createUseStyles({
@@ -18,7 +19,9 @@ const Root = () => {
   const c = useStyles();
 
   return (
-    <TicTacToe className={c.fill} />
+    <HelmetProvider>
+      <TicTacToe className={c.fill} />
+    </HelmetProvider>
   );
 };
 

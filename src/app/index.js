@@ -12,7 +12,7 @@ import { get } from 'lodash/fp';
 const ThemedApp = ({
   className
 }) => (
-  <FontsProvider fonts={fonts}>
+  <FontsProvider fonts={fonts} preload>
     <ThemeProvider theme={get(useSelector(theme), themes)}>
       <App className={className} />
     </ThemeProvider>
