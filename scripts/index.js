@@ -18,7 +18,8 @@ console.log(`Building ${chalk.magenta('index.js')} for ${chalk.yellow(targetDir)
 
 const types = {
   js: { case: to.camel, omitExt: true },
-  svg: { case: to.pascal }
+  svg: { case: to.pascal },
+  woff2: { case: to.camel }
 };
 
 const index = fs

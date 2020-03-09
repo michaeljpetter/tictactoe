@@ -18,7 +18,7 @@ export default (({
   white
 }) => flatten({
   app: {
-    font: '14pt "Comic Sans MS", cursive',
+    font: 'bold 16pt "Londrina Shadow", "Comic Sans MS", sans-serif',
     color: pink,
     backgroundColor: darkPurple,
     borderRadius: 15
