@@ -5,7 +5,7 @@ import { useAction } from '@ext/redux';
 import { squares, isWinSquare, canMakeMove } from '@selectors';
 import { makeMove } from '@actions';
 import { Button } from '@primitives';
-import PlayerGlyph from './player_glyph';
+import Player from './player';
 import classNames from 'classnames';
 
 const useStyles = createUseStyles(theme => ({
@@ -45,7 +45,7 @@ const Square = ({
     <Button className={classNames(c.square, { [c.win]: win })}
             disabled={!canMove}
             onClick={useAction(move)}>
-      {player && <PlayerGlyph player={player} />}
+      {player && <Player value={player} />}
     </Button>
   );
 };

@@ -2,7 +2,8 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { status } from '@selectors';
-import MixedText from './mixed_text';
+import { MixedText } from '@primitives';
+import Player from './player';
 
 const useStyles = createUseStyles({
   status: {
@@ -15,7 +16,7 @@ const Status = () => {
 
   return (
     <div className={c.status}>
-      <MixedText parts={useSelector(status)} />
+      <MixedText player={Player}>{useSelector(status)}</MixedText>
     </div>
   );
 };
