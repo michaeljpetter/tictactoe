@@ -39,7 +39,7 @@ export default (({
     color: base03,
     backgroundColor: base1
   },
-  'config.selector': {
+  'config.picker': {
     backgroundColor: orange,
     borderWidth: 0
   },

@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import toCapitalCase from 'to-capital-case';
 import { Helmet } from 'react-helmet-async';
 import { flow } from 'lodash/fp';
-import { map } from '@ext/lodash/fp/uncapped';
+import { map } from '#/ext/lodash/fp/uncapped';
 
 const createUseFonts = flow(
   map((url, name) => ({

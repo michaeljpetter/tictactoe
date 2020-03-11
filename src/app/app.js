@@ -1,8 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import Config from '../components/config';
-import Game from '../components/game';
-import ThemeSelector from '../components/theme_selector';
+import Config from '#/config';
+import Game from '#/game';
+import ThemePicker from './theme_picker';
 import classNames from 'classnames';
 
 const useStyles = createUseStyles(theme => ({
@@ -31,7 +31,7 @@ const useStyles = createUseStyles(theme => ({
     flexDirection: 'column-reverse',
     margin: [0, 10, 10, 0]
   },
-  themeSelector: {
+  themePicker: {
     textAlignLast: 'center',
     borderColor: theme['app.color'],
     borderRadius: theme['app.borderRadius']
@@ -52,7 +52,7 @@ const App = ({
         <Game />
       </div>
       <div className={c.theme}>
-        <ThemeSelector className={c.themeSelector} />
+        <ThemePicker className={c.themePicker} />
       </div>
     </div>
   );

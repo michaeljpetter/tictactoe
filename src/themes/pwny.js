@@ -27,7 +27,7 @@ export default (({
     color: darkPurple,
     backgroundColor: hotPink
   },
-  'config.selector': {
+  'config.picker': {
     backgroundColor: pink,
     borderWidth: 2
   },

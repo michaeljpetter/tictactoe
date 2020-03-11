@@ -23,7 +23,7 @@ export default (({
     color: black,
     backgroundColor: yellow
   },
-  'config.selector.backgroundColor': red,
+  'config.picker.backgroundColor': red,
   board: {
     color: black,
     backgroundColor: white,

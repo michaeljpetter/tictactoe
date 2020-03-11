@@ -81,13 +81,9 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.js'],
+    extensions: ['.js'],
     alias: {
-      '@selectors': path.resolve(paths.appSrc, 'selectors'),
-      '@actions': path.resolve(paths.appSrc, 'actions'),
-      '@images': path.resolve(paths.appSrc, 'images'),
-      '@ext': path.resolve(paths.appSrc, 'ext'),
-      '@primitives': path.resolve(paths.appSrc, 'components/primitives')
+      '#': paths.appSrc
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -213,12 +209,12 @@ module.exports = {
           },
           {
             test: /\.svg$/,
-            include: path.resolve(paths.appSrc, 'images'),
+            include: path.resolve(paths.appSrc, 'res/icons'),
             loader: 'svg-react-loader'
           },
           {
             test: /\.woff(2)?$/,
-            include: path.resolve(paths.appSrc, 'fonts'),
+            include: path.resolve(paths.appSrc, 'res/fonts'),
             loader: require.resolve('file-loader'),
             options: {
               name: 'static/fonts/[name].[hash:8].[ext]',
