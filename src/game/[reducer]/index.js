@@ -6,9 +6,7 @@ const defaultState = {
 };
 
 export default createReducer(defaultState, {
-  'CHANGE_DIM': () => defaultState,
-  'CHANGE_TO_WIN': () => defaultState,
-  'CHANGE_PLAYERS': () => defaultState,
+  [['CHANGE_DIM', 'CHANGE_TO_WIN', 'CHANGE_PLAYERS']]: () => defaultState,
 
   'MAKE_MOVE': (state, { payload }) => ({
     ...state,
