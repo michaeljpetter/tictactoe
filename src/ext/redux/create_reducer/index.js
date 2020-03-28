@@ -1,4 +1,4 @@
-import { flow, cond, has, invokeArgs, constant, T } from 'lodash/fp';
+import { flow, has } from 'lodash/fp';
 import splitKeys from './split_keys';
 
 export default (defaultState, handlers) => {
@@ -6,8 +6,8 @@ export default (defaultState, handlers) => {
     splitKeys
   )(handlers);
 
-  return (state = defaultState, action) => cond([
-    [has(action.type), invokeArgs(action.type, [state, action])],
-    [T, constant(state)]
-  ])(plainHandlers);
+  return (state = defaultState, action) =>
+    has(action.type, plainHandlers)
+      ? plainHandlers[action.type](state, action)
+      : state;
 };
