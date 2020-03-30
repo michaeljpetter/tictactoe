@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
@@ -16,8 +16,6 @@ const LockedPicker = ({
 }) => {
   const [value] = useSelector(dim);
   const handleOnChange = useAction(changeValue);
-
-  useEffect(() => { handleOnChange(value); }, []); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Select className={className}

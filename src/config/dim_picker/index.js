@@ -1,5 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
+import { useSelector } from 'react-redux';
+import { useAction } from '#/ext/redux';
+import { dimLocked } from '../[selectors]';
+import { lockDim, unlockDim } from '../[actions]';
 import { LockIcon, UnlockIcon } from '#/res/icons';
 import LockedPicker from './locked_picker';
 import UnlockedPicker from './unlocked_picker';
@@ -22,17 +26,14 @@ const DimPicker = ({
   className
 }) => {
   const c = useStyles();
-  const [locked, setLocked] = useState(true);
 
-  const toggleLocked = useCallback(() => setLocked(x => !x), [setLocked]);
-
-  const [Icon, Picker] = locked
-    ? [LockIcon, LockedPicker]
-    : [UnlockIcon, UnlockedPicker];
+  const [Icon, Picker, onClick] = useSelector(dimLocked)
+    ? [LockIcon, LockedPicker, unlockDim]
+    : [UnlockIcon, UnlockedPicker, lockDim];
 
   return (
     <>
-      <Button className={c.lock} onClick={toggleLocked}>
+      <Button className={c.lock} onClick={useAction(onClick)}>
         <Icon className={c.icon} />
       </Button>
       <Picker className={className} />
