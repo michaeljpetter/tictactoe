@@ -6,10 +6,9 @@ import { get } from 'lodash/fp';
 export default createSelector(
   dim,
   get('game.moves'),
-  get('game.moveIndex'),
   getPlayer,
-  ([width, height], moves, moveIndex, getPlayer) =>
-    moves.slice(0, moveIndex).reduce(
+  ([width, height], { prev, current }, getPlayer) =>
+    [...prev, current].slice(1).reduce(
       (sq, m, i) => (sq[m] = getPlayer(i), sq),
       Array(width * height)
     )

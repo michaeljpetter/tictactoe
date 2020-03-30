@@ -5,8 +5,8 @@ import { get } from 'lodash/fp';
 
 export default createSelector(
   winLines,
-  get('game.moveIndex'),
+  get('game.moves.prev.length'),
   dim,
-  (winLines, moveIndex, [width, height]) =>
-    winLines.length || moveIndex === width * height
+  (winLines, moveCount, [width, height]) =>
+    winLines.length || moveCount === width * height
 );

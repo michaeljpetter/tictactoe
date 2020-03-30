@@ -15,9 +15,9 @@ const winner = createSelector(
 const player = createSelector(
   gameOver,
   getPlayer,
-  get('game.moveIndex'),
-  (gameOver, getPlayer, moveIndex) =>
-    gameOver ? undefined : getPlayer(moveIndex)
+  get('game.moves.prev.length'),
+  (gameOver, getPlayer, moveCount) =>
+    gameOver ? undefined : getPlayer(moveCount)
 );
 
 export default createSelector(
