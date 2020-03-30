@@ -12,7 +12,8 @@ const useStyles = createUseStyles(theme => ({
     font: theme['app.font'],
     letterSpacing: theme['app.letterSpacing'],
     color: theme['app.color'],
-    backgroundColor: theme['app.backgroundColor']
+    backgroundColor: theme['app.backgroundColor'],
+    userSelect: 'none'
   },
   header: {
     padding: [15, 5],
