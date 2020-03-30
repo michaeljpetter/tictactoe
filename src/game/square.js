@@ -18,14 +18,9 @@ const useStyles = createUseStyles(theme => ({
     border: [1, 'solid'],
     fontSize: '2.5rem',
     fontWeight: 'bold',
-    cursor: 'default',
     color: theme['board.color'],
     backgroundColor: theme['board.backgroundColor'],
     borderColor: theme['board.borderColor'],
-
-    '&:enabled': {
-      cursor: 'pointer'
-    }
   },
   win: {
     backgroundColor: theme['board.winBackgroundColor'],
