@@ -62,7 +62,7 @@ console.log(`Building ${chalk.magenta('index.js')} for ${chalk.yellow(targetDir)
 const index = flow(
   invokeArgs('readdirSync', [targetDir]),
   filter(f =>
-    f.match(`^((?!index).)*\.(${join('|', types)})$`) ||
+    f.match(`^((?!index|spec).)*\.(${join('|', types)})$`) ||
     fs.existsSync(path.join(targetDir, f, 'index.js'))
   ),
   map(f => {
