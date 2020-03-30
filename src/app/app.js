@@ -2,6 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import Config from '#/config';
 import Game from '#/game';
+import ResetButton from './reset_button';
 import ThemePicker from './theme_picker';
 import classNames from 'classnames';
 
@@ -25,17 +26,12 @@ const useStyles = createUseStyles(theme => ({
   content: {
     padding: 20
   },
-  theme: {
+  footer: {
     flex: 1,
-    alignSelf: 'flex-end',
+    padding: 10,
     display: 'flex',
-    flexDirection: 'column-reverse',
-    margin: [0, 10, 10, 0]
-  },
-  themePicker: {
-    textAlignLast: 'center',
-    borderColor: theme['app.color'],
-    borderRadius: theme['app.borderRadius']
+    alignItems: 'flex-end',
+    justifyContent: 'space-between'
   }
 }));
 
@@ -52,8 +48,9 @@ const App = ({
       <div className={c.content}>
         <Game />
       </div>
-      <div className={c.theme}>
-        <ThemePicker className={c.themePicker} />
+      <div className={c.footer}>
+        <ResetButton />
+        <ThemePicker />
       </div>
     </div>
   );
