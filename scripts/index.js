@@ -54,6 +54,17 @@ const { types, mapper } =
         flow(map(([base]) => `  ${to.camel(base)}`), join(`,\n`))(files),
         `});`
       )
+    },
+    epics: {
+      types: ['js'],
+      mapper: files => [].concat(
+        `import { combineEpics } from 'redux-observable';`,
+        map(([base, file]) => `import ${to.camel(base)} from './${file}';`, files),
+        ``,
+        `export default combineEpics(`,
+        flow(map(([base]) => `  ${to.camel(base)}`), join(`,\n`))(files),
+        `);`
+      )
     }
   });
 
