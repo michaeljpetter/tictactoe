@@ -3,9 +3,9 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { rows } from './[selectors]';
 import Square from './square';
-import { cond, identity, flow, subtract, add, concat, max } from 'lodash/fp';
 
-const calcInnerRadius = cond([[identity, flow(subtract, add(1), concat(0), max)]]);
+const calcInnerRadius = (borderRadius, borderWidth) =>
+  borderRadius ? Math.max(0, borderRadius - borderWidth + 1) : undefined;
 
 const useStyles = createUseStyles(theme => {
   const borderWidth = theme['board.borderWidth'];

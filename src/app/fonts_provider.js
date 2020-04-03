@@ -2,17 +2,15 @@ import React, { useMemo } from 'react';
 import { createUseStyles } from 'react-jss';
 import toCapitalCase from 'to-capital-case';
 import { Helmet } from 'react-helmet-async';
-import { flow } from 'lodash/fp';
 import { map } from '#/ext/lodash/fp/uncapped';
 
-const createUseFonts = flow(
-  map((url, name) => ({
-    fontFamily: toCapitalCase(name),
-    src: `url(${url})`
-  })),
-  faces => ({ '@font-face': faces }),
-  createUseStyles
-);
+const createUseFonts = fonts =>
+  createUseStyles({
+    '@font-face': map((url, name) => ({
+      fontFamily: toCapitalCase(name),
+      src: `url(${url})`
+    }), fonts),
+  });
 
 const useFonts = fonts => {
   useMemo(() => createUseFonts(fonts), [fonts])();

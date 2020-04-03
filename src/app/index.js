@@ -7,13 +7,12 @@ import { theme } from './[selectors]';
 import * as themes from '#/themes';
 import createStore from './create_store';
 import App from './app';
-import { get } from 'lodash/fp';
 
 const ThemedApp = ({
   className
 }) => (
   <FontsProvider fonts={fonts} preload>
-    <ThemeProvider theme={get(useSelector(theme), themes)}>
+    <ThemeProvider theme={themes[useSelector(theme)]}>
       <App className={className} />
     </ThemeProvider>
   </FontsProvider>
