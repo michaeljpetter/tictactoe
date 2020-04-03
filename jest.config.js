@@ -1,7 +1,4 @@
 module.exports = {
-  setupFiles: [
-    '<rootDir>/config/polyfills.js'
-  ],
   testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/src/**/*.spec.js'
