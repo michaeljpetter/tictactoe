@@ -71,10 +71,12 @@ const { types, mapper } =
 console.log(`Building ${chalk.magenta('index.js')} for ${chalk.yellow(targetDir)}:`);
 
 const index = flow(
-  invokeArgs('readdirSync', [targetDir]),
+  () => fs.readdirSync(targetDir),
   filter(f =>
-    f.match(`^((?!index|spec).)*\.(${join('|', types)})$`) ||
-    fs.existsSync(path.join(targetDir, f, 'index.js'))
+    !f.startsWith('.') && (
+      f.match(`^(?!index).*(?<!spec)\.(${join('|', types)})$`) ||
+      fs.existsSync(path.join(targetDir, f, 'index.js'))
+    )
   ),
   map(f => {
     const ext = path.extname(f);
@@ -86,7 +88,7 @@ const index = flow(
   mapper,
   join('\n'),
   add(__, '\n')
-)(fs);
+)();
 
 console.log(`\n${index}`);
 
