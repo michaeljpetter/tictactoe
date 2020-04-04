@@ -9,7 +9,7 @@ export default createSelector(
   getPlayer,
   ([width, height], { prev, current }, getPlayer) =>
     [...prev, current].slice(1).reduce(
-      (sq, m, i) => (sq[m] = getPlayer(i), sq),
+      (acc, move, i) => (acc[move] = getPlayer(i), acc),
       Array(width * height)
     )
 );

@@ -31,6 +31,7 @@ const Square = ({
   index
 }) => {
   const c = useStyles();
+
   const player = useSelector(squares)[index];
   const win = useSelector(isWinSquare)(index);
   const canMove = useSelector(canMakeMove)(index);

@@ -36,6 +36,7 @@ const useStyles = createUseStyles(theme => ({
 
 const History = () => {
   const c = useStyles();
+
   const disableUndo = !useSelector(canUndo);
   const disableRedo = !useSelector(canRedo);
 
