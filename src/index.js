@@ -11,7 +11,7 @@ const useStyles = createUseStyles({
     }
   },
   fill: {
-    height: '100vh'
+    minHeight: '100vh'
   }
 });
 
