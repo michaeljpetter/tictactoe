@@ -12,8 +12,7 @@ const useStyles = createUseStyles(theme => ({
   square: {
     width: '3.75rem',
     height: '3.75rem',
-    marginTop: -1,
-    marginRight: -1,
+    margin: -1,
     padding: 0,
     border: [1, 'solid'],
     fontSize: '2.5rem',
