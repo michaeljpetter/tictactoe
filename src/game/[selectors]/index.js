@@ -5,7 +5,6 @@ export { default as gameOver } from './game_over';
 export { default as getPlayer } from './get_player';
 export { default as isWinSquare } from './is_win_square';
 export { default as lines } from './lines';
-export { default as rows } from './rows';
 export { default as squares } from './squares';
 export { default as status } from './status';
 export { default as winLines } from './win_lines';

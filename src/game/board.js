@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
-import { rows } from './[selectors]';
+import { dim } from '#/config/[selectors]';
 import Square from './square';
 
 const calcInnerRadius = (borderRadius, borderWidth) =>
@@ -24,26 +24,22 @@ const useStyles = createUseStyles(theme => {
     },
     board: {
       borderRadius: innerRadius,
-      overflow: 'hidden'
-    },
-    row: {
-      display: 'flex'
+      overflow: 'hidden',
+      display: 'grid',
+      gridTemplateColumns: ({ width }) => `repeat(${width}, auto)`
     }
   };
 });
 
 const Board = () => {
-  const c = useStyles();
+  const [width, height] = useSelector(dim);
+  const c = useStyles({ width });
 
   return (
     <div className={c.border}>
       <div className={c.board}>
-        {useSelector(rows).map(row =>
-          <div key={row} className={c.row}>
-            {row.map(i =>
-              <Square key={i} index={i} />
-            )}
-          </div>
+        {Array.from({ length: width * height }, (_, i) =>
+          <Square key={i} index={i} />
         )}
       </div>
     </div>
