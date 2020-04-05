@@ -8,6 +8,7 @@ import classNames from 'classnames';
 
 const useStyles = createUseStyles(theme => ({
   app: {
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     font: theme['app.font'],
@@ -24,14 +25,23 @@ const useStyles = createUseStyles(theme => ({
     borderColor: theme['header.color']
   },
   content: {
-    padding: 20
+    padding: 20,
+    overflowY: 'auto',
+
+    scrollbarWidth: 'none',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    }
   },
-  footer: {
-    flex: 1,
-    padding: 10,
-    display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between'
+  resetButton: {
+    position: 'absolute',
+    bottom: 10,
+    left: 10,
+  },
+  themePicker: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
   }
 }));
 
@@ -48,10 +58,8 @@ const App = ({
       <div className={c.content}>
         <Game />
       </div>
-      <div className={c.footer}>
-        <ResetButton />
-        <ThemePicker />
-      </div>
+      <ResetButton className={c.resetButton} />
+      <ThemePicker className={c.themePicker} />
     </div>
   );
 };

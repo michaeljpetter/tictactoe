@@ -4,11 +4,13 @@ import { useAction } from '#/ext/redux';
 import { reset } from './[actions]';
 import { Button } from '#/primitives';
 import { ResetIcon } from '#/res/icons';
+import classNames from 'classnames';
 
 const useStyles = createUseStyles(theme => ({
   button: {
     padding: [2, 18, 2, 15],
     fontSize: 'inherit',
+    backgroundColor: theme['app.backgroundColor'],
     borderRadius: theme['app.borderRadius'],
     display: 'flex',
     alignItems: 'center'
@@ -22,11 +24,13 @@ const useStyles = createUseStyles(theme => ({
   }
 }));
 
-const ResetButton = () => {
+const ResetButton = ({
+  className
+}) => {
   const c = useStyles();
 
   return (
-    <Button className={c.button}
+    <Button className={classNames(c.button, className)}
             onClick={useAction(reset)}>
       <ResetIcon className={c.icon} />Reset
     </Button>
