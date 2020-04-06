@@ -4,7 +4,7 @@ import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
 import { Select } from '#/primitives';
-import { flow, constant, times, __, join } from 'lodash/fp';
+import { __, constant, flow, join, times } from 'lodash/fp';
 
 const valueToDim = flow(constant, times(__, 2));
 

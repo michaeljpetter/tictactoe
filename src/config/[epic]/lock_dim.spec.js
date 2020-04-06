@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import { toArray } from 'rxjs/operators';
 import lockDimEpic from './lock_dim';
-import { lockDim, changeDim } from '../[actions]';
+import { changeDim, lockDim } from '../[actions]';
 import { once } from 'lodash/fp';
 
 let dim;

@@ -4,7 +4,7 @@ import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
 import { Select } from '#/primitives';
-import { flow, concat, __ } from 'lodash/fp';
+import { __, concat, flow } from 'lodash/fp';
 
 const UnlockedPicker = ({
   className

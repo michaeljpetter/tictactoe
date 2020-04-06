@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import dim from './dim';
-import { flow, min, add, range } from 'lodash/fp';
+import { add, flow, min, range } from 'lodash/fp';
 
 export default createSelector(
   dim,

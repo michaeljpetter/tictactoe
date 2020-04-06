@@ -1,4 +1,4 @@
-import { flow, over, map, groupBy, split, slice, flatten, toPairs, fromPairs, trim, omit, orderBy, values, zip, zipAll, concat, pull, initial, last } from 'lodash/fp';
+import { concat, flatten, flow, fromPairs, groupBy, initial, last, map, omit, orderBy, over, pull, slice, split, toPairs, trim, values, zip, zipAll } from 'lodash/fp';
 
 export default flow(
   split('\n'),

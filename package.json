@@ -66,8 +66,10 @@
   "scripts": {
     "start": "node --trace-deprecation scripts/start.js",
     "build": "node --trace-deprecation scripts/build.js",
-    "test": "jest",
     "index": "node scripts/index.js",
-    "lint": "eslint src"
+    "test": "jest --verbose",
+    "test:watch": "jest --watch",
+    "lint": "eslint src",
+    "lint:fix": "eslint --fix src"
   }
 }

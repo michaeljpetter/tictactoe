@@ -1,5 +1,5 @@
 import { ofType } from 'redux-observable';
-import { filter, withLatestFrom, map } from 'rxjs/operators';
+import { filter, map, withLatestFrom } from 'rxjs/operators';
 import { dim } from '../[selectors]';
 import { changeDim } from '../[actions]';
 

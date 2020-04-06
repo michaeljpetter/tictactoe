@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
-import { identity, flow, get, nth, __ } from 'lodash/fp';
+import { __, flow, get, identity, nth } from 'lodash/fp';
 
 const useStyles = createUseStyles({
   select: {

@@ -2,9 +2,9 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
-import { canUndo, canRedo } from './[selectors]';
-import { undo, undoAll, redo, redoAll } from './[actions]';
-import { UndoIcon, UndoAllIcon, RedoIcon, RedoAllIcon } from '#/res/icons';
+import { canRedo, canUndo } from './[selectors]';
+import { redo, redoAll, undo, undoAll } from './[actions]';
+import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
 import { Button } from '#/primitives';
 
 const useStyles = createUseStyles(theme => ({

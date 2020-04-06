@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
-import { squares, isWinSquare, canMakeMove } from './[selectors]';
+import { canMakeMove, isWinSquare, squares } from './[selectors]';
 import { makeMove } from './[actions]';
 import { Button } from '#/primitives';
 import Player from './player';

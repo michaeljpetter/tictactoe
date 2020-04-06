@@ -1,4 +1,4 @@
-import { flow, split, reduce, flip, set, mergeAll, __ } from 'lodash/fp';
+import { __, flip, flow, mergeAll, reduce, set, split } from 'lodash/fp';
 import { map } from '#/ext/lodash/fp/uncapped';
 
 export default flow(

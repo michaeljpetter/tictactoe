@@ -1,4 +1,4 @@
-import { compose, combineReducers } from 'redux';
+import { combineReducers, compose } from 'redux';
 import { withReset } from '#/ext/redux';
 import moves from './moves';
 

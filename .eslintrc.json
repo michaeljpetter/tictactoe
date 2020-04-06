@@ -38,7 +38,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/no-onchange": "off",
-    "lodash-fp/no-single-composition": "warn"
+    "lodash-fp/no-single-composition": "warn",
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }]
   },
   "overrides": [
     {

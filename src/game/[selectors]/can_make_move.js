@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import gameOver from './game_over';
 import squares from './squares';
-import { F, negate, nth, __ } from 'lodash/fp';
+import { F, __, negate, nth } from 'lodash/fp';
 
 export default createSelector(
   gameOver,

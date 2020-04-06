@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import { curry, cond, isPlainObject, T, identity } from 'lodash/fp';
+import { T, cond, curry, identity, isPlainObject } from 'lodash/fp';
 import { map } from '#/ext/lodash/fp/uncapped';
 
 const renderObject = curry((components, object, i) => map(
