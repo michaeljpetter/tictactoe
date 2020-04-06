@@ -39,5 +39,13 @@
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/no-onchange": "off",
     "lodash-fp/no-single-composition": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.spec.js"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ]
 }

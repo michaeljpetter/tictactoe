@@ -1,4 +1,7 @@
 module.exports = {
+  setupFiles: [
+    '<rootDir>/config/jest'
+  ],
   testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/src/**/*.spec.js'
