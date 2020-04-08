@@ -7,7 +7,7 @@ let subject;
 beforeEach(() => {
   dim = undefined;
 
-  subject = once(() => toWinOptions({ config: { dim }}));
+  subject = once(() => toWinOptions({ config: { dim } }));
 });
 
 [

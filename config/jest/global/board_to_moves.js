@@ -1,16 +1,24 @@
-import { concat, flatten, flow, fromPairs, groupBy, initial, last, map, omit, orderBy, over, pull, slice, split, toPairs, trim, values, zip, zipAll } from 'lodash/fp';
+import { T, concat, cond, flatten, flow, fromPairs, groupBy, identity, initial, isString, last, map, mapValues, omit, over, pull, shuffle, slice, sortBy, split, toPairs, trim, zip, zipAll } from 'lodash/fp';
 
 export default flow(
-  split('\n'),
-  map(flow(split('|'), slice(1, -1))),
-  flatten,
+  cond([
+    [isString, flow(
+      split('\n'),
+      map(flow(split('|'), slice(1, -1))),
+      flatten,
+      map(p => ({ X: 1, O: 2 })[p] || p)
+    )],
+    [T, identity]
+  ]),
   toPairs,
+  shuffle,
   map(([i, p]) => [Number(i), trim(p)]),
   groupBy(([, p]) => p),
   omit(''),
-  values,
-  map(map(([i]) => i)),
-  orderBy('length', 'desc'),
+  mapValues(map(([i]) => i)),
+  toPairs,
+  sortBy(([p]) => p),
+  map(([, m]) => m),
   zipAll,
   flatten,
   pull(undefined),

@@ -1,3 +1,1 @@
-import * as globalExtensions from './global';
-
-Object.assign(global, globalExtensions);
+Object.assign(global, require('./global'));

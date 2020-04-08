@@ -1,5 +1,5 @@
 module.exports = {
-  setupFiles: [
+  setupFilesAfterEnv: [
     '<rootDir>/config/jest'
   ],
   testEnvironment: 'jsdom',
