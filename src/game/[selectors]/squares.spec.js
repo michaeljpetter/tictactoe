@@ -1,23 +1,11 @@
 import squares from './squares';
-import { once } from 'lodash/fp';
 
-let dim;
-let board;
-let players;
-let subject;
-
-beforeEach(() => {
-  dim = undefined;
-  board = undefined;
-  players = undefined;
-
-  subject = once(() =>
-    squares({
-      config: { dim, players },
-      game: { moves: boardToMoves(board) }
-    })
-  );
-});
+subject(() =>
+  squares({
+    config: { dim, players },
+    game: { moves: boardToMoves(board) }
+  })
+);
 
 (_ => [
   {
@@ -42,14 +30,12 @@ beforeEach(() => {
   }
 ])().forEach(c => {
   describe(`for a ${c.dim.join('x')} with ${c.players} players`, () => {
-    beforeEach(() => {
-      dim = c.dim;
-      players = c.players;
-      board = c.board;
-    });
+    set('dim', c.dim);
+    set('players', c.players);
+    set('board', c.board);
 
     it("has the correct players", () => {
-      expect(subject()).toEqual(c.board);
+      expect.it.toEqual(c.board);
     });
   });
 });

@@ -1,31 +1,21 @@
 import canRedo from './can_redo';
-import { once } from 'lodash/fp';
 
-let next;
-let subject;
-
-beforeEach(() => {
-  next = undefined;
-
-  subject = once(() => canRedo({ game: { moves: { next } } }));
-});
+subject(() =>
+  canRedo({ game: { moves: { next } } })
+);
 
 describe('when there are no next moves', () => {
-  beforeEach(() => {
-    next = [];
-  });
+  set('next', []);
 
   it('is false', () => {
-    expect(subject()).toBe(false);
+    expect.it.toBe(false);
   });
 });
 
 describe('when there are next moves', () => {
-  beforeEach(() => {
-    next = [6];
-  });
+  set('next', [6]);
 
   it('is true', () => {
-    expect(subject()).toBe(true);
+    expect.it.toBe(true);
   });
 });
