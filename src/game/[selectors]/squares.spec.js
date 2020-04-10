@@ -1,4 +1,5 @@
 import squares from './squares';
+import { omit } from 'lodash/fp';
 
 subject(() =>
   squares({
@@ -29,13 +30,9 @@ subject(() =>
     ]
   }
 ])().forEach(c => {
-  describe(`for a ${c.dim.join('x')} with ${c.players} players`, () => {
-    set('dim', c.dim);
-    set('players', c.players);
-    set('board', c.board);
+  describe(p`case ${omit('board', c)}`, () => {
+    set.from(c);
 
-    it("has the correct players", () => {
-      expect.it.toEqual(c.board);
-    });
+    it('matches the board', () => expect.it.toEqual(board));
   });
 });
