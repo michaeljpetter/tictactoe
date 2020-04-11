@@ -33,6 +33,6 @@ subject(() =>
   describe(p`case ${omit('board', c)}`, () => {
     set.from(c);
 
-    it('matches the board', () => expect.it.toEqual(board));
+    it('matches the board', () => expect.it.toStrictEqual(board));
   });
 });
