@@ -1,18 +1,15 @@
 import { createSelector } from 'reselect';
-import winLines from './win_lines';
-import squares from './squares';
-import gameOver from './game_over';
-import getPlayer from './get_player';
+import { gameOver, getPlayer, playerSquares, winLines } from './internal';
 import { get } from 'lodash/fp';
 
-const winner = createSelector(
+const _winner = createSelector(
   winLines,
-  squares,
-  (winLines, squares) =>
-    winLines.length ? squares[winLines[0][0]] : undefined
+  playerSquares,
+  (winLines, playerSquares) =>
+    winLines.length ? playerSquares[winLines[0][0]] : undefined
 );
 
-const player = createSelector(
+const _player = createSelector(
   gameOver,
   getPlayer,
   get('game.moves.prev.length'),
@@ -21,9 +18,9 @@ const player = createSelector(
 );
 
 export default createSelector(
-  winner,
+  _winner,
   gameOver,
-  player,
+  _player,
   (winner, gameOver, player) =>
     winner ? [{ player: winner }, ' wins!'] :
     gameOver ? ["It's a draw..."] :

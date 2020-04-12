@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
-import winLines from './win_lines';
+import { winLines } from './internal';
 import { flatten } from 'lodash/fp';
 
-const winSquares = createSelector(
+const _winSquares = createSelector(
   winLines,
   winLines => new Set(flatten(winLines))
 );
 
 export default createSelector(
-  winSquares,
+  _winSquares,
   winSquares => index => winSquares.has(index)
 );

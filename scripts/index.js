@@ -73,7 +73,7 @@ console.log(`Building ${chalk.magenta('index.js')} for ${chalk.yellow(targetDir)
 const index = flow(
   () => fs.readdirSync(targetDir),
   filter(f =>
-    !f.startsWith('.') && (
+    !(f.startsWith('.') || f.match(`^internal(\..+)?$`)) && (
       f.match(`^(?!index).*(?<!spec)\.(${join('|', types)})$`) ||
       fs.existsSync(path.join(targetDir, f, 'index.js'))
     )

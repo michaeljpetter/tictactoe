@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import winLines from './win_lines';
 import { dim } from '#/config/[selectors]';
+import winLines from './win_lines';
 import { get } from 'lodash/fp';
 
 export default createSelector(
