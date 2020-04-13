@@ -29,7 +29,8 @@ subject(() =>
       1, 4, _, _,
     ]
   }
-])().forEach(c => {
+])().
+forEach(c => {
   describe(p`case ${omit('board', c)}`, () => {
     set.from(c);
 

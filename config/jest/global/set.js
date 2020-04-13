@@ -1,8 +1,8 @@
-const makeGet = value => {
+const makeGet = (prevGet, value) => {
   let result = value;
   return () => {
     if(typeof value === 'function') {
-      result = value();
+      result = 0 < value.length ? value(prevGet && prevGet()) : value();
       value = undefined;
     }
     return result;
@@ -11,7 +11,8 @@ const makeGet = value => {
 
 const set = (name, value) => {
   beforeEach(() => {
-    Object.defineProperty(global, name, { configurable: true, get: makeGet(value) });
+    const get = makeGet(Object.getOwnPropertyDescriptor(global, name)?.get, value);
+    Object.defineProperty(global, name, { configurable: true, get });
   });
 
   afterEach(() => {
