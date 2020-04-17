@@ -12,19 +12,19 @@ export default createSelector(
 
     return [].concat(
       //rows —
-      ...wshifts.map(s => range(0, height).map(r =>
+      wshifts.flatMap(s => range(0, height).map(r =>
         line.map(i => r * width + (i + s))
       )),
       //columns |
-      ...hshifts.map(s => range(0, width).map(c =>
+      hshifts.flatMap(s => range(0, width).map(c =>
         line.map(i => c + width * (i + s))
       )),
       //diagonals \
-      ...hshifts.map(s => wshifts.map(d =>
+      hshifts.flatMap(s => wshifts.map(d =>
         line.map(i => s * width + d + i * (width + 1))
       )),
       //diagonals /
-      ...hshifts.map(s => wshifts.map(d =>
+      hshifts.flatMap(s => wshifts.map(d =>
         line.map(i => s * width - d + (i + 1) * (width - 1))
       )),
     );

@@ -1,10 +1,9 @@
 import { createSelector } from 'reselect';
 import { winLines } from './internal';
-import { flatten } from 'lodash/fp';
 
 const _winSquares = createSelector(
   winLines,
-  winLines => new Set(flatten(winLines))
+  winLines => new Set(winLines.flat())
 );
 
 export default createSelector(

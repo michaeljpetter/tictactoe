@@ -1,11 +1,10 @@
-import { T, concat, cond, flatten, flow, fromPairs, groupBy, identity, initial, isString, last, map, mapValues, omit, over, pull, shuffle, slice, sortBy, split, toPairs, trim, zip, zipAll } from 'lodash/fp';
+import { T, concat, cond, flatMap, flatten, flow, fromPairs, groupBy, identity, initial, isString, last, map, mapValues, omit, over, pull, shuffle, slice, sortBy, split, toPairs, trim, zip, zipAll } from 'lodash/fp';
 
 export default flow(
   cond([
     [isString, flow(
       split('\n'),
-      map(flow(split('|'), slice(1, -1))),
-      flatten,
+      flatMap(flow(split('|'), slice(1, -1))),
       map(p => ({ X: 1, O: 2 })[p] || p)
     )],
     [T, identity]
