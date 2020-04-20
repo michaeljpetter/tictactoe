@@ -3,12 +3,11 @@ import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim } from '#/config/[selectors]';
-import { canMakeMove, isWinSquare, squares } from './[selectors]';
+import { squares } from './[selectors]';
 import { makeMove } from './[actions]';
 import { Button } from '#/primitives';
 import Player from './player';
 import classNames from 'classnames';
-import { negate } from 'lodash/fp';
 
 const calcInnerRadius = (borderRadius, borderWidth) =>
   borderRadius ? Math.max(0, borderRadius - borderWidth - 1) : undefined;
@@ -55,17 +54,15 @@ const useStyles = createUseStyles(theme => {
 const Board = () => {
   const c = useStyles(useSelector(dim));
 
-  const win = useSelector(isWinSquare);
-  const disable = negate(useSelector(canMakeMove));
   const handleOnClick = useAction(makeMove);
 
   return (
     <div className={c.border}>
       <div className={c.board}>
-        {useSelector(squares).map((player, i) =>
+        {useSelector(squares).map(({ player, canMakeMove, isWin }, i) =>
           <Button key={i}
-                  className={classNames(c.square, { [c.win]: win(i) })}
-                  disabled={disable(i)}
+                  className={classNames(c.square, { [c.win]: isWin })}
+                  disabled={!canMakeMove}
                   onClick={() => handleOnClick(i)}>
             {player && <Player value={player} />}
           </Button>

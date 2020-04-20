@@ -5,7 +5,7 @@ export default flow(
     [isString, flow(
       split('\n'),
       flatMap(flow(split('|'), slice(1, -1))),
-      map(p => ({ X: 1, O: 2 })[p] || p)
+      map(p => ({ X: 1, O: 2, '^': 3, '@': 4 })[p] || p)
     )],
     [T, identity]
   ]),
