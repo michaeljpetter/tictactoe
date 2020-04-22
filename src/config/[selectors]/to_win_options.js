@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 import dim from './dim';
-import { add, flow, min, range } from 'lodash/fp';
+import { range } from 'lodash/fp';
 
 export default createSelector(
   dim,
-  flow(min, add(1), range(3))
+  dim => range(3, Math.min(...dim) + 1)
 );

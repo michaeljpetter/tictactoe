@@ -1,27 +1,27 @@
 import { of } from 'rxjs';
 import { toArray } from 'rxjs/operators';
-import changeDimEpic from './change_dim';
+import clampToWinEpic from './clamp_to_win';
 import { changeDim, changeToWin } from '../[actions]';
 
 subject(() => {
   const action$ = of({ type: 'OTHER' }, changeDim(dim));
-  const state$ = of({ config: { toWin } });
+  const state$ = of({ config: { dim, toWin } });
 
-  return changeDimEpic(action$, state$).pipe(toArray()).toPromise();
+  return clampToWinEpic(action$, state$).pipe(toArray()).toPromise();
 });
 
-set('toWin', 5);
+set('dim', [5, 3]);
 
-describe('when dim is not below toWin', () => {
-  set('dim', [7, 5]);
+describe('when toWin is within options', () => {
+  set('toWin', 3);
 
   it('does nothing', async () => {
     expect(await subject).toEqual([]);
   });
 });
 
-describe('when dim is below toWin', () => {
-  set('dim', [7, 3]);
+describe('when toWin exceeds options', () => {
+  set('toWin', 5);
 
   it('reduces toWin', async () => {
     expect(await subject).toEqual([
