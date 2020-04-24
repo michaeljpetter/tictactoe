@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
-import { gameOver, playerSquares, winLines } from './internal';
+import { gameOver, playerSquares, wins } from './internal';
 
 export default createSelector(
   playerSquares,
   gameOver,
-  winLines,
-  (playerSquares, gameOver, winLines) => {
-    const winSquares = new Set(winLines.flat());
+  wins,
+  (playerSquares, gameOver, wins) => {
+    const winSquares = new Set(wins.flat());
 
     return playerSquares.map((player, i) => ({
       player,

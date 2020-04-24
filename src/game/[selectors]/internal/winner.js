@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
-import winLines from './win_lines';
+import wins from './wins';
 import lastPlayer from './last_player';
 
 export default createSelector(
-  winLines,
+  wins,
   lastPlayer,
-  (winLines, lastPlayer) => winLines.length ? lastPlayer : null
+  (wins, lastPlayer) => wins.length ? lastPlayer : null
 );

@@ -31,11 +31,11 @@ describe('when a player has won', () => {
   });
 });
 
-describe('when no moves remain', () => {
+describe('when no possible wins remain', () => {
   set('board', `
-    |O|X|O|
-    |X|O|X|
-    |X|O|X|
+    |O| |X|
+    |X|X|O|
+    |O| |X|
   `);
 
   it('states the draw', () => {

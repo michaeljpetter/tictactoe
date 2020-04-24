@@ -132,6 +132,27 @@ subject(() =>
       { player: _, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: true }
     ]
+  },
+  {
+    dim: [3, 3], toWin: 3, players: 2,
+    board: `
+      |O|X|O|
+      | |X| |
+      |X|O|X|
+    `,
+    expected: [
+      { player: 2, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 2, canMakeMove: false, isWin: false },
+
+      { player: _, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: _, canMakeMove: false, isWin: false },
+
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 2, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false }
+    ]
   }
 ])().
 forEach(({ expected, ...c }) => {

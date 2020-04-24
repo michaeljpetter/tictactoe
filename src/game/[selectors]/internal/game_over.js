@@ -1,12 +1,10 @@
 import { createSelector } from 'reselect';
-import { dim } from '#/config/[selectors]';
-import winLines from './win_lines';
-import { get } from 'lodash/fp';
+import wins from './wins';
+import remainingWins from './remaining_wins';
 
 export default createSelector(
-  winLines,
-  get('game.moves.prev.length'),
-  dim,
-  (winLines, moveCount, [width, height]) =>
-    winLines.length || moveCount === width * height
+  wins,
+  remainingWins,
+  (wins, remaining) =>
+    !!wins.length || !remaining.length
 );

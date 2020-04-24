@@ -1,15 +1,13 @@
 import { createSelector } from 'reselect';
 import { dim } from '#/config/[selectors]';
 import moves from './moves';
-import getPlayer from './get_player';
 
 export default createSelector(
   dim,
   moves,
-  getPlayer,
-  ([width, height], moves, getPlayer) =>
+  ([width, height], moves) =>
     moves.reduce(
-      (acc, move, i) => (acc[move] = getPlayer(i), acc),
+      (acc, moves, i) => (moves.forEach(move => acc[move] = i + 1), acc),
       Array.from({ length: width * height })
     )
 );

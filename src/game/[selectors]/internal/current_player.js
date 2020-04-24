@@ -1,9 +1,9 @@
 import { createSelector } from 'reselect';
-import moves from './moves';
-import getPlayer from './get_player';
+import { players } from '#/config/[selectors]';
+import { get } from 'lodash/fp';
 
 export default createSelector(
-  moves,
-  getPlayer,
-  (moves, getPlayer) => getPlayer(moves.length)
+  get('game.moves.prev.length'),
+  players,
+  (moveCount, players) => moveCount % players + 1
 );

@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
-import lines from './lines';
+import potentialWins from './potential_wins';
 import playerSquares from './player_squares';
 import lastPlayer from './last_player';
 
 export default createSelector(
-  lines,
+  potentialWins,
   playerSquares,
   lastPlayer,
-  (lines, playerSquares, lastPlayer) =>
-    lines.filter(line => line.every(i => playerSquares[i] === lastPlayer))
+  (potential, playerSquares, lastPlayer) =>
+    potential.filter(line => line.every(i => playerSquares[i] === lastPlayer))
 );
