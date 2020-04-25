@@ -2,7 +2,9 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { render } from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import TicTacToe from './app';
+import { FontsProvider } from '#/ext/fonts';
+import * as fonts from '#/res/fonts';
+import TicTacToe from '#/app';
 
 const useStyles = createUseStyles({
   '@global': {
@@ -20,7 +22,9 @@ const Root = () => {
 
   return (
     <HelmetProvider>
-      <TicTacToe className={c.fill} />
+      <FontsProvider fonts={fonts} preload>
+        <TicTacToe className={c.fill} />
+      </FontsProvider>
     </HelmetProvider>
   );
 };

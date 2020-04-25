@@ -2,14 +2,13 @@ import React, { useMemo } from 'react';
 import { createUseStyles } from 'react-jss';
 import toCapitalCase from 'to-capital-case';
 import { Helmet } from 'react-helmet-async';
-import { map } from '#/ext/lodash/fp/uncapped';
 
 const createUseFonts = fonts =>
   createUseStyles({
-    '@font-face': map((url, name) => ({
+    '@font-face': Object.entries(fonts).map(([name, url]) => ({
       fontFamily: toCapitalCase(name),
       src: `url(${url})`
-    }), fonts),
+    })),
   });
 
 const useFonts = fonts => {
@@ -27,9 +26,9 @@ const FontsProvider = ({
     <>
       {preload && (
         <Helmet>
-          {map((url, name) => (
+          {Object.entries(fonts).map(([name, url]) =>
             <link key={name} rel="preload" href={url} as="font" crossOrigin />
-          ), fonts)}
+          )}
         </Helmet>
       )}
       {children}
