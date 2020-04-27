@@ -28,6 +28,7 @@
   },
   "env": {
     "browser": true,
+    "node": true,
     "es2017": true,
     "jest": true
   },
