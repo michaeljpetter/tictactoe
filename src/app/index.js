@@ -3,7 +3,7 @@ import { ThemeProvider } from 'react-jss';
 import { Provider, useSelector } from 'react-redux';
 import { theme } from './[selectors]';
 import * as themes from '#/themes';
-import createStore from './create_store';
+import { createStore } from '#/store';
 import App from './app';
 
 const ThemedApp = ({
