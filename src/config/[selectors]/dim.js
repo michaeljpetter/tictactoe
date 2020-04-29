@@ -1,3 +1,1 @@
-import { get } from 'lodash/fp';
-
-export default get('config.dim');
+export default ({ config }) => config.dim;

@@ -1,3 +1,6 @@
-import { constant, range } from 'lodash/fp';
+import { createSelector } from 'reselect';
+import { range } from 'lodash/fp';
 
-export default constant(range(3, 6));
+export default createSelector(
+  () => range(3, 6)
+);

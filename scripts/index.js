@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const fs = require('fs-extra');
 const paths = require('../config/paths');
 const to = require('to-case');
-const { flow, cond, map, filter, pickBy, keys, size, eq, isEmpty, startsWith, values, head, invokeArgs, add, join, T, __ } = require('lodash/fp');
+const { flow, cond, map, filter, pickBy, keys, size, eq, isEmpty, startsWith, values, head, add, join, T, __ } = require('lodash/fp');
 
 process.on('uncaughtException', err => {
   console.log(`\n${chalk.red(err)}\n`);

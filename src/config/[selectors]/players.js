@@ -1,3 +1,1 @@
-import { get } from 'lodash/fp';
-
-export default get('config.players');
+export default ({ config }) => config.players;

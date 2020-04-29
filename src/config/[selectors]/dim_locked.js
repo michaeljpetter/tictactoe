@@ -1,3 +1,1 @@
-import { get } from 'lodash/fp';
-
-export default get('config.dimLocked');
+export default ({ config }) => config.dimLocked;

@@ -4,9 +4,9 @@ import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
 import { Select } from '#/primitives';
-import { __, constant, flow, join, times } from 'lodash/fp';
+import { flow, join } from 'lodash/fp';
 
-const valueToDim = flow(constant, times(__, 2));
+const valueToDim = value => [value, value];
 
 const optionText = flow(valueToDim, join(' x '));
 const changeValue = flow(valueToDim, changeDim);

@@ -1,12 +1,6 @@
-import { __, flip, flow, mergeAll, reduce, set, split } from 'lodash/fp';
-import { map } from '#/ext/lodash/fp/uncapped';
-
-export default flow(
-  map((v, k) =>
-    flow(
-      split(','),
-      reduce(flip(set(__, v)), {})
-    )(k)
-  ),
-  mergeAll
-);
+export default obj =>
+  Object.entries(obj).reduce(
+    (acc, [key, value]) =>
+      (key.split(',').forEach(k => acc[k] = value), acc),
+    {}
+  );

@@ -1,17 +1,16 @@
 import { createElement } from 'react';
-import { T, cond, curry, identity, isPlainObject } from 'lodash/fp';
-import { map } from '#/ext/lodash/fp/uncapped';
+import { T, cond, identity, isPlainObject } from 'lodash/fp';
 
-const renderObject = curry((components, object, i) => map(
-  (value, key) => createElement(
-    components[key],
-    { key: `${i}.${key}`, value }
-  ),
-  object
-));
+const renderObject = components =>
+  (object, i) => Object.entries(object).map(
+    ([key, value]) => createElement(
+      components[key],
+      { key: `${i}.${key}`, value }
+    ),
+  );
 
 export default components =>
-  map(cond([
+  items => items.map(cond([
     [isPlainObject, renderObject(components)],
     [T, identity]
   ]));

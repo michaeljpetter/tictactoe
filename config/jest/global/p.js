@@ -1,9 +1,9 @@
 import pretty from 'pretty-format';
-import { flatten, flow, join, map, partialRight, zip } from 'lodash/fp';
+import { flatten, flow, join, map, zip } from 'lodash/fp';
 
 export default (strings, ...values) =>
   flow(
-    map(partialRight(pretty, [{ min: true }])),
+    map(v => pretty(v, { min: true })),
     zip(strings),
     flatten,
     join('')

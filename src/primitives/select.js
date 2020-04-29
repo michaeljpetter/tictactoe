@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
-import { __, flow, get, identity, nth } from 'lodash/fp';
+import { __, flow, identity, nth } from 'lodash/fp';
 
 const useStyles = createUseStyles({
   select: {
@@ -30,7 +30,7 @@ const Select = ({
   const c = useStyles();
 
   const handleOnChange = useCallback(
-    flow(get('target.selectedIndex'), nth(__, options), onChange),
+    flow(e => e.target.selectedIndex, nth(__, options), onChange),
     [options, onChange]
   );
 
