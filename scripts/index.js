@@ -1,8 +1,6 @@
-'use strict';
 const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
-const paths = require('../config/paths');
 const to = require('to-case');
 const { flow, cond, map, filter, pickBy, keys, size, eq, isEmpty, startsWith, values, head, add, join, T, __ } = require('lodash/fp');
 
@@ -11,7 +9,7 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-const targetDir = path.resolve(paths.appSrc, process.argv[2]);
+const targetDir = path.resolve(__dirname, '..', process.argv[2]);
 const indexPath = path.resolve(targetDir, 'index.js');
 const mode = process.argv[3] || 'js';
 
