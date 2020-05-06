@@ -59,7 +59,7 @@ const Board = () => {
   return (
     <div className={c.border}>
       <div className={c.board}>
-        {useSelector(squares).map(({ player, canMakeMove, isWin }, i) =>
+        {useSelector(squares).map(({ player, isWin, canMakeMove }, i) =>
           <Button key={i}
                   className={classNames(c.square, { [c.win]: isWin })}
                   disabled={!canMakeMove}

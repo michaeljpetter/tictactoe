@@ -7,20 +7,30 @@ export default createSelector(
   potentialWins,
   playerSquares,
   remainingMoves,
-  (potential, playerSquares, moves) => {
-    const maxMoves = Math.max(...moves);
+  (potential, playerSquares, moves) =>
+    potential.reduce(
+      (acc, line) => {
+        let player, required = 0;
 
-    return potential.filter(line => {
-      let required = 0, available = maxMoves;
+        for(let i = 0; i < line.length; ++i) {
+          const p = playerSquares[line[i]];
+          if(!p) ++required;
+          else if(!player) player = p;
+          else if(p !== player) return acc;
+        }
 
-      for(let p0, i = 0; i < line.length; ++i) {
-        const p = playerSquares[line[i]];
-        if(!p) ++required;
-        else if(!p0) { p0 = p; available = moves[p - 1]; }
-        else if(p !== p0) return false;
-      }
+        if(!required) return acc;
 
-      return 0 < required && required <= available;
-    });
-  }
+        if(!player)
+          moves.forEach((available, i) => {
+            if(required <= available)
+              acc[i].push(line);
+          });
+        else if(required <= moves[player - 1])
+          acc[player - 1].push(line);
+
+        return acc;
+      },
+      Array.from({ length: moves.length }, () => [])
+    )
 );

@@ -9,3 +9,4 @@ export { default as remainingMoves } from './remaining_moves';
 export { default as remainingWins } from './remaining_wins';
 export { default as winner } from './winner';
 export { default as wins } from './wins';
+export { default as winSquares } from './win_squares';

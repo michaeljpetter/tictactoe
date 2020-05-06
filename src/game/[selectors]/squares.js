@@ -1,17 +1,14 @@
 import { createSelector } from 'reselect';
-import { gameOver, playerSquares, wins } from './internal';
+import { currentPlayer, playerSquares, winSquares } from './internal';
 
 export default createSelector(
   playerSquares,
-  gameOver,
-  wins,
-  (playerSquares, gameOver, wins) => {
-    const winSquares = new Set(wins.flat());
-
-    return playerSquares.map((player, i) => ({
+  winSquares,
+  currentPlayer,
+  (playerSquares, wins, currentPlayer) =>
+    playerSquares.map((player, i) => ({
       player,
-      canMakeMove: !gameOver && !player,
-      isWin: winSquares.has(i)
-    }));
-  }
+      isWin: !!wins[i],
+      canMakeMove: !!currentPlayer && !player
+    }))
 );

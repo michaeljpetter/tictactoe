@@ -6,5 +6,5 @@ export default createSelector(
   wins,
   remainingWins,
   (wins, remaining) =>
-    !!wins.length || !remaining.length
+    !!wins.length || !remaining.some(r => r.length)
 );
