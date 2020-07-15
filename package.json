@@ -37,7 +37,7 @@
     "@babel/runtime": "^7.6.3",
     "classnames": "^2.2.6",
     "flat": "^4.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "react": "^16.9.0",
     "react-dev-utils": "^9.0.0",
     "react-display-name": "^0.2.5",
