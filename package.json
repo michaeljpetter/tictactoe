@@ -39,7 +39,7 @@
     "flat": "^4.1.0",
     "lodash": "^4.17.15",
     "react": "^16.9.0",
-    "react-dev-utils": "^9.0.0",
+    "react-dev-utils": "^11.0.4",
     "react-display-name": "^0.2.5",
     "react-dom": "^16.9.0",
     "react-helmet-async": "^1.0.4",
