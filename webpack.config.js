@@ -1,10 +1,11 @@
 const path = require('path');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
-const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
+const { ProvidePlugin } = require('webpack');
 
 module.exports = (_, {
   mode,
@@ -16,20 +17,6 @@ module.exports = (_, {
   module: {
     strictExportPresence: true,
     rules: [
-      {
-        test: /\.js$/,
-        enforce: 'pre',
-        include: path.resolve(__dirname, 'src'),
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint')
-            },
-            loader: 'eslint-loader'
-          }
-        ]
-      },
       {
         oneOf: [
           {
@@ -73,7 +60,7 @@ module.exports = (_, {
   output: {
     path: path.resolve(__dirname, 'build'),
     publicPath: '/',
-    filename: 'static/js/[name].[hash:8].js',
+    filename: 'static/js/[name].[fullhash:8].js',
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
   },
@@ -82,6 +69,13 @@ module.exports = (_, {
     './src'
   ),
   plugins: [].concat(
+    new ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new ESLintPlugin({
+      formatter: eslintFormatter,
+      eslintPath: require.resolve('eslint')
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       favicon: 'public/favicon.ico',
@@ -92,17 +86,17 @@ module.exports = (_, {
   devServer: {
     host: '0.0.0.0',
     port,
-    public: `localhost:${port}`,
+    open: `http://localhost:${port}`,
     hot: true,
-    contentBase: path.resolve(__dirname, 'public'),
-    watchContentBase: true,
-    compress: true,
-    clientLogLevel: 'silent',
-    watchOptions: {
-      ignored: /node_modules/,
+    webSocketServer: 'ws',
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+      watch: {
+        ignored: /node_modules/,
+      },
     },
-    before: app => {
-      app.use(errorOverlayMiddleware());
-    }
+    client: {
+      logging: 'none',
+    },
   }
 });

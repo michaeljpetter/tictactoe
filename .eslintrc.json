@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -40,7 +40,8 @@
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/no-onchange": "off",
     "lodash-fp/no-single-composition": "warn",
-    "sort-imports": ["warn", { "ignoreDeclarationSort": true }]
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
+    "jest/valid-title": "off"
   },
   "overrides": [
     {

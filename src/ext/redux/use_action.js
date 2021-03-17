@@ -4,7 +4,7 @@ import { curryN, flow } from 'lodash/fp';
 
 export default action => {
   const dispatch = useDispatch();
-  return useCallback(
+  return useCallback(  //eslint-disable-line react-hooks/exhaustive-deps
     curryN(action.length, flow(action, dispatch)),
     [action, dispatch]
   );
