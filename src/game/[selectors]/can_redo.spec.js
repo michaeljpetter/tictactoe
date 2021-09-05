@@ -1,6 +1,8 @@
 import canRedo from './can_redo';
+import { createFixture, expect } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => canRedo({ game: { moves: { next } } }));
+subject(({ next }) => canRedo({ game: { moves: { next } } }));
 
 describe('when there are no next moves', () => {
   set('next', []);

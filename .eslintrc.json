@@ -47,7 +47,7 @@
     {
       "files": ["*.spec.js"],
       "rules": {
-        "no-undef": "off"
+        "jest/no-done-callback": "off"
       }
     }
   ]

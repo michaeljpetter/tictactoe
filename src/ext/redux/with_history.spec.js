@@ -1,12 +1,14 @@
 import withHistory from './with_history';
+import { createFixture, expect, jest, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => withHistory(actionTypes)(inner));
+subject(({ actionTypes, inner }) => withHistory(actionTypes)(inner));
 
 set('actionTypes', { ignoreMe: 'BOGUS' });
 set('inner', () => jest.fn(() => 'new'));
 
 describe('when invoked', () => {
-  subject(reducer => reducer(state, action));
+  subject(({ state, action }, reducer) => reducer(state, action));
 
   set('state', { prev: [1, 2], current: 3, next: [4, 5] });
 
@@ -18,10 +20,10 @@ describe('when invoked', () => {
   ].
   forEach(({ expected, ...c }) => {
     describe(p`when a ${c.type} action`, () => {
-      set('actionTypes', types => ({ ...types, [c.type]: 'LEGIT' }));
-      set('action', () => ({ type: 'LEGIT' }));
+      set('actionTypes', (_, types) => ({ ...types, [c.type]: 'LEGIT' }));
+      set('action', { type: 'LEGIT' });
 
-      it('shifts history', () => {
+      it('shifts history', ({ inner }) => {
         expect.it.toStrictEqual(expected);
         expect(inner).not.toHaveBeenCalled();
       });
@@ -31,7 +33,7 @@ describe('when invoked', () => {
   describe('when not a history action', () => {
     set('action', { type: 'BOGUS' });
 
-    it('appends to history and clears next', () => {
+    it('appends to history and clears next', ({ inner, action }) => {
       expect.it.toStrictEqual({ prev: [1, 2, 3], current: 'new', next: [] });
       expect(inner).toHaveBeenCalledWith(3, action);
     });
@@ -39,16 +41,16 @@ describe('when invoked', () => {
     describe('when uninitialized', () => {
       set('state', undefined);
 
-      it('initializes history', () => {
+      it('initializes history', ({ inner, action }) => {
         expect.it.toStrictEqual({ prev: [], current: 'new', next: [] });
         expect(inner).toHaveBeenCalledWith(undefined, action);
       });
     });
 
     describe('when inner yields the same state', () => {
-      set('state', state => ({ ...state, current: 'new' }));
+      set('state', (_, state) => ({ ...state, current: 'new' }));
 
-      it('is unchanged', () => {
+      it('is unchanged', ({ state, inner, action }) => {
         expect.it.toBe(state);
         expect(inner).toHaveBeenCalledWith('new', action);
       });

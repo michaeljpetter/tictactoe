@@ -1,6 +1,8 @@
 import status from './status';
+import { boardToMoves, createFixture, expect } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() =>
+subject(({ board }) =>
   status({
     config: { dim: [3, 3], toWin: 3, players: 2 },
     game: { moves: boardToMoves(board) }

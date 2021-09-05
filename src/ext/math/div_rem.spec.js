@@ -1,6 +1,8 @@
 import divRem from './div_rem';
+import { createFixture, expect, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => divRem(...args));
+subject(({ args }) => divRem(...args));
 
 [
   { args: [3, 4], expected: [0, 3] },

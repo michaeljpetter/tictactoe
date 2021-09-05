@@ -1,6 +1,8 @@
 import toWinOptions from './to_win_options';
+import { createFixture, expect, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => toWinOptions({ config: { dim } }));
+subject(({ dim }) => toWinOptions({ config: { dim } }));
 
 [
   { dim: [4, 3], expected: [3] },

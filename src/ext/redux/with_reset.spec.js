@@ -1,11 +1,13 @@
 import withReset from './with_reset';
+import { createFixture, expect, jest, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => withReset('NUKE', 'BOMB')(inner));
+subject(({ inner }) => withReset('NUKE', 'BOMB')(inner));
 
 set('inner', () => jest.fn(() => 'new'));
 
 describe('when invoked', () => {
-  subject(reducer => reducer('old', action));
+  subject(({ action }, reducer) => reducer('old', action));
 
   [
     { action: { type: 'NUKE' }, expected: undefined },
@@ -16,7 +18,7 @@ describe('when invoked', () => {
     describe(p`case ${c}`, () => {
       set.from(c);
 
-      it('invokes inner with expected state', () => {
+      it('invokes inner with expected state', ({ inner, action }) => {
         expect.it.toEqual('new');
         expect(inner).toHaveBeenCalledWith(expected, action);
       });

@@ -1,7 +1,9 @@
 import squares from './squares';
 import { omit } from 'lodash/fp';
+import { boardToMoves, createFixture, expect, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() =>
+subject(({ dim, toWin, players, board }) =>
   squares({
     config: { dim, toWin, players },
     game: { moves: boardToMoves(board) }

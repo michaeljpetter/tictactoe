@@ -1,6 +1,8 @@
 import playersOptions from './players_options';
+import { createFixture, expect, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => playersOptions({ config: { dim, toWin } }));
+subject(({ dim, toWin }) => playersOptions({ config: { dim, toWin } }));
 
 [
   { dim: [3, 3], toWin: 3, expected: [2, 3] },

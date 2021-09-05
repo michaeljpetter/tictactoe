@@ -1,4 +1,6 @@
 import createReducer from './create_reducer';
+import { createFixture, expect, p } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
 subject(() => createReducer(0, {
   [['PLUS', 'ADD']]: (state, { payload }) => state + payload,
@@ -6,7 +8,7 @@ subject(() => createReducer(0, {
 }));
 
 describe('when invoked', () => {
-  subject(reducer => reducer(state, action));
+  subject(({ state, action }, reducer) => reducer(state, action));
 
   [
     { state: undefined, action: { type: 'PLUS', payload: 7 }, expected: 7 },

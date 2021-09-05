@@ -1,6 +1,8 @@
 import canUndo from './can_undo';
+import { createFixture, expect } from '#/ext/jest';
+const { subject, set, describe, it } = createFixture();
 
-subject(() => canUndo({ game: { moves: { prev } } }));
+subject(({ prev }) => canUndo({ game: { moves: { prev } } }));
 
 describe('when there are no prev moves', () => {
   set('prev', []);
