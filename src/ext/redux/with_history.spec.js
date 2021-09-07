@@ -1,6 +1,6 @@
-import withHistory from './with_history';
-import { createFixture, expect, jest, p } from '#/ext/jest';
+import { createFixture, expect, jest } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import withHistory from './with_history';
 
 subject(({ actionTypes, inner }) => withHistory(actionTypes)(inner));
 
@@ -12,21 +12,18 @@ describe('when invoked', () => {
 
   set('state', { prev: [1, 2], current: 3, next: [4, 5] });
 
-  [
-    { type: 'first', expected: { prev: [], current: 1, next: [2, 3, 4, 5] } },
-    { type: 'prev', expected: { prev: [1], current: 2, next: [3, 4, 5] } },
-    { type: 'next', expected: { prev: [1, 2, 3], current: 4, next: [5] } },
-    { type: 'last', expected: { prev: [1, 2, 3, 4], current: 5, next: [] } },
-  ].
-  forEach(({ expected, ...c }) => {
-    describe(p`when a ${c.type} action`, () => {
-      set('actionTypes', (_, types) => ({ ...types, [c.type]: 'LEGIT' }));
-      set('action', { type: 'LEGIT' });
+  describe.each([
+    ['first', { prev: [], current: 1, next: [2, 3, 4, 5] }],
+    ['prev', { prev: [1], current: 2, next: [3, 4, 5] }],
+    ['next', { prev: [1, 2, 3], current: 4, next: [5] }],
+    ['last', { prev: [1, 2, 3, 4], current: 5, next: [] }],
+  ])('when a %s action', (type, expected) => {
+    set('actionTypes', (_, types) => ({ ...types, [type]: 'LEGIT' }));
+    set('action', { type: 'LEGIT' });
 
-      it('shifts history', ({ inner }) => {
-        expect.it.toStrictEqual(expected);
-        expect(inner).not.toHaveBeenCalled();
-      });
+    it('shifts history', ({ inner }) => {
+      expect.it.toStrictEqual(expected);
+      expect(inner).not.toHaveBeenCalled();
     });
   });
 

@@ -1,6 +1,6 @@
-import canUndo from './can_undo';
 import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import canUndo from './can_undo';
 
 subject(({ prev }) => canUndo({ game: { moves: { prev } } }));
 

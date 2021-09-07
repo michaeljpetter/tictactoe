@@ -1,6 +1,6 @@
-import canRedo from './can_redo';
 import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import canRedo from './can_redo';
 
 subject(({ next }) => canRedo({ game: { moves: { next } } }));
 

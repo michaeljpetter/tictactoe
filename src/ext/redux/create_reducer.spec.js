@@ -1,6 +1,6 @@
-import createReducer from './create_reducer';
-import { createFixture, expect, p } from '#/ext/jest';
+import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import createReducer from './create_reducer';
 
 subject(() => createReducer(0, {
   [['PLUS', 'ADD']]: (state, { payload }) => state + payload,
@@ -10,22 +10,19 @@ subject(() => createReducer(0, {
 describe('when invoked', () => {
   subject(({ state, action }, reducer) => reducer(state, action));
 
-  [
-    { state: undefined, action: { type: 'PLUS', payload: 7 }, expected: 7 },
-    { state: undefined, action: { type: 'ADD', payload: 7 }, expected: 7 },
-    { state: undefined, action: { type: 'SUBTRACT', payload: 8 }, expected: -8 },
-    { state: undefined, action: { type: 'OTHER' }, expected: 0 },
+  describe.each([
+    [{ action: { type: 'PLUS', payload: 7 } }, 7],
+    [{ action: { type: 'ADD', payload: 7 } }, 7],
+    [{ action: { type: 'SUBTRACT', payload: 8 } }, -8],
+    [{ action: { type: 'OTHER' } }, 0],
 
-    { state: 20, action: { type: 'PLUS', payload: 7 }, expected: 27 },
-    { state: 20, action: { type: 'ADD', payload: 7 }, expected: 27 },
-    { state: 20, action: { type: 'SUBTRACT', payload: 8 }, expected: 12 },
-    { state: 20, action: { type: 'OTHER' }, expected: 20 },
-  ].
-  forEach(({ expected, ...c }) => {
-    describe(p`case ${c}`, () => {
-      set.from(c);
+    [{ state: 20, action: { type: 'PLUS', payload: 7 } }, 27],
+    [{ state: 20, action: { type: 'ADD', payload: 7 } }, 27],
+    [{ state: 20, action: { type: 'SUBTRACT', payload: 8 } }, 12],
+    [{ state: 20, action: { type: 'OTHER' } }, 20],
+  ])('case %j', (values, expected) => {
+    set.from(values);
 
-      it('equals expected', () => expect.it.toEqual(expected));
-    });
+    it('yields expected value', () => expect.it.toEqual(expected));
   });
 });

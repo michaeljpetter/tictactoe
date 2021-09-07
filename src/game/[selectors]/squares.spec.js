@@ -1,7 +1,6 @@
-import squares from './squares';
-import { omit } from 'lodash/fp';
-import { boardToMoves, createFixture, expect, p } from '#/ext/jest';
+import { boardToMoves, createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import squares from './squares';
 
 subject(({ dim, toWin, players, board }) =>
   squares({
@@ -10,15 +9,17 @@ subject(({ dim, toWin, players, board }) =>
   })
 );
 
-(_ => [
-  {
-    dim: [3, 3], toWin: 3, players: 2,
-    board: `
-      |O|X| |
-      | |X|O|
-      | |O|X|
-    `,
-    expected: [
+describe.each((_ => [
+  [
+    {
+      dim: [3, 3], toWin: 3, players: 2,
+      board: `
+        |O|X| |
+        | |X|O|
+        | |O|X|
+      `
+    },
+    [
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: true, isWin: false },
@@ -31,17 +32,19 @@ subject(({ dim, toWin, players, board }) =>
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false }
     ]
-  },
-  {
-    dim: [4, 5], toWin: 4, players: 4,
-    board: `
-      | |O|^|@|
-      |O|X|@|^|
-      |^|O|X| |
-      | |^|O|X|
-      |X|@| | |
-    `,
-    expected: [
+  ],
+  [
+    {
+      dim: [4, 5], toWin: 4, players: 4,
+      board: `
+        | |O|^|@|
+        |O|X|@|^|
+        |^|O|X| |
+        | |^|O|X|
+        |X|@| | |
+      `
+    },
+    [
       { player: _, canMakeMove: true, isWin: false },
       { player: 2, canMakeMove: false, isWin: false },
       { player: 3, canMakeMove: false, isWin: false },
@@ -67,16 +70,18 @@ subject(({ dim, toWin, players, board }) =>
       { player: _, canMakeMove: true, isWin: false },
       { player: _, canMakeMove: true, isWin: false }
     ]
-  },
-  {
-    dim: [3, 4], toWin: 3, players: 2,
-    board: `
-      |O|X| |
-      | |X|O|
-      |X|O|X|
-      |O| | |
-    `,
-    expected: [
+  ],
+  [
+    {
+      dim: [3, 4], toWin: 3, players: 2,
+      board: `
+        |O|X| |
+        | |X|O|
+        |X|O|X|
+        |O| | |
+      `
+    },
+    [
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false },
@@ -93,17 +98,19 @@ subject(({ dim, toWin, players, board }) =>
       { player: _, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false }
     ]
-  },
-  {
-    dim: [5, 5], toWin: 3, players: 2,
-    board: `
-      |X|O|O| |X|
-      | |X|O|X|X|
-      |O|O|X| |O|
-      |X|X|O|X|O|
-      |X|O|O| |X|
-    `,
-    expected: [
+  ],
+  [
+    {
+      dim: [5, 5], toWin: 3, players: 2,
+      board: `
+        |X|O|O| |X|
+        | |X|O|X|X|
+        |O|O|X| |O|
+        |X|X|O|X|O|
+        |X|O|O| |X|
+      `
+    },
+    [
       { player: 1, canMakeMove: false, isWin: true },
       { player: 2, canMakeMove: false, isWin: false },
       { player: 2, canMakeMove: false, isWin: false },
@@ -134,15 +141,17 @@ subject(({ dim, toWin, players, board }) =>
       { player: _, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: true }
     ]
-  },
-  {
-    dim: [3, 3], toWin: 3, players: 2,
-    board: `
-      |O|X|O|
-      | |X| |
-      |X|O|X|
-    `,
-    expected: [
+  ],
+  [
+    {
+      dim: [3, 3], toWin: 3, players: 2,
+      board: `
+        |O|X|O|
+        | |X| |
+        |X|O|X|
+      `
+    },
+    [
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
       { player: 2, canMakeMove: false, isWin: false },
@@ -155,12 +164,9 @@ subject(({ dim, toWin, players, board }) =>
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false }
     ]
-  }
-])().
-forEach(({ expected, ...c }) => {
-  describe(p`case ${omit('dim', c)}`, () => {
-    set.from(c);
+  ],
+])())('case %p', (values, expected) => {
+  set.from(values);
 
-    it('is expected', () => expect.it.toStrictEqual(expected));
-  });
+  it('yields expected squares', () => expect.it.toStrictEqual(expected));
 });

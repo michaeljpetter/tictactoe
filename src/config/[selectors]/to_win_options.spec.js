@@ -1,18 +1,15 @@
-import toWinOptions from './to_win_options';
-import { createFixture, expect, p } from '#/ext/jest';
+import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import toWinOptions from './to_win_options';
 
 subject(({ dim }) => toWinOptions({ config: { dim } }));
 
-[
-  { dim: [4, 3], expected: [3] },
-  { dim: [4, 7], expected: [3, 4] },
-  { dim: [9, 5], expected: [3, 4, 5] }
-].
-forEach(({ expected, ...c }) => {
-  describe(p`case ${c}`, () => {
-    set.from(c);
+describe.each([
+  [[4, 3], [3]],
+  [[4, 7], [3, 4]],
+  [[9, 5], [3, 4, 5]],
+])(`case %j`, (dim, expected) => {
+  set.from({ dim });
 
-    it('equals expected', () => expect.it.toEqual(expected));
-  });
+  it('yields expected options', () => expect.it.toEqual(expected));
 });

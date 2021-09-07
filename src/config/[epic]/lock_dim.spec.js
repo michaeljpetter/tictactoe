@@ -1,9 +1,9 @@
-import { of } from 'rxjs';
-import { toArray } from 'rxjs/operators';
-import lockDimEpic from './lock_dim';
-import { changeDim, lockDim } from '../[actions]';
 import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import lockDimEpic from './lock_dim';
+import { changeDim, lockDim } from '../[actions]';
+import { of } from 'rxjs';
+import { toArray } from 'rxjs/operators';
 
 subject(({ dim }) => {
   const action$ = of({ type: 'OTHER' }, lockDim());

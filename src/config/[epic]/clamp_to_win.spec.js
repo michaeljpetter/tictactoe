@@ -1,9 +1,9 @@
-import { of } from 'rxjs';
-import { toArray } from 'rxjs/operators';
-import clampToWinEpic from './clamp_to_win';
-import { changeDim, changeToWin } from '../[actions]';
 import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import clampToWinEpic from './clamp_to_win';
+import { changeDim, changeToWin } from '../[actions]';
+import { of } from 'rxjs';
+import { toArray } from 'rxjs/operators';
 
 subject(({ dim, toWin }) => {
   const action$ = of({ type: 'OTHER' }, changeDim(dim));

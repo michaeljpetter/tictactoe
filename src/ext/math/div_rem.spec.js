@@ -1,18 +1,15 @@
-import divRem from './div_rem';
-import { createFixture, expect, p } from '#/ext/jest';
+import { createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import divRem from './div_rem';
 
 subject(({ args }) => divRem(...args));
 
-[
-  { args: [3, 4], expected: [0, 3] },
-  { args: [4.5, 2], expected: [2, .5] },
-  { args: [21, 7], expected: [3, 0] },
-].
-forEach(({ expected, ...c }) => {
-  describe(p`case ${c}`, () => {
-    set.from(c);
+describe.each([
+  [[3, 4], [0, 3]],
+  [[4.5, 2], [2, .5]],
+  [[21, 7], [3, 0]],
+])('case %j', (args, expected) => {
+  set.from({ args });
 
-    it('is expected', () => expect.it.toStrictEqual(expected));
-  });
+  it('yields expected dividend and remainder', () => expect.it.toStrictEqual(expected));
 });

@@ -1,6 +1,6 @@
-import status from './status';
 import { boardToMoves, createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
+import status from './status';
 
 subject(({ board }) =>
   status({
