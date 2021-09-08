@@ -6,20 +6,20 @@ import { Button } from '#/primitives';
 import { ResetIcon } from '#/res/icons';
 import classNames from 'classnames';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ app }) => ({
   button: {
     padding: [2, 18, 2, 15],
     fontSize: 'inherit',
-    backgroundColor: theme['app.backgroundColor'],
-    borderRadius: theme['app.borderRadius'],
+    backgroundColor: app.backgroundColor,
+    borderRadius: app.borderRadius,
     display: 'flex',
     alignItems: 'center'
   },
   icon: {
     height: '1rem',
     marginRight: 10,
-    fill: theme['app.color'],
-    stroke: theme['app.color'],
+    fill: app.color,
+    stroke: app.color,
     strokeWidth: 15
   }
 }));

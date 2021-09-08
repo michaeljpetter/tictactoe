@@ -1,4 +1,4 @@
-import { flatten } from 'flat';
+import { unflatten } from 'flat';
 
 const palette = {
   darkPurple: '#351858',
@@ -16,7 +16,7 @@ export default (({
   pink,
   lightBlue,
   white
-}) => flatten({
+}) => unflatten({
   app: {
     font: 'bold 16pt "Londrina Shadow", "Comic Sans MS", sans-serif',
     color: pink,

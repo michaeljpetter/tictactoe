@@ -12,7 +12,7 @@ describe('when invoked', () => {
   describe.each([
     [{ type: 'NUKE' }, undefined],
     [{ type: 'BOMB' }, undefined],
-    [{ type: 'OTHER' }, 'old'],
+    [{ type: 'OTHER' }, 'old']
   ])('case %j', (action, expected) => {
     set.from({ action });
 

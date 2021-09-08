@@ -25,7 +25,7 @@ module.exports = (_, {
             loader: 'babel-loader',
             options: {
               compact: true
-            },
+            }
           },
           {
             test: /\.svg$/,
@@ -70,7 +70,7 @@ module.exports = (_, {
   ),
   plugins: [].concat(
     new ProvidePlugin({
-      process: 'process/browser',
+      process: 'process/browser'
     }),
     new ESLintPlugin({
       formatter: eslintFormatter,
@@ -78,7 +78,7 @@ module.exports = (_, {
     }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
-      favicon: 'public/favicon.ico',
+      favicon: 'public/favicon.ico'
     }),
     new WebpackManifestPlugin(),
     { development: new CaseSensitivePathsPlugin() }[mode] || []
@@ -92,11 +92,11 @@ module.exports = (_, {
     static: {
       directory: path.resolve(__dirname, 'public'),
       watch: {
-        ignored: /node_modules/,
-      },
+        ignored: /node_modules/
+      }
     },
     client: {
-      logging: 'none',
-    },
+      logging: 'none'
+    }
   }
 });

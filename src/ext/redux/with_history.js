@@ -18,7 +18,7 @@ const handlers = {
     prev: [...prev, current, ...next.slice(0, -1)],
     current: next[next.length - 1],
     next: []
-  }),
+  })
 };
 
 export default (

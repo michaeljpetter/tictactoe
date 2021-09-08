@@ -11,7 +11,7 @@ const bind = (ctx, target) =>
       (acc, [key, value]) => (acc[key] = bind(ctx, value), acc),
       typeof target === 'function'
         ? (...args) => target(ctx, ...args)
-        : {},
+        : {}
     );
 
 export default () =>
@@ -22,6 +22,6 @@ export default () =>
       set,
       beforeEach,
       afterEach,
-      it,
+      it
     })
   );

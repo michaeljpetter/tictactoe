@@ -19,7 +19,7 @@ describe('when invoked', () => {
     [{ state: 20, action: { type: 'PLUS', payload: 7 } }, 27],
     [{ state: 20, action: { type: 'ADD', payload: 7 } }, 27],
     [{ state: 20, action: { type: 'SUBTRACT', payload: 8 } }, 12],
-    [{ state: 20, action: { type: 'OTHER' } }, 20],
+    [{ state: 20, action: { type: 'OTHER' } }, 20]
   ])('case %j', (values, expected) => {
     set.from(values);
 

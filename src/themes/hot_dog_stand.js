@@ -1,4 +1,4 @@
-import { flatten } from 'flat';
+import { unflatten } from 'flat';
 
 const palette = {
   red: 'red',
@@ -12,7 +12,7 @@ export default (({
   yellow,
   black,
   white
-}) => flatten({
+}) => unflatten({
   app: {
     font: 'bold 12pt Monaco, sans-serif',
     letterSpacing: -1,

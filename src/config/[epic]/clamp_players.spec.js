@@ -17,7 +17,7 @@ set('toWin', 4);
 
 describe.each([
   ['when dim changed', ({ dim }) => changeDim(dim)],
-  ['when toWin changed', ({ toWin }) => changeToWin(toWin)],
+  ['when toWin changed', ({ toWin }) => changeToWin(toWin)]
 ])('%s', (_, action) => {
   set.from({ action });
 

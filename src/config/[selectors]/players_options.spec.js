@@ -8,7 +8,7 @@ describe.each([
   [{ dim: [3, 3], toWin: 3 }, [2, 3]],
   [{ dim: [3, 4], toWin: 3 }, [2, 3, 4]],
   [{ dim: [3, 4], toWin: 4 }, [2, 3]],
-  [{ dim: [5, 5], toWin: 3 }, [2, 3, 4]],
+  [{ dim: [5, 5], toWin: 3 }, [2, 3, 4]]
 ])('case %j', (values, expected) => {
   set.from(values);
 

@@ -16,7 +16,7 @@ describe('when invoked', () => {
     ['first', { prev: [], current: 1, next: [2, 3, 4, 5] }],
     ['prev', { prev: [1], current: 2, next: [3, 4, 5] }],
     ['next', { prev: [1, 2, 3], current: 4, next: [5] }],
-    ['last', { prev: [1, 2, 3, 4], current: 5, next: [] }],
+    ['last', { prev: [1, 2, 3, 4], current: 5, next: [] }]
   ])('when a %s action', (type, expected) => {
     set('actionTypes', (_, types) => ({ ...types, [type]: 'LEGIT' }));
     set('action', { type: 'LEGIT' });

@@ -9,7 +9,7 @@ import LockedPicker from './locked_picker';
 import UnlockedPicker from './unlocked_picker';
 import { Button } from '#/primitives';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ header }) => ({
   lock: {
     width: 20,
     marginRight: 1,
@@ -18,7 +18,7 @@ const useStyles = createUseStyles(theme => ({
     verticalAlign: 'middle'
   },
   icon: {
-    fill: theme['header.color']
+    fill: header.color
   }
 }));
 

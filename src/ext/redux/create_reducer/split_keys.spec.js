@@ -17,7 +17,7 @@ describe('when the object has key lists', () => {
 
   describe.each([
     [(_, circle) => ({ ...circle, type: 'square' }), { type: 'square' }],
-    [(_, circle) => ({ type: 'square', ...circle }), { type: 'circle' }],
+    [(_, circle) => ({ type: 'square', ...circle }), { type: 'circle' }]
   ])('when a list key duplicates a plain key', (object, expected) => {
     set.from({ object });
 

@@ -9,7 +9,7 @@ import TicTacToe from '#/app';
 const useStyles = createUseStyles({
   '@global': {
     body: {
-      margin: 0,
+      margin: 0
     }
   },
   fill: {

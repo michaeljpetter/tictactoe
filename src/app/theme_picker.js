@@ -8,11 +8,11 @@ import { Select } from '#/primitives';
 import toCapitalCase from 'to-capital-case';
 import classNames from 'classnames';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ app }) => ({
   picker: {
     textAlignLast: 'center',
-    backgroundColor: theme['app.backgroundColor'],
-    borderRadius: theme['app.borderRadius']
+    backgroundColor: app.backgroundColor,
+    borderRadius: app.borderRadius
   }
 }));
 

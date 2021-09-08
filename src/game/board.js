@@ -12,10 +12,10 @@ import classNames from 'classnames';
 const calcInnerRadius = (borderRadius, borderWidth) =>
   borderRadius ? Math.max(0, borderRadius - borderWidth - 1) : undefined;
 
-const useStyles = createUseStyles(theme => {
-  const borderWidth = theme['board.borderWidth'] || 0;
-  const borderRadius = theme['app.borderRadius'];
-  const borderColor = theme['board.borderColor'] || theme['board.color'];
+const useStyles = createUseStyles(({ app, board }) => {
+  const borderWidth = board.borderWidth ?? 0;
+  const borderRadius = app.borderRadius;
+  const borderColor = board.borderColor ?? board.color;
   const innerRadius = calcInnerRadius(borderRadius, borderWidth);
 
   return {
@@ -41,12 +41,12 @@ const useStyles = createUseStyles(theme => {
       border: [1, 'solid'],
       fontSize: '2.5rem',
       fontWeight: 'bold',
-      color: theme['board.color'],
-      backgroundColor: theme['board.backgroundColor'],
-      borderColor: theme['board.borderColor'],
+      color: board.color,
+      backgroundColor: board.backgroundColor,
+      borderColor: board.borderColor
     },
     win: {
-      backgroundColor: theme['board.winBackgroundColor'],
+      backgroundColor: board.winBackgroundColor
     }
   };
 });

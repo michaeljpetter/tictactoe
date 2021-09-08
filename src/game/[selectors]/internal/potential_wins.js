@@ -26,7 +26,7 @@ export default createSelector(
       //diagonals /
       hshifts.flatMap(s => wshifts.map(d =>
         line.map(i => s * width - d + (i + 1) * (width - 1))
-      )),
+      ))
     );
   }
 );

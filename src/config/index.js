@@ -4,7 +4,7 @@ import DimPicker from './dim_picker';
 import ToWinPicker from './to_win_picker';
 import PlayersPicker from './players_picker';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ config, app }) => ({
   config: {
     display: 'flex',
     maxWidth: 500,
@@ -38,9 +38,9 @@ const useStyles = createUseStyles(theme => ({
     }
   },
   picker: {
-    backgroundColor: theme['config.picker.backgroundColor'],
-    borderWidth: theme['config.picker.borderWidth'],
-    borderRadius: theme['app.borderRadius'],
+    backgroundColor: config.picker.backgroundColor,
+    borderWidth: config.picker.borderWidth,
+    borderRadius: app.borderRadius
   }
 }));
 

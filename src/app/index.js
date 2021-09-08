@@ -9,23 +9,23 @@ import withTheme from './with_theme';
 import classNames from 'classnames';
 import { compose } from 'lodash/fp';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ app, header }) => ({
   app: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    font: theme['app.font'],
-    letterSpacing: theme['app.letterSpacing'],
-    color: theme['app.color'],
-    backgroundColor: theme['app.backgroundColor'],
+    font: app.font,
+    letterSpacing: app.letterSpacing,
+    color: app.color,
+    backgroundColor: app.backgroundColor,
     userSelect: 'none'
   },
   header: {
     padding: [15, 5],
-    color: theme['header.color'],
-    backgroundColor: theme['header.backgroundColor'],
+    color: header.color,
+    backgroundColor: header.backgroundColor,
     borderBottom: [1, 'solid'],
-    borderColor: theme['header.color']
+    borderColor: header.color
   },
   content: {
     padding: 20,
@@ -39,12 +39,12 @@ const useStyles = createUseStyles(theme => ({
   resetButton: {
     position: 'absolute',
     bottom: 10,
-    left: 10,
+    left: 10
   },
   themePicker: {
     position: 'absolute',
     bottom: 10,
-    right: 10,
+    right: 10
   }
 }));
 

@@ -21,7 +21,7 @@ const { types, mapper } =
     cond([
       [flow(size, eq(1)), flow(values, head)],
       [isEmpty, () => { throw new Error(`unknown mode: '${mode}'`); }],
-      [T, m => { throw new Error(`ambiguous mode: '${mode}' (matches '${join(`', '`, keys(m))}')`); }],
+      [T, m => { throw new Error(`ambiguous mode: '${mode}' (matches '${join(`', '`, keys(m))}')`); }]
     ])
   )({
     js: {

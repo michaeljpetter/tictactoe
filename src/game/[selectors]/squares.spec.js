@@ -164,7 +164,7 @@ describe.each((_ => [
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false }
     ]
-  ],
+  ]
 ])())('case %p', (values, expected) => {
   set.from(values);
 

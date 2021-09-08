@@ -7,7 +7,7 @@ import { redo, redoAll, undo, undoAll } from './[actions]';
 import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
 import { Button } from '#/primitives';
 
-const useStyles = createUseStyles(theme => ({
+const useStyles = createUseStyles(({ app, history }) => ({
   history: {
     display: 'flex',
     alignItems: 'center'
@@ -18,18 +18,18 @@ const useStyles = createUseStyles(theme => ({
     margin: 5,
     padding: 2,
     fontSize: '1rem',
-    borderWidth: theme['history.button.borderWidth'],
-    borderColor: theme['history.button.borderColor'],
-    borderRadius: theme['app.borderRadius'],
-    backgroundColor: theme['history.button.backgroundColor'],
+    borderWidth: history.button.borderWidth,
+    borderColor: history.button.borderColor,
+    borderRadius: app.borderRadius,
+    backgroundColor: history.button.backgroundColor,
 
     '&:disabled': {
-      backgroundColor: theme['history.button.disabledBackgroundColor']
+      backgroundColor: history.button.disabledBackgroundColor
     }
   },
   icon: {
-    fill: theme['history.button.color'],
-    stroke: theme['history.button.color'],
+    fill: history.button.color,
+    stroke: history.button.color,
     strokeWidth: 2
   }
 }));

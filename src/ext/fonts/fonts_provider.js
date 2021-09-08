@@ -8,7 +8,7 @@ const createUseFonts = fonts =>
     '@font-face': Object.entries(fonts).map(([name, url]) => ({
       fontFamily: toCapitalCase(name),
       src: `url(${url})`
-    })),
+    }))
   });
 
 const useFonts = fonts => {

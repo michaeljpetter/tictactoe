@@ -1,4 +1,4 @@
-import { flatten } from 'flat';
+import { unflatten } from 'flat';
 
 const palette = {
   base03: '#002b36',
@@ -28,7 +28,7 @@ export default (({
   yellow,
   orange,
   cyan
-}) => flatten({
+}) => unflatten({
   app: {
     font: '14pt "Century Gothic", Futura, sans-serif',
     color: base1,

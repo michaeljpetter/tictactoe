@@ -6,7 +6,7 @@ const renderObject = components =>
     ([key, value]) => createElement(
       components[key],
       { key: `${i}.${key}`, value }
-    ),
+    )
   );
 
 export default components =>

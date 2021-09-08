@@ -7,7 +7,7 @@ subject(({ dim }) => toWinOptions({ config: { dim } }));
 describe.each([
   [[4, 3], [3]],
   [[4, 7], [3, 4]],
-  [[9, 5], [3, 4, 5]],
+  [[9, 5], [3, 4, 5]]
 ])(`case %j`, (dim, expected) => {
   set.from({ dim });
 
