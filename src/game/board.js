@@ -46,7 +46,13 @@ const useStyles = createUseStyles(({ app, board }) => {
       borderColor: board.borderColor
     },
     win: {
-      backgroundColor: board.winBackgroundColor
+      backgroundColor: board.winBackgroundColor,
+      animation: '$fanfare .75s alternate 2'
+    },
+    '@keyframes fanfare': {
+      to: {
+        transform: 'rotate(360deg) scale(1.25)'
+      }
     }
   };
 });
