@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim } from '#/config/[selectors]';
@@ -12,23 +12,13 @@ import classNames from 'classnames';
 const calcInnerRadius = (borderRadius, borderWidth) =>
   borderRadius ? Math.max(0, borderRadius - borderWidth - 1) : undefined;
 
-const useStyles = createUseStyles(({ app, board }) => {
-  const borderWidth = board.borderWidth ?? 0;
-  const borderRadius = app.borderRadius;
-  const borderColor = board.borderColor ?? board.color;
-  const innerRadius = calcInnerRadius(borderRadius, borderWidth);
-
-  return {
+const useStyles = createUseMultiStyles([
+  {
     border: {
       margin: [10, 0],
-      padding: 1,
-      backgroundColor: borderColor,
-      border: [borderWidth, 'solid'],
-      borderColor,
-      borderRadius
+      padding: 1
     },
     board: {
-      borderRadius: innerRadius,
       overflow: 'hidden',
       display: 'grid',
       gridTemplateColumns: ([width]) => `repeat(${width}, auto)`
@@ -40,13 +30,9 @@ const useStyles = createUseStyles(({ app, board }) => {
       padding: 0,
       border: [1, 'solid'],
       fontSize: '2.5rem',
-      fontWeight: 'bold',
-      color: board.color,
-      backgroundColor: board.backgroundColor,
-      borderColor: board.borderColor
+      fontWeight: 'bold'
     },
     win: {
-      backgroundColor: board.winBackgroundColor,
       animation: '$fanfare .75s alternate 2'
     },
     '@keyframes fanfare': {
@@ -54,8 +40,34 @@ const useStyles = createUseStyles(({ app, board }) => {
         transform: 'rotate(360deg) scale(1.25)'
       }
     }
-  };
-});
+  },
+  ({ app, board }) => {
+    const borderWidth = board.borderWidth ?? 0;
+    const borderRadius = app.borderRadius;
+    const borderColor = board.borderColor ?? board.color;
+    const innerRadius = calcInnerRadius(borderRadius, borderWidth);
+
+    return {
+      border: {
+        backgroundColor: borderColor,
+        border: [borderWidth, 'solid'],
+        borderColor,
+        borderRadius
+      },
+      board: {
+        borderRadius: innerRadius,
+      },
+      square: {
+        color: board.color,
+        backgroundColor: board.backgroundColor,
+        borderColor: board.borderColor
+      },
+      win: {
+        backgroundColor: board.winBackgroundColor,
+      }
+    };
+  }
+]);
 
 const Board = () => {
   const c = useStyles(useSelector(dim));

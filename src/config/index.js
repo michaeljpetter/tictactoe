@@ -1,48 +1,52 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import DimPicker from './dim_picker';
 import ToWinPicker from './to_win_picker';
 import PlayersPicker from './players_picker';
 
-const useStyles = createUseStyles(({ config, app }) => ({
-  config: {
-    display: 'flex',
-    maxWidth: 500,
-    margin: [0, 'auto'],
-    textAlign: 'center',
-    whiteSpace: 'nowrap'
-  },
-  dim: {
-    flex: 1.2,
-    textAlign: 'left',
+const useStyles = createUseMultiStyles([
+  {
+    config: {
+      display: 'flex',
+      maxWidth: 500,
+      margin: [0, 'auto'],
+      textAlign: 'center',
+      whiteSpace: 'nowrap'
+    },
+    dim: {
+      flex: 1.2,
+      textAlign: 'left',
 
-    '&:before': {
-      content: '"Size:"'
+      '&:before': {
+        content: '"Size:"'
+      }
+    },
+    toWin: {
+      flex: 1,
+
+      '&:before': {
+        content: '"To win:"',
+        marginRight: 5
+      }
+    },
+    players: {
+      flex: 1,
+      textAlign: 'right',
+
+      '&:before': {
+        content: '"Players:"',
+        marginRight: 5
+      }
     }
   },
-  toWin: {
-    flex: 1,
-
-    '&:before': {
-      content: '"To win:"',
-      marginRight: 5
+  ({ config, app }) => ({
+    picker: {
+      backgroundColor: config.picker.backgroundColor,
+      borderWidth: config.picker.borderWidth,
+      borderRadius: app.borderRadius
     }
-  },
-  players: {
-    flex: 1,
-    textAlign: 'right',
-
-    '&:before': {
-      content: '"Players:"',
-      marginRight: 5
-    }
-  },
-  picker: {
-    backgroundColor: config.picker.backgroundColor,
-    borderWidth: config.picker.borderWidth,
-    borderRadius: app.borderRadius
-  }
-}));
+  })
+]);
 
 const Config = () => {
   const c = useStyles();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { canRedo, canUndo } from './[selectors]';
@@ -7,32 +7,40 @@ import { redo, redoAll, undo, undoAll } from './[actions]';
 import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
 import { Button } from '#/primitives';
 
-const useStyles = createUseStyles(({ app, history }) => ({
-  history: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  button: {
-    width: 26,
-    height: 26,
-    margin: 5,
-    padding: 2,
-    fontSize: '1rem',
-    borderWidth: history.button.borderWidth,
-    borderColor: history.button.borderColor,
-    borderRadius: app.borderRadius,
-    backgroundColor: history.button.backgroundColor,
-
-    '&:disabled': {
-      backgroundColor: history.button.disabledBackgroundColor
+const useStyles = createUseMultiStyles([
+  {
+    history: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    button: {
+      width: 26,
+      height: 26,
+      margin: 5,
+      padding: 2,
+      fontSize: '1rem'
+    },
+    icon: {
+      strokeWidth: 2
     }
   },
-  icon: {
-    fill: history.button.color,
-    stroke: history.button.color,
-    strokeWidth: 2
-  }
-}));
+  ({ app, history }) => ({
+    button: {
+      borderWidth: history.button.borderWidth,
+      borderColor: history.button.borderColor,
+      borderRadius: app.borderRadius,
+      backgroundColor: history.button.backgroundColor,
+
+      '&:disabled': {
+        backgroundColor: history.button.disabledBackgroundColor
+      }
+    },
+    icon: {
+      fill: history.button.color,
+      stroke: history.button.color
+    }
+  })
+]);
 
 const History = () => {
   const c = useStyles();

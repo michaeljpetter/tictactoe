@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import Config from '#/config';
 import Game from '#/game';
 import ResetButton from './reset_button';
@@ -9,44 +9,52 @@ import withTheme from './with_theme';
 import classNames from 'classnames';
 import { compose } from 'lodash/fp';
 
-const useStyles = createUseStyles(({ app, header }) => ({
-  app: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    font: app.font,
-    letterSpacing: app.letterSpacing,
-    color: app.color,
-    backgroundColor: app.backgroundColor,
-    userSelect: 'none'
-  },
-  header: {
-    padding: [15, 5],
-    color: header.color,
-    backgroundColor: header.backgroundColor,
-    borderBottom: [1, 'solid'],
-    borderColor: header.color
-  },
-  content: {
-    padding: 20,
-    overflowY: 'auto',
+const useStyles = createUseMultiStyles([
+  {
+    app: {
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      userSelect: 'none'
+    },
+    header: {
+      padding: [15, 5],
+      borderBottom: [1, 'solid']
+    },
+    content: {
+      padding: 20,
+      overflowY: 'auto',
 
-    scrollbarWidth: 'none',
-    '&::-webkit-scrollbar': {
-      display: 'none'
+      scrollbarWidth: 'none',
+      '&::-webkit-scrollbar': {
+        display: 'none'
+      }
+    },
+    resetButton: {
+      position: 'absolute',
+      bottom: 10,
+      left: 10
+    },
+    themePicker: {
+      position: 'absolute',
+      bottom: 10,
+      right: 10
     }
   },
-  resetButton: {
-    position: 'absolute',
-    bottom: 10,
-    left: 10
-  },
-  themePicker: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10
-  }
-}));
+  ({ app, header }) => ({
+    app: {
+      font: app.font,
+      letterSpacing: app.letterSpacing,
+      color: app.color,
+      backgroundColor: app.backgroundColor
+    },
+    header: {
+      color: header.color,
+      backgroundColor: header.backgroundColor,
+      borderColor: header.color
+    }
+  })
+]);
 
 const App = ({
   className

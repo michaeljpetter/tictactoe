@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { theme, themeOptions } from './[selectors]';
@@ -8,13 +8,19 @@ import { Select } from '#/primitives';
 import toCapitalCase from 'to-capital-case';
 import classNames from 'classnames';
 
-const useStyles = createUseStyles(({ app }) => ({
-  picker: {
-    textAlignLast: 'center',
-    backgroundColor: app.backgroundColor,
-    borderRadius: app.borderRadius
-  }
-}));
+const useStyles = createUseMultiStyles([
+  {
+    picker: {
+      textAlignLast: 'center'
+    }
+  },
+  ({ app }) => ({
+    picker: {
+      backgroundColor: app.backgroundColor,
+      borderRadius: app.borderRadius
+    }
+  })
+]);
 
 const ThemePicker = ({
   className

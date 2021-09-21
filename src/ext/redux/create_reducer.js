@@ -1,4 +1,4 @@
-import splitKeys from './split_keys';
+import { splitKeys } from '#/ext/fp';
 
 export default (defaultState, handlers) => {
   const plainHandlers = splitKeys(handlers);

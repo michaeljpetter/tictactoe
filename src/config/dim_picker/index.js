@@ -1,5 +1,5 @@
 import React from 'react';
-import { createUseStyles } from 'react-jss';
+import { createUseMultiStyles } from '#/ext/jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dimLocked } from '../[selectors]';
@@ -9,18 +9,22 @@ import LockedPicker from './locked_picker';
 import UnlockedPicker from './unlocked_picker';
 import { Button } from '#/primitives';
 
-const useStyles = createUseStyles(({ header }) => ({
-  lock: {
-    width: 20,
-    marginRight: 1,
-    padding: 0,
-    border: 'none',
-    verticalAlign: 'middle'
+const useStyles = createUseMultiStyles([
+  {
+    lock: {
+      width: 20,
+      marginRight: 1,
+      padding: 0,
+      border: 'none',
+      verticalAlign: 'middle'
+    }
   },
-  icon: {
-    fill: header.color
-  }
-}));
+  ({ header }) => ({
+    icon: {
+      fill: header.color
+    }
+  })
+]);
 
 const DimPicker = ({
   className
