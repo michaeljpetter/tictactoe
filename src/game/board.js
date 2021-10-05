@@ -10,7 +10,7 @@ import Player from './player';
 import classNames from 'classnames';
 
 const calcInnerRadius = (borderRadius, borderWidth) =>
-  borderRadius ? Math.max(0, borderRadius - borderWidth - 1) : undefined;
+  borderRadius ? Math.max(0, borderRadius - borderWidth / 2 - 1) : undefined;
 
 const useStyles = createUseMultiStyles([
   {

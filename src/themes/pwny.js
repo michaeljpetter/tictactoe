@@ -18,7 +18,7 @@ export default (({
   white
 }) => unflatten({
   app: {
-    font: 'bold 16pt "Londrina Shadow", "Comic Sans MS", sans-serif',
+    font: 'bold 16pt "Londrina Shadow", sans-serif',
     color: pink,
     backgroundColor: darkPurple,
     borderRadius: 15
