@@ -1,12 +1,12 @@
 import { createSelector } from 'reselect';
 import { dim } from '#/config/[selectors]';
-import moves from './moves';
+import movesPerPlayer from './moves_per_player';
 
 export default createSelector(
   dim,
-  moves,
-  ([width, height], moves) =>
-    moves.reduce(
+  movesPerPlayer,
+  ([width, height], movesPerPlayer) =>
+    movesPerPlayer.reduce(
       (acc, moves, i) => (moves.forEach(move => acc[move] = i + 1), acc),
       Array.from({ length: width * height })
     )

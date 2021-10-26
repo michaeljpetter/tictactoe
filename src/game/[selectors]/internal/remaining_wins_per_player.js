@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 import potentialWins from './potential_wins';
 import playerSquares from './player_squares';
-import remainingMoves from './remaining_moves';
+import remainingMoveCountPerPlayer from './remaining_move_count_per_player';
 
 export default createSelector(
   potentialWins,
   playerSquares,
-  remainingMoves,
-  (potential, playerSquares, moves) =>
+  remainingMoveCountPerPlayer,
+  (potential, playerSquares, moveCounts) =>
     potential.reduce(
       (acc, line) => {
         let player, required = 0;
@@ -22,15 +22,15 @@ export default createSelector(
         if(!required) return acc;
 
         if(!player)
-          moves.forEach((available, i) => {
-            if(required <= available)
+          moveCounts.forEach((remaining, i) => {
+            if(required <= remaining)
               acc[i].push(line);
           });
-        else if(required <= moves[player - 1])
+        else if(required <= moveCounts[player - 1])
           acc[player - 1].push(line);
 
         return acc;
       },
-      Array.from({ length: moves.length }, () => [])
+      Array.from({ length: moveCounts.length }, () => [])
     )
 );

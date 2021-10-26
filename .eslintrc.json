@@ -34,13 +34,13 @@
   },
   "rules": {
     "no-unused-vars": "warn",
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
     "react/prop-types": ["warn", { "skipUndeclared": true }],
     "react/display-name": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/no-onchange": "off",
     "lodash-fp/no-single-composition": "warn",
-    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
     "jest/valid-title": "off"
   },
   "overrides": [

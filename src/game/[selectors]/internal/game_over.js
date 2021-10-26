@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import wins from './wins';
-import remainingWins from './remaining_wins';
+import remainingWinsPerPlayer from './remaining_wins_per_player';
 
 export default createSelector(
   wins,
-  remainingWins,
+  remainingWinsPerPlayer,
   (wins, remaining) =>
     !!wins.length || !remaining.some(r => r.length)
 );

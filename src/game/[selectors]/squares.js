@@ -5,10 +5,10 @@ export default createSelector(
   playerSquares,
   winSquares,
   currentPlayer,
-  (playerSquares, wins, currentPlayer) =>
+  (playerSquares, winSquares, currentPlayer) =>
     playerSquares.map((player, i) => ({
       player,
-      isWin: !!wins[i],
+      isWin: !!winSquares[i],
       canMakeMove: !!currentPlayer && !player
     }))
 );
