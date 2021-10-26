@@ -8,7 +8,8 @@ const useStyles = createUseStyles({
     fontFamily: '"Century Gothic", Futura, sans-serif',
     display: 'inline-block',
     minWidth: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    lineHeight: 'initial'
   }
 });
 
