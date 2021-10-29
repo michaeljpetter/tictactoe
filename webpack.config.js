@@ -85,6 +85,7 @@ module.exports = (_, {
   ),
   devServer: {
     host: '0.0.0.0',
+    allowedHosts: 'all',
     port,
     open: `http://localhost:${port}`,
     hot: true,
