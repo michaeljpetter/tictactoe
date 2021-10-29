@@ -12,17 +12,17 @@ const optionText = flow(valueToDim, join(' x '));
 const changeValue = flow(valueToDim, changeDim);
 
 const LockedPicker = ({
-  className
+  ...props
 }) => {
   const [value] = useSelector(dim);
   const handleOnChange = useAction(changeValue);
 
   return (
-    <Select className={className}
-            options={useSelector(dimOptions)}
+    <Select options={useSelector(dimOptions)}
             optionText={optionText}
             value={value}
-            onChange={handleOnChange} />
+            onChange={handleOnChange}
+            {...props} />
   );
 };
 

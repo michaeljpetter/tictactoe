@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { createUseStyles } from 'react-jss';
 import classNames from 'classnames';
 
@@ -17,18 +17,21 @@ const useStyles = createUseStyles({
   }
 });
 
-const Button = ({
+const Button = forwardRef(({
   className,
   children,
   ...props
-}) => {
+}, ref) => {
   const c = useStyles();
 
   return (
-    <button className={classNames(c.button, className)} {...props}>
+    <button ref={ref} className={classNames(c.button, className)} {...props}>
       {children}
     </button>
   );
-};
+});
+
+if(process.env.NODE_ENV !== 'production')
+  Button.displayName = 'Button';
 
 export default Button;

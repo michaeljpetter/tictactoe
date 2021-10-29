@@ -6,12 +6,12 @@ import { changePlayers } from './[actions]';
 import { Select } from '#/primitives';
 
 const PlayersPicker = ({
-  className
+  ...props
 }) => (
-  <Select className={className}
-          options={useSelector(playersOptions)}
+  <Select options={useSelector(playersOptions)}
           value={useSelector(players)}
-          onChange={useAction(changePlayers)} />
+          onChange={useAction(changePlayers)}
+          {...props} />
 );
 
 export default PlayersPicker;

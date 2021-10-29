@@ -16,7 +16,7 @@ const useStyles = createUseMultiStyles([
       marginRight: 1,
       padding: 0,
       border: 'none',
-      verticalAlign: 'middle'
+      display: 'flex'
     }
   },
   ({ header }) => ({
@@ -27,7 +27,7 @@ const useStyles = createUseMultiStyles([
 ]);
 
 const DimPicker = ({
-  className
+  ...props
 }) => {
   const c = useStyles();
 
@@ -40,7 +40,7 @@ const DimPicker = ({
       <Button className={c.lock} onClick={useAction(onClick)}>
         <Icon className={c.icon} />
       </Button>
-      <Picker className={className} />
+      <Picker {...props} />
     </>
   );
 };

@@ -9,20 +9,26 @@ const useStyles = createUseMultiStyles([
     config: {
       display: 'flex',
       maxWidth: 500,
-      margin: [0, 'auto'],
-      textAlign: 'center',
+      margin: [0, 'auto', 2],
       whiteSpace: 'nowrap'
     },
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+    },
     dim: {
+      composes: ['$container'],
       flex: 1.2,
-      textAlign: 'left',
+      justifyContent: 'start',
 
       '&:before': {
         content: '"Size:"'
       }
     },
     toWin: {
+      composes: ['$container'],
       flex: 1,
+      justifyContent: 'center',
 
       '&:before': {
         content: '"To win:"',
@@ -30,8 +36,9 @@ const useStyles = createUseMultiStyles([
       }
     },
     players: {
+      composes: ['$container'],
       flex: 1,
-      textAlign: 'right',
+      justifyContent: 'end',
 
       '&:before': {
         content: '"Players:"',
@@ -39,11 +46,20 @@ const useStyles = createUseMultiStyles([
       }
     }
   },
-  ({ config, app }) => ({
+  ({ config, app, header }) => ({
     picker: {
+      color: header.color,
       backgroundColor: config.picker.backgroundColor,
       borderWidth: config.picker.borderWidth,
       borderRadius: app.borderRadius
+    },
+    pickerItem: {
+      composes: ['$picker'],
+
+      '&:hover': {
+        color: config.picker.backgroundColor,
+        backgroundColor: header.color
+      }
     }
   })
 ]);
@@ -54,13 +70,13 @@ const Config = () => {
   return (
     <div className={c.config}>
       <div className={c.dim}>
-        <DimPicker className={c.picker} />
+        <DimPicker className={c.picker} itemClassName={c.pickerItem} />
       </div>
       <div className={c.toWin}>
-        <ToWinPicker className={c.picker} />
+        <ToWinPicker className={c.picker} itemClassName={c.pickerItem} />
       </div>
       <div className={c.players}>
-        <PlayersPicker className={c.picker} />
+        <PlayersPicker className={c.picker} itemClassName={c.pickerItem} />
       </div>
     </div>
   );

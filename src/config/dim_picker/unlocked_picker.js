@@ -6,7 +6,7 @@ import { changeDim } from '../[actions]';
 import { Select } from '#/primitives';
 
 const UnlockedPicker = ({
-  className
+  ...props
 }) => {
   const options = useSelector(dimOptions);
   const [width, height] = useSelector(dim);
@@ -17,15 +17,15 @@ const UnlockedPicker = ({
 
   return (
     <>
-      <Select className={className}
-              options={options}
+      <Select options={options}
               value={width}
-              onChange={handleOnChangeWidth} />
+              onChange={handleOnChangeWidth}
+              {...props} />
       x
-      <Select className={className}
-              options={options}
+      <Select options={options}
               value={height}
-              onChange={handleOnChangeHeight} />
+              onChange={handleOnChangeHeight}
+              {...props} />
     </>
   );
 };

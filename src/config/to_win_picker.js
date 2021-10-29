@@ -6,12 +6,12 @@ import { changeToWin } from './[actions]';
 import { Select } from '#/primitives';
 
 const ToWinPicker = ({
-  className
+  ...props
 }) => (
-  <Select className={className}
-          options={useSelector(toWinOptions)}
+  <Select options={useSelector(toWinOptions)}
           value={useSelector(toWin)}
-          onChange={useAction(changeToWin)} />
+          onChange={useAction(changeToWin)}
+          {...props} />
 );
 
 export default ToWinPicker;
