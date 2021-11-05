@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { createUseStyles } from 'react-jss';
-import toCapitalCase from 'to-capital-case';
 import { Helmet } from 'react-helmet-async';
+import { startCase } from 'lodash/fp';
 
 const createUseFonts = fonts =>
   createUseStyles({
     '@font-face': Object.entries(fonts).map(([name, url]) => ({
-      fontFamily: toCapitalCase(name),
+      fontFamily: `"${startCase(name)}"`,
       src: `url(${url})`
     }))
   });

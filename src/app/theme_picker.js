@@ -5,8 +5,8 @@ import { useAction } from '#/ext/redux';
 import { theme, themeOptions } from './[selectors]';
 import { changeTheme } from './[actions]';
 import { Select } from '#/primitives';
-import toCapitalCase from 'to-capital-case';
 import classNames from 'classnames';
+import { startCase } from 'lodash/fp';
 
 const useStyles = createUseStyles(({ app }) => ({
   picker: {
@@ -34,7 +34,7 @@ const ThemePicker = ({
             itemClassName={c.pickerItem}
             options={useSelector(themeOptions)}
             value={useSelector(theme)}
-            optionText={toCapitalCase}
+            optionText={startCase}
             onChange={useAction(changeTheme)} />
   );
 };

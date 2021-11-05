@@ -16,7 +16,7 @@ export default (({
   gold
 }) => unflatten({
   app: {
-    font: '14pt "Americana W03 Bold", serif',
+    font: '14pt "Americana W 03 Bold", serif',
     color: white,
     backgroundColor: blue,
     borderRadius: 6
