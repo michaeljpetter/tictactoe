@@ -1,6 +1,6 @@
 const path = require('path');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
@@ -64,10 +64,7 @@ module.exports = (_, {
     devtoolModuleFilenameTemplate: info =>
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')
   },
-  entry: [].concat(
-    { development: require.resolve('react-dev-utils/webpackHotDevClient') }[mode] || [],
-    './src'
-  ),
+  entry: './src',
   plugins: [].concat(
     new ProvidePlugin({
       process: 'process/browser'
@@ -97,7 +94,10 @@ module.exports = (_, {
       }
     },
     client: {
-      logging: 'none'
+      logging: 'none',
+      overlay: {
+        warnings: false
+      }
     }
   }
 });
