@@ -369,27 +369,25 @@ describe.each([
       {
         move: 7,
         reasons: {
-          fork: [[5, 6, 7], [7, 10, 13]],
-          blockFork: [[3, 7, 11], [7, 11, 15]]
+          fork: [[5, 6, 7], [7, 10, 13]]
         }
       },
       {
         move: 2,
         reasons: {
-          fork: [[2, 6, 10], [2, 5, 8]],
-          blockFork: [[0, 1, 2], [1, 2, 3]]
-        }
-      },
-      {
-        move: 1,
-        reasons: {
-          blockFork: [[0, 1, 2], [1, 2, 3]]
+          fork: [[2, 6, 10], [2, 5, 8]]
         }
       },
       {
         move: 11,
         reasons: {
-          blockFork: [[3, 7, 11], [7, 11, 15]]
+          residual: [[9, 10, 11], [1, 6, 11]]
+        }
+      },
+      {
+        move: 1,
+        reasons: {
+          residual: [[1, 5, 9], [1, 6, 11]]
         }
       }
     ]
