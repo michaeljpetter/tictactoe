@@ -43,10 +43,10 @@ const useStyles = createUseMultiStyles([
 ]);
 
 const History = () => {
-  const c = useStyles();
-
   const disableUndo = !useSelector(canUndo);
   const disableRedo = !useSelector(canRedo);
+
+  const c = useStyles();
 
   return (
     <div className={c.history}>

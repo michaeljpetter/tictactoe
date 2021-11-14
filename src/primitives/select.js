@@ -3,8 +3,9 @@ import { createUseStyles } from 'react-jss';
 import Button from './button';
 import { usePopper } from 'react-popper';
 import { useClickOutside, useMultiRef } from '#/ext/react';
+import { getComputedStyleBy, measureTextIn } from '#/ext/dom';
 import classNames from 'classnames';
-import { __, concat, cond, flow, get, getOr, identity, isElement, map, memoize, over } from 'lodash/fp';
+import { __, concat, flow, get, getOr, identity, map, max, memoize, over } from 'lodash/fp';
 
 const useStyles = createUseStyles({
   button: {
@@ -31,14 +32,13 @@ const useStyles = createUseStyles({
   }
 });
 
-const getPadding = cond([[isElement, flow(
-  window.getComputedStyle,
+const getPadding = getComputedStyleBy(flow(
   over(map(
     prop => flow(get(`padding-${prop}`), Number.parseFloat, concat(prop)),
     ['top', 'right', 'bottom', 'left']
   )),
   Object.fromEntries
-)]]);
+));
 
 const getPopperOptions = (() => {
   const offset = (offsets =>
@@ -67,8 +67,6 @@ const Select = forwardRef(({
   onChange,
   value
 }, ref) => {
-  const c = useStyles();
-
   const [isOpen, setIsOpen] = useState(false);
   const [selectElement, setSelectElement] = useState(null);
   const [optionsElement, setOptionsElement] = useState(null);
@@ -87,10 +85,14 @@ const Select = forwardRef(({
   const handleClickOutside = useCallback(() => setIsOpen(false), []);
   useClickOutside(optionsElement, handleClickOutside);
 
+  const c = useStyles();
+  const minWidth = max(map(flow(optionText, measureTextIn(selectElement), get('width')), options));
+
   return (
     <>
       <Button ref={useMultiRef(ref, setSelectElement)}
               className={classNames(c.select, className)}
+              style={{ minWidth }}
               onClick={handleOnClick}>
         {value !== undefined && optionText(value)}
       </Button>

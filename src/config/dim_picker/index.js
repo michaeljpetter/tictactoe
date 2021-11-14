@@ -29,11 +29,11 @@ const useStyles = createUseMultiStyles([
 const DimPicker = ({
   ...props
 }) => {
-  const c = useStyles();
-
   const [Icon, Picker, onClick] = useSelector(dimLocked)
     ? [LockIcon, LockedPicker, unlockDim]
     : [UnlockIcon, UnlockedPicker, lockDim];
+
+  const c = useStyles();
 
   return (
     <>

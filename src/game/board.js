@@ -70,9 +70,9 @@ const useStyles = createUseMultiStyles([
 ]);
 
 const Board = () => {
-  const c = useStyles(useSelector(dim));
-
   const handleOnClick = useAction(makeMove);
+
+  const c = useStyles(useSelector(dim));
 
   return (
     <div className={c.border}>
