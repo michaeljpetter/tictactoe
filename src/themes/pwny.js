@@ -18,18 +18,26 @@ export default (({
   white
 }) => unflatten({
   app: {
-    font: 'bold 16pt "Londrina Shadow", sans-serif',
+    font: '16pt "Londrina Solid", sans-serif',
+    letterSpacing: .5,
     color: pink,
     backgroundColor: darkPurple,
     borderRadius: 15
   },
-  header: {
+  config: {
     color: darkPurple,
-    backgroundColor: hotPink
-  },
-  'config.picker': {
-    backgroundColor: pink,
-    borderWidth: 2
+    backgroundColor: hotPink,
+    borderWidth: 2,
+    'picker.backgroundColor': lightBlue,
+    input: {
+      backgroundColor: lightBlue,
+      editBackgroundColor: white
+    },
+    toggle: {
+      backgroundColor: darkPurple,
+      offColor: pink,
+      onColor: lightBlue
+    }
   },
   board: {
     color: purple,

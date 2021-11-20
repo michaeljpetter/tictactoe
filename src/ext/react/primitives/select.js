@@ -12,10 +12,15 @@ const useStyles = createUseStyles({
     padding: [2, 7]
   },
   select: {
-    composes: ['$button'],
+    composes: '$button',
     boxSizing: 'content-box',
-    minWidth: '1ch',
-    minHeight: '1.29em'
+    minHeight: '1.29em',
+    minWidth: ({ options, optionText, selectElement }) =>
+      max(map(flow(optionText, measureTextIn(selectElement), get('width')), options)),
+
+    fallbacks: {
+      minWidth: '1ch'
+    }
   },
   options: {
     display: 'flex',
@@ -26,7 +31,7 @@ const useStyles = createUseStyles({
     listStyle: 'none'
   },
   option: {
-    composes: ['$button'],
+    composes: '$button',
     width: '100%',
     border: 'none'
   }
@@ -75,9 +80,9 @@ const Select = forwardRef(({
   const popperOptions = useMemo(() => getPopperOptions(optionsPadding), [optionsPadding]);
   const popper = usePopper(selectElement, optionsElement, popperOptions);
 
-  const handleOnClick = useCallback(() => void setIsOpen(value => !value), []);
+  const handleClick = useCallback(() => void setIsOpen(value => !value), []);
 
-  const handleOnClickOption = useCallback(  //eslint-disable-line react-hooks/exhaustive-deps
+  const handleClickOption = useCallback(  //eslint-disable-line react-hooks/exhaustive-deps
     memoize(option => () => { setIsOpen(false); if(option !== value) onChange(option); }),
     [value, onChange]
   );
@@ -85,15 +90,13 @@ const Select = forwardRef(({
   const handleClickOutside = useCallback(() => setIsOpen(false), []);
   useClickOutside(optionsElement, handleClickOutside);
 
-  const c = useStyles();
-  const minWidth = max(map(flow(optionText, measureTextIn(selectElement), get('width')), options));
+  const c = useStyles({ options, optionText, selectElement });
 
   return (
     <>
       <Button ref={useMultiRef(ref, setSelectElement)}
               className={classNames(c.select, className)}
-              style={{ minWidth }}
-              onClick={handleOnClick}>
+              onClick={handleClick}>
         {value !== undefined && optionText(value)}
       </Button>
 
@@ -103,7 +106,7 @@ const Select = forwardRef(({
           {options.map(option =>
             <li key={option}>
               <Button className={classNames(c.option, itemClassName)}
-                      onClick={handleOnClickOption(option)}>
+                      onClick={handleClickOption(option)}>
                 {optionText(option)}
               </Button>
             </li>

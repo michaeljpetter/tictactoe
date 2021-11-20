@@ -33,7 +33,7 @@ export default (
       if(Object.prototype.hasOwnProperty.call(typedHandlers, action.type))
         return typedHandlers[action.type](state, action);
 
-      if(typeof state === 'undefined')
+      if(state === undefined)
         return {
           prev: [],
           current: reducer(undefined, action),

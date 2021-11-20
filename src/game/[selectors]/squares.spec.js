@@ -20,17 +20,17 @@ describe.each((_ => [
       `
     },
     [
-      { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: true, isWin: false },
 
       { player: _, canMakeMove: true, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
 
       { player: _, canMakeMove: true, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: false }
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false }
     ]
   ],
   [
@@ -46,27 +46,27 @@ describe.each((_ => [
     },
     [
       { player: _, canMakeMove: true, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
       { player: 2, canMakeMove: false, isWin: false },
       { player: 3, canMakeMove: false, isWin: false },
-      { player: 4, canMakeMove: false, isWin: false },
+
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 3, canMakeMove: false, isWin: false },
+      { player: 2, canMakeMove: false, isWin: false },
 
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
-      { player: 4, canMakeMove: false, isWin: false },
-      { player: 3, canMakeMove: false, isWin: false },
-
-      { player: 3, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: true, isWin: false },
 
       { player: _, canMakeMove: true, isWin: false },
-      { player: 3, canMakeMove: false, isWin: false },
       { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
 
-      { player: 1, canMakeMove: false, isWin: false },
-      { player: 4, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 3, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: true, isWin: false },
       { player: _, canMakeMove: true, isWin: false }
     ]
@@ -82,19 +82,19 @@ describe.each((_ => [
       `
     },
     [
-      { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false },
 
       { player: _, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: true },
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: true },
 
-      { player: 1, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: true },
-      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: true },
+      { player: 0, canMakeMove: false, isWin: false },
 
-      { player: 2, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: true },
       { player: _, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false }
     ]
@@ -111,35 +111,35 @@ describe.each((_ => [
       `
     },
     [
-      { player: 1, canMakeMove: false, isWin: true },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: _, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
-
-      { player: _, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
+      { player: 0, canMakeMove: false, isWin: true },
       { player: 1, canMakeMove: false, isWin: false },
-
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
+
+      { player: _, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
+      { player: 0, canMakeMove: false, isWin: false },
 
       { player: 1, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true },
-      { player: 2, canMakeMove: false, isWin: false },
-
-      { player: 1, canMakeMove: false, isWin: true },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
       { player: _, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: true }
+      { player: 1, canMakeMove: false, isWin: false },
+
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: false },
+
+      { player: 0, canMakeMove: false, isWin: true },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
+      { player: _, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: true }
     ]
   ],
   [
@@ -152,20 +152,20 @@ describe.each((_ => [
       `
     },
     [
-      { player: 2, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
+      { player: 1, canMakeMove: false, isWin: false },
 
       { player: _, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: false },
+      { player: 0, canMakeMove: false, isWin: false },
       { player: _, canMakeMove: false, isWin: false },
 
+      { player: 0, canMakeMove: false, isWin: false },
       { player: 1, canMakeMove: false, isWin: false },
-      { player: 2, canMakeMove: false, isWin: false },
-      { player: 1, canMakeMove: false, isWin: false }
+      { player: 0, canMakeMove: false, isWin: false }
     ]
   ]
-])())('case %p', (values, expected) => {
+])(null))('case %p', (values, expected) => {
   set.from(values);
 
   it('yields expected squares', () => expect.it.toStrictEqual(expected));

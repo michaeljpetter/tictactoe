@@ -3,25 +3,21 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
-import { Select } from '#/primitives';
-import { flow, join } from 'lodash/fp';
+import { Select } from '#/ext/react';
 
-const valueToDim = value => [value, value];
-
-const optionText = flow(valueToDim, join(' x '));
-const changeValue = flow(valueToDim, changeDim);
+const optionText = value => `${value} x ${value}`;
+const changeValue = value => changeDim([value, value]);
 
 const LockedPicker = ({
   ...props
 }) => {
   const [value] = useSelector(dim);
-  const handleOnChange = useAction(changeValue);
 
   return (
     <Select options={useSelector(dimOptions)}
             optionText={optionText}
             value={value}
-            onChange={handleOnChange}
+            onChange={useAction(changeValue)}
             {...props} />
   );
 };

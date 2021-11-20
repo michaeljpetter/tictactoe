@@ -5,7 +5,7 @@ export default createSelector(
   winner,
   currentPlayer,
   (winner, player) =>
-    winner ? [{ player: winner }, ' wins!'] :
-    player ? ["It's your turn, ", { player }] :
+    winner != null ? [{ player: winner }, ' wins!'] :
+    player != null ? ["It's your turn, ", { player }] :
     ["It's a draw..."]
 );

@@ -5,7 +5,7 @@ import { useAction } from '#/ext/redux';
 import { dim } from '#/config/[selectors]';
 import { squares } from './[selectors]';
 import { makeMove } from './[actions]';
-import { Button } from '#/primitives';
+import { Button } from '#/ext/react';
 import Player from './player';
 import classNames from 'classnames';
 
@@ -70,7 +70,7 @@ const useStyles = createUseMultiStyles([
 ]);
 
 const Board = () => {
-  const handleOnClick = useAction(makeMove);
+  const handleClick = useAction(makeMove);
 
   const c = useStyles(useSelector(dim));
 
@@ -81,8 +81,8 @@ const Board = () => {
           <Button key={i}
                   className={classNames(c.square, { [c.win]: isWin })}
                   disabled={!canMakeMove}
-                  onClick={() => handleOnClick(i)}>
-            {player && <Player value={player} />}
+                  onClick={() => handleClick(i)}>
+            {player != null && <Player value={player} />}
           </Button>
         )}
       </div>

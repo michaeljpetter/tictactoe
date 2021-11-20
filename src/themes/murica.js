@@ -21,13 +21,20 @@ export default (({
     backgroundColor: blue,
     borderRadius: 6
   },
-  header: {
+  config: {
     color: black,
-    backgroundColor: red
-  },
-  'config.picker': {
-    backgroundColor: gold,
-    borderWidth: 2
+    backgroundColor: red,
+    borderWidth: 2,
+    'picker.backgroundColor': gold,
+    input: {
+      backgroundColor: gold,
+      editBackgroundColor: white
+    },
+    toggle: {
+      backgroundColor: black,
+      offColor: blue,
+      onColor: gold
+    }
   },
   board: {
     color: blue,

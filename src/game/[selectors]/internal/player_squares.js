@@ -7,7 +7,7 @@ export default createSelector(
   movesPerPlayer,
   ([width, height], movesPerPlayer) =>
     movesPerPlayer.reduce(
-      (acc, moves, i) => (moves.forEach(move => acc[move] = i + 1), acc),
-      Array.from({ length: width * height })
+      (acc, moves, player) => (moves.forEach(move => acc[move] = player), acc),
+      Array(width * height).fill(null)
     )
 );

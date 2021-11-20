@@ -1,4 +1,5 @@
 export { default as LockIcon } from './lock_icon.svg';
+export { default as PlayersIcon } from './players_icon.svg';
 export { default as RedoAllIcon } from './redo_all_icon.svg';
 export { default as RedoIcon } from './redo_icon.svg';
 export { default as ResetIcon } from './reset_icon.svg';

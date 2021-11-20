@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { status } from './[selectors]';
-import { MixedText } from '#/primitives';
+import { MixedText } from '#/ext/react';
 import Player from './player';
 
 const useStyles = createUseStyles({

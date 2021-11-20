@@ -17,11 +17,15 @@ const useStyles = createUseMultiStyles([
       flexDirection: 'column',
       userSelect: 'none'
     },
-    header: {
-      padding: [15, 5],
-      borderBottom: [1, 'solid']
+    config: {
+      padding: [15, 5, 17],
+      borderBottom: [1, 'solid'],
+      position: 'absolute',
+      left: 0,
+      right: 0
     },
-    content: {
+    game: {
+      marginTop: 60,
       padding: 20,
       overflowY: 'auto',
 
@@ -41,17 +45,12 @@ const useStyles = createUseMultiStyles([
       right: 10
     }
   },
-  ({ app, header }) => ({
+  ({ app }) => ({
     app: {
       font: app.font,
       letterSpacing: app.letterSpacing,
       color: app.color,
       backgroundColor: app.backgroundColor
-    },
-    header: {
-      color: header.color,
-      backgroundColor: header.backgroundColor,
-      borderColor: header.color
     }
   })
 ]);
@@ -63,12 +62,8 @@ const App = ({
 
   return (
     <div className={classNames(c.app, className)}>
-      <div className={c.header}>
-        <Config />
-      </div>
-      <div className={c.content}>
-        <Game />
-      </div>
+      <Config className={c.config} />
+      <Game className={c.game} />
       <ResetButton className={c.resetButton} />
       <ThemePicker className={c.themePicker} />
     </div>

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { currentPlayer, playerSquares, remainingWinsPerPlayer } from './internal';
 import { AutoMap } from '#/ext/collections';
-import { __, concat, curry, filter, flatMap, flow, get, intersection, lt, map, orderBy, overEvery, sumBy } from 'lodash/fp';
+import { __, concat, curry, filter, flatMap, flow, get, intersection, isNil, lt, map, orderBy, overEvery, sumBy } from 'lodash/fp';
 import { findIndexes, rotate } from '#/ext/fp';
 
 const groupMovesByLineEmptyCount = curry((emptySquares, lines) => {
@@ -32,10 +32,10 @@ export default createSelector(
   playerSquares,
   remainingWinsPerPlayer,
   (player, squares, remainingPerPlayer) => {
-    const emptySquares = findIndexes(p => !p, squares);
+    const emptySquares = findIndexes(isNil, squares);
 
     const [self, ...opponents] = flow(
-      rotate(1 - player),
+      rotate(-player),
       map(groupMovesByLineEmptyCount(emptySquares))
     )(remainingPerPlayer);
 

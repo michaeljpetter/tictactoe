@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseMultiStyles } from '#/ext/jss';
 import { useAction } from '#/ext/redux';
 import { reset } from './[actions]';
-import { Button } from '#/primitives';
+import { Button } from '#/ext/react';
 import { ResetIcon } from '#/res/icons';
 import classNames from 'classnames';
 

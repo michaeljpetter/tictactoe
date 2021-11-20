@@ -35,13 +35,20 @@ export default (({
     backgroundColor: base03,
     borderRadius: 7
   },
-  header: {
+  config: {
     color: base03,
-    backgroundColor: base1
-  },
-  'config.picker': {
-    backgroundColor: orange,
-    borderWidth: 0
+    backgroundColor: base1,
+    borderWidth: 0,
+    'picker.backgroundColor': orange,
+    input: {
+      backgroundColor: orange,
+      editBackgroundColor: base2
+    },
+    toggle: {
+      backgroundColor: base03,
+      offColor: base01,
+      onColor: orange
+    },
   },
   board: {
     color: base02,

@@ -6,5 +6,5 @@ export default createSelector(
   gameOver,
   ({ game }) => game.moves.prev.length,
   players,
-  (gameOver, moveCount, players) => gameOver ? null : moveCount % players + 1
+  (gameOver, moveCount, players) => gameOver ? null : moveCount % players
 );

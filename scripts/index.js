@@ -63,7 +63,13 @@ const { types, mapper } =
         flow(map(([base]) => `  ${camelCase(base)}`), join(`,\n`))(files),
         `);`
       )
-    }
+    },
+    barrel: {
+      types: ['js'],
+      mapper: map(([, file]) =>
+        `export * from './${file}';`
+      )
+    },
   });
 
 console.log(`Building ${chalk.magenta('index.js')} for ${chalk.yellow(targetDir)}:`);

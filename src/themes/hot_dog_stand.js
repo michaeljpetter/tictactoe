@@ -19,11 +19,20 @@ export default (({
     color: black,
     backgroundColor: red
   },
-  header: {
+  config: {
     color: black,
-    backgroundColor: yellow
+    backgroundColor: yellow,
+    'picker.backgroundColor': red,
+    input: {
+      backgroundColor: red,
+      editBackgroundColor: white
+    },
+    toggle: {
+      backgroundColor: black,
+      offColor: white,
+      onColor: red
+    }
   },
-  'config.picker.backgroundColor': red,
   board: {
     color: black,
     backgroundColor: white,

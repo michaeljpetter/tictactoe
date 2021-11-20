@@ -17,7 +17,7 @@ describe('when the game is in progress', () => {
   `);
 
   it("states the current player's turn", () => {
-    expect.it.toEqual(["It's your turn, ", { player: 2 }]);
+    expect.it.toEqual(["It's your turn, ", { player: 1 }]);
   });
 });
 
@@ -29,7 +29,7 @@ describe('when a player has won', () => {
   `);
 
   it('states the winner', () => {
-    expect.it.toEqual([{ player: 1 }, ' wins!']);
+    expect.it.toEqual([{ player: 0 }, ' wins!']);
   });
 });
 

@@ -5,7 +5,7 @@ import { useAction } from '#/ext/redux';
 import { canRedo, canUndo } from './[selectors]';
 import { redo, redoAll, undo, undoAll } from './[actions]';
 import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
-import { Button } from '#/primitives';
+import { Button } from '#/ext/react';
 
 const useStyles = createUseMultiStyles([
   {

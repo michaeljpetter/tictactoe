@@ -3,28 +3,28 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
-import { Select } from '#/primitives';
+import { Select } from '#/ext/react';
 
 const UnlockedPicker = ({
   ...props
 }) => {
   const options = useSelector(dimOptions);
   const [width, height] = useSelector(dim);
-  const handleOnChange = useAction(changeDim);
+  const changeDimAction = useAction(changeDim);
 
-  const handleOnChangeWidth = useCallback(width => handleOnChange([width, height]), [handleOnChange, height]);
-  const handleOnChangeHeight = useCallback(height => handleOnChange([width, height]), [handleOnChange, width]);
+  const handleChangeWidth = useCallback(width => changeDimAction([width, height]), [changeDimAction, height]);
+  const handleChangeHeight = useCallback(height => changeDimAction([width, height]), [changeDimAction, width]);
 
   return (
     <>
       <Select options={options}
               value={width}
-              onChange={handleOnChangeWidth}
+              onChange={handleChangeWidth}
               {...props} />
       x
       <Select options={options}
               value={height}
-              onChange={handleOnChangeHeight}
+              onChange={handleChangeHeight}
               {...props} />
     </>
   );

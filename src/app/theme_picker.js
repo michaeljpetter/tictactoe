@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { theme, themeOptions } from './[selectors]';
 import { changeTheme } from './[actions]';
-import { Select } from '#/primitives';
+import { Select } from '#/ext/react';
 import classNames from 'classnames';
 import { startCase } from 'lodash/fp';
 
@@ -15,7 +15,7 @@ const useStyles = createUseStyles(({ app }) => ({
     borderRadius: app.borderRadius,
   },
   pickerItem: {
-    composes: ['$picker'],
+    composes: '$picker',
 
     '&:hover': {
       color: app.backgroundColor,

@@ -7,21 +7,21 @@ import { lockDim, unlockDim } from '../[actions]';
 import { LockIcon, UnlockIcon } from '#/res/icons';
 import LockedPicker from './locked_picker';
 import UnlockedPicker from './unlocked_picker';
-import { Button } from '#/primitives';
+import { Button } from '#/ext/react';
 
 const useStyles = createUseMultiStyles([
   {
-    lock: {
+    lockButton: {
       width: 20,
       marginRight: 1,
       padding: 0,
       border: 'none',
-      display: 'flex'
+      display: 'inline-flex'
     }
   },
-  ({ header }) => ({
-    icon: {
-      fill: header.color
+  ({ config }) => ({
+    lockIcon: {
+      fill: config.color
     }
   })
 ]);
@@ -37,8 +37,8 @@ const DimPicker = ({
 
   return (
     <>
-      <Button className={c.lock} onClick={useAction(onClick)}>
-        <Icon className={c.icon} />
+      <Button className={c.lockButton} onClick={useAction(onClick)}>
+        <Icon className={c.lockIcon} />
       </Button>
       <Picker {...props} />
     </>

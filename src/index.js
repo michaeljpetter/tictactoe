@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { render } from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { FontsProvider } from '#/ext/fonts';
+import { FontsProvider } from '#/ext/react';
 import * as fonts from '#/res/fonts';
 import TicTacToe from '#/app';
 

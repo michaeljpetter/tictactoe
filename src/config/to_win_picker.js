@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { toWin, toWinOptions } from './[selectors]';
 import { changeToWin } from './[actions]';
-import { Select } from '#/primitives';
+import { Select } from '#/ext/react';
 
 const ToWinPicker = ({
   ...props

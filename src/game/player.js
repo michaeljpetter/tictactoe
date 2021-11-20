@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-
-const glyphs = ['X', 'O', '▲', '◉'];
+import { useSelector } from 'react-redux';
+import { glyphs } from '#/config/[selectors]';
 
 const useStyles = createUseStyles({
   player: {
@@ -19,7 +19,7 @@ const Player = ({
   const c = useStyles();
 
   return (
-    <div className={c.player}>{glyphs[value - 1]}</div>
+    <div className={c.player}>{useSelector(glyphs)[value]}</div>
   );
 };
 

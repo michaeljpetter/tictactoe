@@ -14,20 +14,20 @@ export default createSelector(
 
         for(let i = 0; i < line.length; ++i) {
           const p = playerSquares[line[i]];
-          if(!p) ++required;
-          else if(!player) player = p;
+          if(p == null) ++required;
+          else if(player == null) player = p;
           else if(p !== player) return acc;
         }
 
         if(!required) return acc;
 
-        if(!player)
+        if(player == null)
           moveCounts.forEach((remaining, i) => {
             if(required <= remaining)
               acc[i].push(line);
           });
-        else if(required <= moveCounts[player - 1])
-          acc[player - 1].push(line);
+        else if(required <= moveCounts[player])
+          acc[player].push(line);
 
         return acc;
       },

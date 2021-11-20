@@ -9,6 +9,6 @@ export default createSelector(
     playerSquares.map((player, i) => ({
       player,
       isWin: !!winSquares[i],
-      canMakeMove: !!currentPlayer && !player
+      canMakeMove: currentPlayer != null && player == null
     }))
 );

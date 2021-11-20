@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 import Status from './status';
 import Board from './board';
 import History from './history';
+import classNames from 'classnames';
 
 const useStyles = createUseStyles({
   game: {
@@ -12,11 +13,13 @@ const useStyles = createUseStyles({
   }
 });
 
-const Game = () => {
+const Game = ({
+  className
+}) => {
   const c = useStyles();
 
   return (
-    <div className={c.game}>
+    <div className={classNames(c.game, className)}>
       <Status />
       <Board />
       <History />
