@@ -1,4 +1,3 @@
-export { default as currentPlayer } from './current_player';
 export { default as gameOver } from './game_over';
 export { default as lastPlayer } from './last_player';
 export { default as moves } from './moves';

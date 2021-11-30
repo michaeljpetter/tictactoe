@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { currentPlayer, playerSquares, remainingWinsPerPlayer } from './internal';
+import { playerSquares, remainingWinsPerPlayer } from './internal';
+import currentPlayer from './current_player';
 import { AutoMap } from '#/ext/collections';
 import { __, concat, curry, filter, flatMap, flow, get, intersection, isNil, lt, map, orderBy, overEvery, sumBy } from 'lodash/fp';
 import { findIndexes, rotate } from '#/ext/fp';

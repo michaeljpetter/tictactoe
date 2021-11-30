@@ -1,10 +1,9 @@
 import { createSelector } from 'reselect';
-import dim from './dim';
-import toWin from './to_win';
-import { range } from 'lodash/fp';
+import playersRange from './players_range';
+import { spread } from 'lodash/fp';
+import { seq } from '#/ext/fp';
 
 export default createSelector(
-  dim,
-  toWin,
-  ([width, height], toWin) => range(2, Math.min(4, width * height / toWin) + 1)
+  playersRange,
+  spread(seq)
 );

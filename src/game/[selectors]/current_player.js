@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { players } from '#/config/[selectors]';
-import gameOver from './game_over';
+import { gameOver } from './internal';
 
 export default createSelector(
   gameOver,

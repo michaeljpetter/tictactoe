@@ -21,8 +21,8 @@ const useStyles = createUseStyles({
 
 const Input = forwardRef(({
   className,
-  onInput = noop,
-  onChange = noop,
+  onInput,
+  onChange,
   ...props
 }, ref) => {
   const c = useStyles();
@@ -38,6 +38,11 @@ const Input = forwardRef(({
            {...props} />
   );
 });
+
+Input.defaultProps = {
+  onInput: noop,
+  onChange: noop
+};
 
 if(process.env.NODE_ENV !== 'production')
   Input.displayName = 'Input';

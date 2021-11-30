@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
-import dim from './dim';
-import { range } from 'lodash/fp';
+import toWinRange from './to_win_range';
+import { spread } from 'lodash/fp';
+import { seq } from '#/ext/fp';
 
 export default createSelector(
-  dim,
-  dim => range(3, Math.min(...dim) + 1)
+  toWinRange,
+  spread(seq)
 );

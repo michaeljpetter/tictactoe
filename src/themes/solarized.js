@@ -50,17 +50,26 @@ export default (({
       onColor: orange
     },
   },
-  board: {
-    color: base02,
-    backgroundColor: base2,
-    winBackgroundColor: cyan,
-    borderColor: yellow,
-    borderWidth: 3
-  },
-  'history.button': {
-    color: base03,
-    backgroundColor: yellow,
-    disabledBackgroundColor: base01,
-    borderWidth: 0
+  game: {
+    board: {
+      color: base02,
+      backgroundColor: base2,
+      winBackgroundColor: cyan,
+      borderColor: yellow,
+      borderWidth: 3
+    },
+    'history.button': {
+      color: base03,
+      backgroundColor: yellow,
+      disabledBackgroundColor: base01,
+      borderWidth: 0
+    },
+    slider: {
+      backgroundColor: base01,
+      color: yellow,
+      trackScale: 1,
+      fillTrack: true,
+      borderWidth: 0
+    }
   }
 }))(palette);

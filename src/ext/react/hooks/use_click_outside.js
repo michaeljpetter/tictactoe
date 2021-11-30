@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-const events = ['mousedown', 'touchstart'];
+const events = ['mousedown', 'touchstart', 'pointerdown'];
 
 export default (element, callback) => {
   const handler = useCallback(

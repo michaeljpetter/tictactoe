@@ -17,14 +17,14 @@ const useStyles = createUseMultiStyles([
       caretColor: 'transparent'
     }
   },
-  ({ app, config }) => ({
+  ({ app, config, config: { input } }) => ({
     input: {
       borderWidth: config.borderWidth,
       borderRadius: app.borderRadius,
-      backgroundColor: config.input.backgroundColor,
+      backgroundColor: input.backgroundColor,
 
       '&:focus': {
-        backgroundColor: config.input.editBackgroundColor
+        backgroundColor: input.editBackgroundColor
       },
 
       '&::placeholder': {

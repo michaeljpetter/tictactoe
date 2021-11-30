@@ -33,15 +33,22 @@ export default (({
       onColor: red
     }
   },
-  board: {
-    color: black,
-    backgroundColor: white,
-    winBackgroundColor: yellow,
-    borderWidth: 1
-  },
-  'history.button': {
-    color: black,
-    backgroundColor: yellow,
-    disabledBackgroundColor: white
+  game: {
+    board: {
+      color: black,
+      backgroundColor: white,
+      winBackgroundColor: yellow,
+      borderColor: black,
+      borderWidth: 1
+    },
+    'history.button': {
+      color: black,
+      backgroundColor: yellow,
+      disabledBackgroundColor: white
+    },
+    slider: {
+      backgroundColor: black,
+      color: yellow
+    }
   }
 }))(palette);

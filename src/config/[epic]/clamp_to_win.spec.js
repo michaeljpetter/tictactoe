@@ -12,7 +12,7 @@ subject(({ dim, toWin }) => {
   return clampToWinEpic(action$, state$).pipe(toArray()).toPromise();
 });
 
-set('dim', [5, 3]);
+set('dim', [5, 4]);
 
 describe('when toWin is within options', () => {
   set('toWin', 3);
@@ -23,5 +23,5 @@ describe('when toWin is within options', () => {
 describe('when toWin exceeds options', () => {
   set('toWin', 5);
 
-  it('reduces toWin', () => expect.it.resolves.toEqual([changeToWin(3)]));
+  it('reduces toWin', () => expect.it.resolves.toEqual([changeToWin(4)]));
 });

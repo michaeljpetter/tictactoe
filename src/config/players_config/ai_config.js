@@ -6,15 +6,15 @@ import { ai } from '../[selectors]';
 import { changeAI } from '../[actions]';
 import { Toggle } from '#/ext/react';
 
-const useStyles = createUseStyles(({ app, config }) => ({
+const useStyles = createUseStyles(({ app, config, config: { toggle } }) => ({
   toggle: {
     borderWidth: config.borderWidth,
     borderRadius: app.borderRadius,
-    backgroundColor: config.toggle.backgroundColor
+    backgroundColor: toggle.backgroundColor
   },
   thumb: {
     borderRadius: Math.max(0, (app.borderRadius ?? 0) - (config.borderWidth ?? 1)),
-    backgroundColor: value => [config.toggle.offColor, config.toggle.onColor][+value]
+    backgroundColor: value => toggle[['offColor', 'onColor'][+value]]
   }
 }));
 

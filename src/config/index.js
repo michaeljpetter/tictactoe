@@ -12,22 +12,30 @@ import { memoize } from 'lodash/fp';
 
 const useStyles = createUseMultiStyles([
   {
+    config: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
     section: {
-      maxWidth: 500,
-      margin: [0, 'auto'],
+      width: '100%',
+      maxWidth: 500
     },
     static: {
       composes: '$section',
       display: 'grid',
+      justifyItems: 'center',
       gridTemplateColumns: 'repeat(3, 1fr)',
       whiteSpace: 'nowrap'
     },
     labeled: {
       display: 'flex',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     dim: {
       composes: '$labeled',
+      justifySelf: 'start',
 
       '&:before': {
         content: '"Size:"'
@@ -35,7 +43,6 @@ const useStyles = createUseMultiStyles([
     },
     toWin: {
       composes: '$labeled',
-      justifyContent: 'center',
 
       '&:before': {
         content: '"To win:"',
@@ -44,7 +51,7 @@ const useStyles = createUseMultiStyles([
     },
     players: {
       composes: '$labeled',
-      justifyContent: 'end',
+      justifySelf: 'end',
 
       '&:before': {
         content: '"Players:"',
@@ -60,31 +67,122 @@ const useStyles = createUseMultiStyles([
     },
     dynamic: {
       composes: '$section',
-      overflowY: 'hidden',
-      animation: '$dynamicOpen .2s'
+      overflow: 'hidden',
+      animation: '$dynamicOpenTop .2s'
     },
-    '@keyframes dynamicOpen': {
+    '@keyframes dynamicOpenTop': {
       from: {
         maxHeight: 0
       },
       to: {
-        maxHeight: 210
+        maxHeight: 280
       }
     },
     dynamicConfig: {
       marginTop: 18,
-      paddingTop: 18,
+      padding: [18, '10%', 0],
       borderTop: [1, 'solid']
+    },
+    '@media screen and (max-height: 500px)': {
+      config: {
+        flexDirection: 'row'
+      },
+      section: {
+        height: '100%',
+        maxHeight: 250,
+        width: 'revert',
+        maxWidth: 'revert'
+      },
+      static: {
+        gridTemplateColumns: '63px min-content',
+        gridTemplateRows: 'repeat(2, min-content) 1fr repeat(2, min-content) 1fr repeat(2, min-content)',
+        gridTemplateAreas: `
+          "dimLabel dimLabel"
+          "dim dim"
+          ". ."
+          "toWinLabel toWinLabel"
+          "toWin toWin"
+          ". ."
+          "playersLabel playersLabel"
+          "playersButton players"
+        `,
+        rowGap: 5,
+        alignItems: 'center'
+      },
+      labeled: {
+        display: 'contents',
+
+        '&:before': {
+          justifySelf: 'start',
+          margin: 'revert'
+        },
+
+        '& :last-child': {
+          justifySelf: 'end'
+        }
+      },
+      dim: {
+        '&:before': {
+          gridArea: 'dimLabel'
+        },
+
+        '& :last-child': {
+          gridArea: 'dim'
+        }
+      },
+      toWin: {
+        '&:before': {
+          gridArea: 'toWinLabel'
+        },
+
+        '& :last-child': {
+          gridArea: 'toWin'
+        }
+      },
+      players: {
+        '&:before': {
+          gridArea: 'playersLabel'
+        },
+
+        '& :last-child': {
+          gridArea: 'players'
+        }
+      },
+      playersButton: {
+        gridArea: 'playersButton',
+        justifySelf: 'end'
+      },
+      dynamic: {
+        animation: '$dynamicOpenLeft .2s'
+      },
+      '@keyframes dynamicOpenLeft': {
+        from: {
+          maxWidth: 0
+        },
+        to: {
+          maxWidth: 260
+        }
+      },
+      dynamicConfig: {
+        boxSizing: 'border-box',
+        width: 'max-content',
+        height: '100%',
+        marginLeft: 15,
+        padding: [0, 0, 0, 15],
+        borderLeft: [1, 'solid'],
+        marginTop: 'revert',
+        borderTop: 'revert'
+      }
     }
   },
-  ({ app, config }) => ({
+  ({ app, config, config: { picker } }) => ({
     config: {
       color: config.color,
       backgroundColor: config.backgroundColor,
     },
     picker: {
       color: config.color,
-      backgroundColor: config.picker.backgroundColor,
+      backgroundColor: picker.backgroundColor,
       borderWidth: config.borderWidth,
       borderRadius: app.borderRadius
     },
@@ -92,7 +190,7 @@ const useStyles = createUseMultiStyles([
       composes: '$picker',
 
       '&:hover': {
-        color: config.picker.backgroundColor,
+        color: picker.backgroundColor,
         backgroundColor: config.color
       }
     },

@@ -6,50 +6,53 @@ import { canRedo, canUndo } from './[selectors]';
 import { redo, redoAll, undo, undoAll } from './[actions]';
 import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
 import { Button } from '#/ext/react';
+import classNames from 'classnames';
 
 const useStyles = createUseMultiStyles([
   {
     history: {
-      display: 'flex',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(4, 1fr)',
+      columnGap: 10,
       alignItems: 'center'
     },
     button: {
       width: 26,
       height: 26,
-      margin: 5,
-      padding: 2,
-      fontSize: '1rem'
+      padding: 2
     },
     icon: {
       strokeWidth: 2
     }
   },
-  ({ app, history }) => ({
+  ({ app, game: { history: { button } } }) => ({
     button: {
-      borderWidth: history.button.borderWidth,
-      borderColor: history.button.borderColor,
+      borderWidth: button.borderWidth,
+      borderColor: button.borderColor,
       borderRadius: app.borderRadius,
-      backgroundColor: history.button.backgroundColor,
+      backgroundColor: button.backgroundColor,
 
       '&:disabled': {
-        backgroundColor: history.button.disabledBackgroundColor
+        backgroundColor: button.disabledBackgroundColor
       }
     },
     icon: {
-      fill: history.button.color,
-      stroke: history.button.color
+      fill: button.color,
+      stroke: button.color
     }
   })
 ]);
 
-const History = () => {
+const History = ({
+  className
+}) => {
   const disableUndo = !useSelector(canUndo);
   const disableRedo = !useSelector(canRedo);
 
   const c = useStyles();
 
   return (
-    <div className={c.history}>
+    <div className={classNames(c.history, className)}>
       <Button className={c.button} 
               disabled={disableUndo}
               onClick={useAction(undoAll)}>

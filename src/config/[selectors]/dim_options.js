@@ -1,6 +1,9 @@
 import { createSelector } from 'reselect';
-import { range } from 'lodash/fp';
+import dimRange from './dim_range';
+import { spread } from 'lodash/fp';
+import { seq } from '#/ext/fp';
 
 export default createSelector(
-  () => range(3, 6)
+  dimRange,
+  spread(seq)
 );

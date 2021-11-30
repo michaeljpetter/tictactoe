@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { status } from './[selectors]';
 import { MixedText } from '#/ext/react';
 import Player from './player';
+import classNames from 'classnames';
 
 const useStyles = createUseStyles({
   status: {
@@ -11,11 +12,13 @@ const useStyles = createUseStyles({
   }
 });
 
-const Status = () => {
+const Status = ({
+  className
+}) => {
   const c = useStyles();
 
   return (
-    <div className={c.status}>
+    <div className={classNames(c.status, className)}>
       <MixedText player={Player}>{useSelector(status)}</MixedText>
     </div>
   );

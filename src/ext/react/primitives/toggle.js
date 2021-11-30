@@ -3,46 +3,52 @@ import { createUseStyles } from 'react-jss';
 import { useMultiRef } from '#/ext/react';
 import { getComputedStyleBy } from '#/ext/dom';
 import classNames from 'classnames';
+import { flow, invoke, noop, once } from 'lodash/fp';
 
-const getWidth = getComputedStyleBy('width');
+const getWidth = flow(getComputedStyleBy('width'), Number.parseFloat);
 
-const useStyles = createUseStyles({
-  toggle: {
-    border: [1, 'solid'],
-    borderRadius: 0,
-    position: 'relative',
-    height: '1em',
-    width: '1.75em',
+const useStyles = flow(
+  ({ value, toggleElement, thumbElement }) => {
+    if(!toggleElement || !thumbElement) return;
 
-    '&:focus': {
-      outline: 'none',
-
-      '& $thumb': {
-        transition: 'left .1s',
-      }
-    }
+    return {
+      thumbLeft: once(() =>
+        value ? getWidth(toggleElement) - getWidth(thumbElement) : 0
+      )
+    };
   },
-  thumb: {
-    boxSizing: 'border-box',
-    width: '1em',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: ({ value, toggleElement, thumbElement }) =>
-      value && toggleElement && thumbElement &&
-        `calc(${getWidth(toggleElement)} - ${getWidth(thumbElement)})`,
+  createUseStyles({
+    toggle: {
+      border: [1, 'solid'],
+      borderRadius: 0,
+      position: 'relative',
+      height: '1em',
+      width: '1.75em',
 
-    fallbacks: {
-      left: 0
+      '&:focus': {
+        outline: 'none',
+
+        '& $thumb': {
+          transition: 'left .1s'
+        }
+      }
+    },
+    thumb: {
+      boxSizing: 'border-box',
+      width: '1em',
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: invoke('thumbLeft')
     }
-  }
-});
+  })
+);
 
 const Toggle = forwardRef(({
   className,
   thumbClassName,
-  onChange,
-  value
+  value,
+  onChange
 }, ref) => {
   const [toggleElement, setToggleElement] = useState(null);
   const [thumbElement, setThumbElement] = useState(null);
@@ -64,6 +70,11 @@ const Toggle = forwardRef(({
     </div>
   );
 });
+
+Toggle.defaultProps = {
+  onChange: noop,
+  value: false
+};
 
 if(process.env.NODE_ENV !== 'production')
   Toggle.displayName = 'Toggle';

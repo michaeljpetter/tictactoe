@@ -39,17 +39,26 @@ export default (({
       onColor: lightBlue
     }
   },
-  board: {
-    color: purple,
-    backgroundColor: white,
-    winBackgroundColor: lightBlue,
-    borderColor: lightBlue,
-    borderWidth: 5
-  },
-  'history.button': {
-    color: darkPurple,
-    backgroundColor: pink,
-    disabledBackgroundColor: darkPurple,
-    borderColor: pink
+  game: {
+    board: {
+      color: purple,
+      backgroundColor: white,
+      winBackgroundColor: lightBlue,
+      borderColor: lightBlue,
+      borderWidth: 5
+    },
+    'history.button': {
+      color: darkPurple,
+      backgroundColor: pink,
+      disabledBackgroundColor: darkPurple,
+      borderColor: pink
+    },
+    slider: {
+      color: pink,
+      trackScale: 1,
+      borderWidth: 1,
+      'thumb.borderColor': darkPurple,
+      'thumb.borderWidth': 2
+    }
   }
 }))(palette);

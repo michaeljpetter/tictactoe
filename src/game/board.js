@@ -9,13 +9,9 @@ import { Button } from '#/ext/react';
 import Player from './player';
 import classNames from 'classnames';
 
-const calcInnerRadius = (borderRadius, borderWidth) =>
-  borderRadius ? Math.max(0, borderRadius - borderWidth / 2 - 1) : undefined;
-
 const useStyles = createUseMultiStyles([
   {
     border: {
-      margin: [10, 0],
       padding: 1
     },
     board: {
@@ -41,41 +37,36 @@ const useStyles = createUseMultiStyles([
       }
     }
   },
-  ({ app, board }) => {
-    const borderWidth = board.borderWidth ?? 0;
-    const borderRadius = app.borderRadius;
-    const borderColor = board.borderColor ?? board.color;
-    const innerRadius = calcInnerRadius(borderRadius, borderWidth);
-
-    return {
-      border: {
-        backgroundColor: borderColor,
-        border: [borderWidth, 'solid'],
-        borderColor,
-        borderRadius
-      },
-      board: {
-        borderRadius: innerRadius,
-      },
-      square: {
-        color: board.color,
-        backgroundColor: board.backgroundColor,
-        borderColor: board.borderColor
-      },
-      win: {
-        backgroundColor: board.winBackgroundColor,
-      }
-    };
-  }
+  ({ app, game: { board } }) => ({
+    border: {
+      backgroundColor: board.borderColor,
+      border: [board.borderWidth, 'solid'],
+      borderColor: board.borderColor,
+      borderRadius: app.borderRadius
+    },
+    board: {
+      borderRadius: app.borderRadius && Math.max(0, app.borderRadius - board.borderWidth / 2 - 1)
+    },
+    square: {
+      color: board.color,
+      backgroundColor: board.backgroundColor,
+      borderColor: board.borderColor
+    },
+    win: {
+      backgroundColor: board.winBackgroundColor,
+    }
+  })
 ]);
 
-const Board = () => {
+const Board = ({
+  className
+}) => {
   const handleClick = useAction(makeMove);
 
   const c = useStyles(useSelector(dim));
 
   return (
-    <div className={c.border}>
+    <div className={classNames(c.border, className)}>
       <div className={c.board}>
         {useSelector(squares).map(({ player, isWin, canMakeMove }, i) =>
           <Button key={i}

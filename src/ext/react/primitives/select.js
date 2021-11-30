@@ -1,41 +1,49 @@
 import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import Button from './button';
 import { usePopper } from 'react-popper';
 import { useClickOutside, useMultiRef } from '#/ext/react';
 import { getComputedStyleBy, measureTextIn } from '#/ext/dom';
+import Button from './button';
 import classNames from 'classnames';
-import { __, concat, flow, get, getOr, identity, map, max, memoize, over } from 'lodash/fp';
+import { __, concat, flow, get, getOr, identity, invoke, map, max, memoize, noop, once, over } from 'lodash/fp';
 
-const useStyles = createUseStyles({
-  button: {
-    padding: [2, 7]
+const useStyles = flow(
+  ({ options, optionText, buttonElement }) => {
+    if(!buttonElement) return;
+
+    return {
+      maxOptionWidth: once(() =>
+        max(map(flow(optionText, measureTextIn(buttonElement), get('width')), options))
+      )
+    };
   },
-  select: {
-    composes: '$button',
-    boxSizing: 'content-box',
-    minHeight: '1.29em',
-    minWidth: ({ options, optionText, selectElement }) =>
-      max(map(flow(optionText, measureTextIn(selectElement), get('width')), options)),
+  createUseStyles({
+    select: {},
+    button: {
+      padding: [2, 7],
+      boxSizing: 'content-box',
+      minHeight: '1.29em',
+      minWidth: invoke('maxOptionWidth'),
 
-    fallbacks: {
-      minWidth: '1ch'
+      fallbacks: {
+        minWidth: '1ch'
+      }
+    },
+    options: {
+      display: 'flex',
+      flexDirection: 'column',
+      margin: 0,
+      padding: 2,
+      border: [1, 'solid'],
+      listStyle: 'none'
+    },
+    option: {
+      padding: [2, 7],
+      width: '100%',
+      border: 'none'
     }
-  },
-  options: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 0,
-    padding: 2,
-    border: [1, 'solid'],
-    listStyle: 'none'
-  },
-  option: {
-    composes: '$button',
-    width: '100%',
-    border: 'none'
-  }
-});
+  })
+);
 
 const getPadding = getComputedStyleBy(flow(
   over(map(
@@ -68,17 +76,17 @@ const Select = forwardRef(({
   className,
   itemClassName,
   options,
-  optionText = identity,
-  onChange,
-  value
+  optionText,
+  value,
+  onChange
 }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectElement, setSelectElement] = useState(null);
+  const [buttonElement, setButtonElement] = useState(null);
   const [optionsElement, setOptionsElement] = useState(null);
 
   const optionsPadding = useMemo(() => getPadding(optionsElement), [optionsElement]);
   const popperOptions = useMemo(() => getPopperOptions(optionsPadding), [optionsPadding]);
-  const popper = usePopper(selectElement, optionsElement, popperOptions);
+  const popper = usePopper(buttonElement, optionsElement, popperOptions);
 
   const handleClick = useCallback(() => void setIsOpen(value => !value), []);
 
@@ -90,12 +98,12 @@ const Select = forwardRef(({
   const handleClickOutside = useCallback(() => setIsOpen(false), []);
   useClickOutside(optionsElement, handleClickOutside);
 
-  const c = useStyles({ options, optionText, selectElement });
+  const c = useStyles({ options, optionText, buttonElement });
 
   return (
-    <>
-      <Button ref={useMultiRef(ref, setSelectElement)}
-              className={classNames(c.select, className)}
+    <div className={c.select}>
+      <Button ref={useMultiRef(ref, setButtonElement)}
+              className={classNames(c.button, className)}
               onClick={handleClick}>
         {value !== undefined && optionText(value)}
       </Button>
@@ -113,9 +121,14 @@ const Select = forwardRef(({
           )}
         </ul>
       }
-    </>
+    </div>
   );
 });
+
+Select.defaultProps = {
+  optionText: identity,
+  onChange: noop
+};
 
 if(process.env.NODE_ENV !== 'production')
   Select.displayName = 'Select';

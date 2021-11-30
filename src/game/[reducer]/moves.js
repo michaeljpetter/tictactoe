@@ -1,7 +1,8 @@
 import { compose } from 'redux';
-import { createReducer, withHistory } from '#/ext/redux';
+import { createReducer, withHistory, withReset } from '#/ext/redux';
 
 export default compose(
+  withReset('CHANGE_DIM', 'CHANGE_TO_WIN', 'CHANGE_PLAYERS'),
   withHistory({
     first: 'UNDO_ALL',
     prev: 'UNDO',

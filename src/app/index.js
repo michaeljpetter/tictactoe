@@ -22,11 +22,11 @@ const useStyles = createUseMultiStyles([
       borderBottom: [1, 'solid'],
       position: 'absolute',
       left: 0,
-      right: 0
+      right: 0,
+      zIndex: 1
     },
     game: {
       marginTop: 60,
-      padding: 20,
       overflowY: 'auto',
 
       scrollbarWidth: 'none',
@@ -43,6 +43,32 @@ const useStyles = createUseMultiStyles([
       position: 'absolute',
       bottom: 10,
       right: 10
+    },
+    '@media screen and (max-height: 500px)': {
+      app: {
+        flexDirection: 'row'
+      },
+      config: {
+        padding: [5, 15],
+        borderRight: [1, 'solid'],
+        top: 0,
+        bottom: 0,
+        borderBottom: 'revert',
+        right: 'revert'
+      },
+      game: {
+        marginTop: 'revert'
+      },
+      resetButton: {
+        bottom: 10,
+        right: 10,
+        left: 'revert'
+      },
+      themePicker: {
+        top: 10,
+        right: 10,
+        bottom: 'revert'
+      },
     }
   },
   ({ app }) => ({

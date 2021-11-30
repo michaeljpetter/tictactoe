@@ -17,7 +17,7 @@ const useFonts = fonts => {
 
 const FontsProvider = ({
   fonts,
-  preload = false,
+  preload,
   children
 }) => {
   useFonts(fonts);
@@ -35,5 +35,9 @@ const FontsProvider = ({
     </>
   );
 }
+
+FontsProvider.defaultProps = {
+  preload: false
+};
 
 export default FontsProvider;

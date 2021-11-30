@@ -35,6 +35,7 @@
   "rules": {
     "no-unused-vars": "warn",
     "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
+    "getter-return": ["error", { "allowImplicit": true }],
     "react/prop-types": ["warn", { "skipUndeclared": true }],
     "react/display-name": "warn",
     "react-hooks/rules-of-hooks": "error",

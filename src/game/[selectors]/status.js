@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { currentPlayer, winner } from './internal';
+import { winner } from './internal';
+import currentPlayer from './current_player';
 
 export default createSelector(
   winner,

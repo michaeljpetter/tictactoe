@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
-import { currentPlayer, playerSquares, winSquares } from './internal';
+import { playerSquares, winSquares } from './internal';
+import currentPlayer from './current_player';
 
 export default createSelector(
   playerSquares,

@@ -11,9 +11,11 @@ const useStyles = createUseStyles({
   playersConfig: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
+    gridAutoRows: 'min-content',
     justifyItems: 'center',
     alignItems: 'center',
-    gridRowGap: 10
+    rowGap: 15,
+    columnGap: 20
   }
 });
 

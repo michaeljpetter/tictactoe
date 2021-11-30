@@ -1,6 +1,4 @@
-import { createSelector } from 'reselect';
 import * as themes from '#/themes';
+import { constant } from 'lodash/fp';
 
-export default createSelector(
-  () => Object.keys(themes)
-);
+export default constant(Object.keys(themes));

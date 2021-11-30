@@ -36,18 +36,27 @@ export default (({
       onColor: gold
     }
   },
-  board: {
-    color: blue,
-    backgroundColor: white,
-    winBackgroundColor: gold,
-    borderColor: red,
-    borderWidth: 5
-  },
-  'history.button': {
-    color: black,
-    backgroundColor: gold,
-    disabledBackgroundColor: blue,
-    borderColor: black,
-    borderWidth: 2
+  game: {
+    board: {
+      color: blue,
+      backgroundColor: white,
+      winBackgroundColor: gold,
+      borderColor: red,
+      borderWidth: 5
+    },
+    'history.button': {
+      color: black,
+      backgroundColor: gold,
+      disabledBackgroundColor: blue,
+      borderColor: black,
+      borderWidth: 2
+    },
+    slider: {
+      color: gold,
+      fillTrack: true,
+      borderWidth: [3, 2],
+      borderColor: black,
+      'thumb.borderWidth': 2
+    }
   }
 }))(palette);

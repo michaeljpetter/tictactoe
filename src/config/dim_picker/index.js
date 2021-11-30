@@ -11,6 +11,10 @@ import { Button } from '#/ext/react';
 
 const useStyles = createUseMultiStyles([
   {
+    dimPicker: {
+      display: 'flex',
+      alignItems: 'center'
+    },
     lockButton: {
       width: 20,
       marginRight: 1,
@@ -36,12 +40,12 @@ const DimPicker = ({
   const c = useStyles();
 
   return (
-    <>
+    <div className={c.dimPicker}>
       <Button className={c.lockButton} onClick={useAction(onClick)}>
         <Icon className={c.lockIcon} />
       </Button>
       <Picker {...props} />
-    </>
+    </div>
   );
 };
 
