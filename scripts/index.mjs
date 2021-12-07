@@ -1,8 +1,12 @@
-const path = require('path');
-const chalk = require('chalk');
-const fs = require('fs-extra');
-const { flow, cond, map, filter, pickBy, keys, size, eq, isEmpty, startsWith, values, head, add, join, camelCase, upperFirst, T, __ } = require('lodash/fp');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import chalk from 'chalk';
+import fs from 'fs-extra';
+import lodash from 'lodash/fp';
+const { flow, cond, map, filter, pickBy, keys, size, eq, isEmpty, startsWith, values, head, add, join, camelCase, upperFirst, T, __ } = lodash;
 const pascalCase = flow(camelCase, upperFirst);
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 process.on('uncaughtException', err => {
   console.log(`\n${chalk.red(err)}\n`);
