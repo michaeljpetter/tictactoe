@@ -2,12 +2,14 @@ import { boardToMoves, createFixture, expect } from '#/ext/jest';
 const { subject, set, describe, it } = createFixture();
 import squares from './squares';
 
-subject(({ dim, toWin, players, board }) =>
+subject(({ dim, toWin, players, ai, board }) =>
   squares({
-    config: { dim, toWin, players },
+    config: { dim, toWin, players, ai },
     game: { moves: boardToMoves(board) }
   })
 );
+
+set('ai', ({ players }) => Array(players).fill(false));
 
 describe.each((_ => [
   [
@@ -169,4 +171,20 @@ describe.each((_ => [
   set.from(values);
 
   it('yields expected squares', () => expect.it.toStrictEqual(expected));
+});
+
+describe('when current player is AI', () => {
+  set.from({
+    dim: [3, 3], toWin: 3, players: 2,
+    ai: [false, true],
+    board: `
+      | | | |
+      | |X| |
+      | |O|X|
+    `
+  });
+
+  it('disallows all moves', () => expect.it.not.toEqual(
+    expect.arrayContaining([expect.objectContaining({ canMakeMove: true })])
+  ));
 });
