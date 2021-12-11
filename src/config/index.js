@@ -183,7 +183,7 @@ const useStyles = createUseMultiStyles([
     picker: {
       color: config.color,
       backgroundColor: picker.backgroundColor,
-      borderWidth: config.borderWidth,
+      borderWidth: picker.borderWidth,
       borderRadius: app.borderRadius
     },
     pickerItem: {

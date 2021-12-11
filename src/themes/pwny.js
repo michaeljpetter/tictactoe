@@ -27,16 +27,20 @@ export default (({
   config: {
     color: darkPurple,
     backgroundColor: hotPink,
-    borderWidth: 2,
-    'picker.backgroundColor': lightBlue,
+    picker: {
+      backgroundColor: lightBlue,
+      borderWidth: 2
+    },
     input: {
       backgroundColor: lightBlue,
-      editBackgroundColor: white
+      editBackgroundColor: white,
+      borderWidth: 2
     },
     toggle: {
       backgroundColor: darkPurple,
       offColor: pink,
-      onColor: lightBlue
+      onColor: lightBlue,
+      borderWidth: 2
     }
   },
   game: {
@@ -45,7 +49,12 @@ export default (({
       backgroundColor: white,
       winBackgroundColor: lightBlue,
       borderColor: lightBlue,
-      borderWidth: 5
+      borderWidth: 5,
+      heat: {
+        startColor: lightBlue,
+        endColor: purple,
+        opacity: .6
+      }
     },
     'history.button': {
       color: darkPurple,
@@ -56,7 +65,12 @@ export default (({
     slider: {
       color: pink,
       trackScale: 1,
-      borderWidth: 1,
+      'thumb.borderColor': darkPurple,
+      'thumb.borderWidth': 2
+    },
+    toggle: {
+      offColor: pink,
+      onColor: pink,
       'thumb.borderColor': darkPurple,
       'thumb.borderWidth': 2
     }

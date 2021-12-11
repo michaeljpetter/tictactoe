@@ -34,6 +34,7 @@ const useStyles = flow(
       }
     },
     thumb: {
+      border: [1, 'solid'],
       boxSizing: 'border-box',
       width: '1em',
       position: 'absolute',

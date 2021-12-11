@@ -24,16 +24,22 @@ export default (({
   config: {
     color: black,
     backgroundColor: red,
-    borderWidth: 2,
-    'picker.backgroundColor': gold,
+    picker: {
+      backgroundColor: gold,
+      borderWidth: 2
+    },
     input: {
       backgroundColor: gold,
-      editBackgroundColor: white
+      editBackgroundColor: white,
+      borderWidth: 2
     },
     toggle: {
       backgroundColor: black,
       offColor: blue,
-      onColor: gold
+      onColor: gold,
+      borderWidth: 2,
+      'thumb.borderWidth': 1,
+      'thumb.borderColor': black
     }
   },
   game: {
@@ -42,7 +48,12 @@ export default (({
       backgroundColor: white,
       winBackgroundColor: gold,
       borderColor: red,
-      borderWidth: 5
+      borderWidth: 5,
+      heat: {
+        startColor: gold,
+        endColor: red,
+        opacity: .6
+      }
     },
     'history.button': {
       color: black,
@@ -54,9 +65,18 @@ export default (({
     slider: {
       color: gold,
       fillTrack: true,
-      borderWidth: [3, 2],
+      borderWidth: [4, 2],
       borderColor: black,
       'thumb.borderWidth': 2
+    },
+    toggle: {
+      backgroundColor: black,
+      offColor: blue,
+      onColor: gold,
+      borderColor: black,
+      borderWidth: 2,
+      'thumb.borderWidth': 1,
+      'thumb.borderColor': black
     }
   }
 }))(palette);

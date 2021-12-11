@@ -23,7 +23,7 @@ const useStyles = createUseMultiStyles([
       position: 'absolute',
       left: 0,
       right: 0,
-      zIndex: 1
+      zIndex: 2
     },
     game: {
       marginTop: 60,

@@ -33,7 +33,7 @@ const useStyles = createUseMultiStyles([
 const DimPicker = ({
   ...props
 }) => {
-  const [Icon, Picker, onClick] = useSelector(dimLocked)
+  const [Icon, Picker, lockAction] = useSelector(dimLocked)
     ? [LockIcon, LockedPicker, unlockDim]
     : [UnlockIcon, UnlockedPicker, lockDim];
 
@@ -41,7 +41,7 @@ const DimPicker = ({
 
   return (
     <div className={c.dimPicker}>
-      <Button className={c.lockButton} onClick={useAction(onClick)}>
+      <Button className={c.lockButton} onClick={useAction(lockAction)}>
         <Icon className={c.lockIcon} />
       </Button>
       <Picker {...props} />

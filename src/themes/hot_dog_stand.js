@@ -39,7 +39,12 @@ export default (({
       backgroundColor: white,
       winBackgroundColor: yellow,
       borderColor: black,
-      borderWidth: 1
+      borderWidth: 1,
+      heat: {
+        startColor: yellow,
+        endColor: red,
+        opacity: .6
+      }
     },
     'history.button': {
       color: black,
@@ -49,6 +54,11 @@ export default (({
     slider: {
       backgroundColor: black,
       color: yellow
+    },
+    toggle: {
+      backgroundColor: black,
+      offColor: white,
+      onColor: yellow
     }
   }
 }))(palette);

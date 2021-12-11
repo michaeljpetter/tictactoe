@@ -1,17 +1,17 @@
 import { createSelector } from 'reselect';
-import { ai } from '#/config/[selectors]';
-import { playerSquares, winSquares } from './internal';
-import currentPlayer from './current_player';
+import { canMakeMoveSquares, heatSquares, playerSquares, winSquares } from './internal';
+import { rest } from 'lodash/fp';
+import { zipAllWith } from '#/ext/fp';
 
 export default createSelector(
   playerSquares,
   winSquares,
-  currentPlayer,
-  ai,
-  (playerSquares, winSquares, currentPlayer, ai) =>
-    playerSquares.map((player, i) => ({
-      player,
-      isWin: !!winSquares[i],
-      canMakeMove: currentPlayer != null && !ai[currentPlayer] && player == null
-    }))
+  canMakeMoveSquares,
+  heatSquares,
+  rest(zipAllWith((player, wins, canMakeMove, heat) => ({
+    player,
+    isWin: !!wins,
+    canMakeMove,
+    heat
+  })))
 );

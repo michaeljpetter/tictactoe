@@ -27,7 +27,9 @@ export default (({
   base2,
   yellow,
   orange,
-  cyan
+  cyan,
+  green,
+  magenta
 }) => unflatten({
   app: {
     font: '14pt "Century Gothic", Futura, sans-serif',
@@ -38,16 +40,21 @@ export default (({
   config: {
     color: base03,
     backgroundColor: base1,
-    borderWidth: 0,
-    'picker.backgroundColor': orange,
+    picker: {
+      backgroundColor: orange,
+      borderWidth: 0
+    },
     input: {
       backgroundColor: orange,
-      editBackgroundColor: base2
+      editBackgroundColor: base2,
+      borderWidth: 0
     },
     toggle: {
       backgroundColor: base03,
       offColor: base01,
-      onColor: orange
+      onColor: orange,
+      borderWidth: 0,
+      'thumb.borderWidth': 0
     },
   },
   game: {
@@ -56,7 +63,12 @@ export default (({
       backgroundColor: base2,
       winBackgroundColor: cyan,
       borderColor: yellow,
-      borderWidth: 3
+      borderWidth: 3,
+      heat: {
+        startColor: green,
+        endColor: magenta,
+        opacity: .5
+      }
     },
     'history.button': {
       color: base03,
@@ -70,6 +82,13 @@ export default (({
       trackScale: 1,
       fillTrack: true,
       borderWidth: 0
+    },
+    toggle: {
+      backgroundColor: base01,
+      offColor: base1,
+      onColor: yellow,
+      borderWidth: 0,
+      'thumb.borderWidth': 0
     }
   }
 }))(palette);

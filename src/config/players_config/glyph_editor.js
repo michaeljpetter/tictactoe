@@ -19,7 +19,7 @@ const useStyles = createUseMultiStyles([
   },
   ({ app, config, config: { input } }) => ({
     input: {
-      borderWidth: config.borderWidth,
+      borderWidth: input.borderWidth,
       borderRadius: app.borderRadius,
       backgroundColor: input.backgroundColor,
 

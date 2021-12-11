@@ -1,12 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
-import { ai } from '../[selectors]';
-import { changeAI } from '../[actions]';
+import { heatShown } from './[selectors]';
+import { showHeat } from './[actions]';
 import { Toggle } from '#/ext/react';
+import classNames from 'classnames';
 
-const useStyles = createUseStyles(({ app, config: { toggle } }) => ({
+const useStyles = createUseStyles(({ app, game: { toggle } }) => ({
   toggle: {
     borderWidth: toggle.borderWidth,
     borderColor: toggle.borderColor,
@@ -21,26 +22,19 @@ const useStyles = createUseStyles(({ app, config: { toggle } }) => ({
   }
 }));
 
-const AIConfig = ({
-  player
+const HeatToggle = ({
+  className
 }) => {
-  const value = useSelector(ai)[player];
-
-  const changeAIAction = useAction(changeAI);
-
-  const handleChange = useCallback(
-    value => void changeAIAction(player, value),
-    [changeAIAction, player]
-  );
+  const value = useSelector(heatShown);
 
   const c = useStyles(value);
 
   return (
-    <Toggle className={c.toggle}
+    <Toggle className={classNames(c.toggle, className)}
             thumbClassName={c.thumb}
             value={value}
-            onChange={handleChange} />
+            onChange={useAction(showHeat)} />
   );
 };
 
-export default AIConfig;
+export default HeatToggle;
