@@ -8,6 +8,7 @@ import { LockIcon, UnlockIcon } from '#/res/icons';
 import LockedPicker from './locked_picker';
 import UnlockedPicker from './unlocked_picker';
 import { Button } from '#/ext/react';
+import classNames from 'classnames';
 
 const useStyles = createUseMultiStyles([
   {
@@ -31,7 +32,7 @@ const useStyles = createUseMultiStyles([
 ]);
 
 const DimPicker = ({
-  ...props
+  className
 }) => {
   const [Icon, Picker, lockAction] = useSelector(dimLocked)
     ? [LockIcon, LockedPicker, unlockDim]
@@ -40,11 +41,11 @@ const DimPicker = ({
   const c = useStyles();
 
   return (
-    <div className={c.dimPicker}>
+    <div className={classNames(c.dimPicker, className)}>
       <Button className={c.lockButton} onClick={useAction(lockAction)}>
         <Icon className={c.lockIcon} />
       </Button>
-      <Picker {...props} />
+      <Picker />
     </div>
   );
 };

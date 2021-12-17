@@ -6,6 +6,7 @@ import ResetButton from './reset_button';
 import ThemePicker from './theme_picker';
 import { withStore } from '#/store';
 import withTheme from './with_theme';
+import { withThemingContext } from '#/theming';
 import classNames from 'classnames';
 import { compose } from 'lodash/fp';
 
@@ -96,4 +97,4 @@ const App = ({
   );
 };
 
-export default compose(withStore, withTheme)(App);
+export default compose(withStore, withTheme, withThemingContext('app'))(App);

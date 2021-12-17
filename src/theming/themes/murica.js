@@ -1,4 +1,4 @@
-import { unflatten } from 'flat';
+import { createTheme } from '../internal';
 
 const palette = {
   red: 'rgb(179,25,66)',
@@ -14,35 +14,33 @@ export default (({
   black,
   white,
   gold
-}) => unflatten({
+}) => createTheme({
+  borderWidth: 2,
+  borderRadius: 6,
   app: {
     font: '14pt "Americana W 03 Bold", serif',
     color: white,
     backgroundColor: blue,
-    borderRadius: 6
+    borderWidth: 1
   },
   config: {
     color: black,
     backgroundColor: red,
-    picker: {
-      backgroundColor: gold,
-      borderWidth: 2
-    },
+    'select.backgroundColor': gold,
     input: {
       backgroundColor: gold,
-      editBackgroundColor: white,
-      borderWidth: 2
+      editBackgroundColor: white
     },
     toggle: {
       backgroundColor: black,
       offColor: blue,
       onColor: gold,
-      borderWidth: 2,
       'thumb.borderWidth': 1,
       'thumb.borderColor': black
     }
   },
   game: {
+    borderColor: black,
     board: {
       color: blue,
       backgroundColor: white,
@@ -55,28 +53,22 @@ export default (({
         opacity: .6
       }
     },
-    'history.button': {
+    button: {
       color: black,
       backgroundColor: gold,
-      disabledBackgroundColor: blue,
-      borderColor: black,
-      borderWidth: 2
+      disabledBackgroundColor: blue
     },
     slider: {
       color: gold,
       fillTrack: true,
       borderWidth: [4, 2],
-      borderColor: black,
       'thumb.borderWidth': 2
     },
     toggle: {
       backgroundColor: black,
       offColor: blue,
       onColor: gold,
-      borderColor: black,
-      borderWidth: 2,
-      'thumb.borderWidth': 1,
-      'thumb.borderColor': black
+      'thumb.borderWidth': 1
     }
   }
 }))(palette);

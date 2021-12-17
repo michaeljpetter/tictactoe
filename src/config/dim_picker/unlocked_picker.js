@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
-import { Select } from '#/ext/react';
+import { Select } from '#/theming/components';
 
-const UnlockedPicker = ({
-  ...props
-}) => {
+const UnlockedPicker = props => {
   const options = useSelector(dimOptions);
   const [width, height] = useSelector(dim);
   const changeDimAction = useAction(changeDim);

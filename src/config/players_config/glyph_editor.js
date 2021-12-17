@@ -1,38 +1,21 @@
 import React, { useCallback } from 'react';
-import { createUseMultiStyles } from '#/ext/jss';
+import { createUseStyles } from 'react-jss';
 import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { glyphs } from '../[selectors]';
 import { changeGlyph } from '../[actions]';
-import { Input } from '#/ext/react';
+import { Input } from '#/theming/components';
 
-const useStyles = createUseMultiStyles([
-  {
-    input: {
-      width: '2.5ch',
-      padding: [4, 5],
-      fontFamily: '"Century Gothic", Futura, sans-serif',
-      fontWeight: 'inherit',
-      textAlign: 'center',
-      caretColor: 'transparent'
-    }
-  },
-  ({ app, config, config: { input } }) => ({
-    input: {
-      borderWidth: input.borderWidth,
-      borderRadius: app.borderRadius,
-      backgroundColor: input.backgroundColor,
-
-      '&:focus': {
-        backgroundColor: input.editBackgroundColor
-      },
-
-      '&::placeholder': {
-        color: config.color,
-      }
-    }
-  })
-]);
+const useStyles = createUseStyles({
+  input: {
+    width: '2.5ch',
+    padding: [4, 5],
+    fontFamily: '"Century Gothic", Futura, sans-serif',
+    fontWeight: 'inherit',
+    textAlign: 'center',
+    caretColor: 'transparent'
+  }
+});
 
 const GlyphEditor = ({
   player

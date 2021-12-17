@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { toWin, toWinOptions } from './[selectors]';
 import { changeToWin } from './[actions]';
-import { Select } from '#/ext/react';
+import { Select } from '#/theming/components';
 
-const ToWinPicker = ({
-  ...props
-}) => (
+const ToWinPicker = props => (
   <Select options={useSelector(toWinOptions)}
           value={useSelector(toWin)}
           onChange={useAction(changeToWin)}

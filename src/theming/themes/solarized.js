@@ -1,4 +1,4 @@
-import { unflatten } from 'flat';
+import { createTheme } from '../internal';
 
 const palette = {
   base03: '#002b36',
@@ -27,34 +27,30 @@ export default (({
   base2,
   yellow,
   orange,
+  magenta,
   cyan,
-  green,
-  magenta
-}) => unflatten({
+  green
+}) => createTheme({
+  borderWidth: 0,
+  borderRadius: 7,
   app: {
     font: '14pt "Century Gothic", Futura, sans-serif',
     color: base1,
     backgroundColor: base03,
-    borderRadius: 7
+    borderWidth: 1
   },
   config: {
     color: base03,
     backgroundColor: base1,
-    picker: {
-      backgroundColor: orange,
-      borderWidth: 0
-    },
+    'select.backgroundColor': orange,
     input: {
       backgroundColor: orange,
-      editBackgroundColor: base2,
-      borderWidth: 0
+      editBackgroundColor: base2
     },
     toggle: {
       backgroundColor: base03,
       offColor: base01,
-      onColor: orange,
-      borderWidth: 0,
-      'thumb.borderWidth': 0
+      onColor: orange
     },
   },
   game: {
@@ -70,25 +66,21 @@ export default (({
         opacity: .5
       }
     },
-    'history.button': {
+    button: {
       color: base03,
       backgroundColor: yellow,
-      disabledBackgroundColor: base01,
-      borderWidth: 0
+      disabledBackgroundColor: base01
     },
     slider: {
       backgroundColor: base01,
       color: yellow,
       trackScale: 1,
-      fillTrack: true,
-      borderWidth: 0
+      fillTrack: true
     },
     toggle: {
       backgroundColor: base01,
       offColor: base1,
-      onColor: yellow,
-      borderWidth: 0,
-      'thumb.borderWidth': 0
+      onColor: yellow
     }
   }
 }))(palette);

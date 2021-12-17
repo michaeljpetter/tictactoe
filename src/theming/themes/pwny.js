@@ -1,4 +1,4 @@
-import { unflatten } from 'flat';
+import { createTheme } from '../internal';
 
 const palette = {
   darkPurple: '#351858',
@@ -16,31 +16,28 @@ export default (({
   pink,
   lightBlue,
   white
-}) => unflatten({
+}) => createTheme({
+  borderRadius: 15,
   app: {
     font: '16pt "Londrina Solid", sans-serif',
     letterSpacing: .5,
     color: pink,
-    backgroundColor: darkPurple,
-    borderRadius: 15
+    backgroundColor: darkPurple
   },
   config: {
     color: darkPurple,
     backgroundColor: hotPink,
-    picker: {
-      backgroundColor: lightBlue,
-      borderWidth: 2
-    },
+    borderWidth: 2,
+    'select.backgroundColor': lightBlue,
     input: {
       backgroundColor: lightBlue,
-      editBackgroundColor: white,
-      borderWidth: 2
+      editBackgroundColor: white
     },
     toggle: {
       backgroundColor: darkPurple,
       offColor: pink,
       onColor: lightBlue,
-      borderWidth: 2
+      'thumb.borderWidth': 1
     }
   },
   game: {
@@ -56,7 +53,7 @@ export default (({
         opacity: .6
       }
     },
-    'history.button': {
+    button: {
       color: darkPurple,
       backgroundColor: pink,
       disabledBackgroundColor: darkPurple,

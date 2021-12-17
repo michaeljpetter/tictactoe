@@ -5,7 +5,7 @@ import { useAction } from '#/ext/redux';
 import { canRedo, canUndo } from './[selectors]';
 import { redo, redoAll, undo, undoAll } from './[actions]';
 import { RedoAllIcon, RedoIcon, UndoAllIcon, UndoIcon } from '#/res/icons';
-import { Button } from '#/ext/react';
+import { Button } from '#/theming/components';
 import classNames from 'classnames';
 
 const useStyles = createUseMultiStyles([
@@ -25,17 +25,7 @@ const useStyles = createUseMultiStyles([
       strokeWidth: 2
     }
   },
-  ({ app, game: { history: { button } } }) => ({
-    button: {
-      borderWidth: button.borderWidth,
-      borderColor: button.borderColor,
-      borderRadius: app.borderRadius,
-      backgroundColor: button.backgroundColor,
-
-      '&:disabled': {
-        backgroundColor: button.disabledBackgroundColor
-      }
-    },
+  ({ game: { button } }) => ({
     icon: {
       fill: button.color,
       stroke: button.color

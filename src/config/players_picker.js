@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { players, playersOptions } from './[selectors]';
 import { changePlayers } from './[actions]';
-import { Select } from '#/ext/react';
+import { Select } from '#/theming/components';
 
-const PlayersPicker = ({
-  ...props
-}) => (
+const PlayersPicker = props => (
   <Select options={useSelector(playersOptions)}
           value={useSelector(players)}
           onChange={useAction(changePlayers)}

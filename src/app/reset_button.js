@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseMultiStyles } from '#/ext/jss';
 import { useAction } from '#/ext/redux';
 import { reset } from './[actions]';
-import { Button } from '#/ext/react';
+import { Button } from '#/theming/components';
 import { ResetIcon } from '#/res/icons';
 import classNames from 'classnames';
 
@@ -10,7 +10,6 @@ const useStyles = createUseMultiStyles([
   {
     button: {
       padding: [2, 18, 2, 15],
-      fontSize: 'inherit',
       display: 'flex',
       alignItems: 'center'
     },
@@ -21,10 +20,6 @@ const useStyles = createUseMultiStyles([
     }
   },
   ({ app }) => ({
-    button: {
-      backgroundColor: app.backgroundColor,
-      borderRadius: app.borderRadius
-    },
     icon: {
       fill: app.color,
       stroke: app.color

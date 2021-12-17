@@ -5,6 +5,7 @@ import Board from './board';
 import History from './history';
 import AISpeedSlider from './ai_speed_slider';
 import HeatToggle from './heat_toggle';
+import { withThemingContext } from '#/theming';
 import classNames from 'classnames';
 
 const useStyles = createUseStyles({
@@ -91,4 +92,4 @@ const Game = ({
   );
 };
 
-export default Game;
+export default withThemingContext('game')(Game);

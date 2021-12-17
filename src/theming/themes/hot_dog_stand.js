@@ -1,4 +1,4 @@
-import { unflatten } from 'flat';
+import { createTheme } from '../internal';
 
 const palette = {
   red: 'red',
@@ -12,7 +12,7 @@ export default (({
   yellow,
   black,
   white
-}) => unflatten({
+}) => createTheme({
   app: {
     font: 'bold 12pt Monaco, sans-serif',
     letterSpacing: -1,
@@ -22,7 +22,7 @@ export default (({
   config: {
     color: black,
     backgroundColor: yellow,
-    'picker.backgroundColor': red,
+    'select.backgroundColor': red,
     input: {
       backgroundColor: red,
       editBackgroundColor: white
@@ -46,7 +46,7 @@ export default (({
         opacity: .6
       }
     },
-    'history.button': {
+    button: {
       color: black,
       backgroundColor: yellow,
       disabledBackgroundColor: white

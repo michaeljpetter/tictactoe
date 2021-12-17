@@ -7,6 +7,7 @@ import { Button } from '#/ext/react';
 import { PlayersIcon } from '#/res/icons';
 import PlayersConfig from './players_config';
 import { useClickOutside } from '#/ext/react';
+import { withThemingContext } from '#/theming';
 import classNames from 'classnames';
 import { memoize } from 'lodash/fp';
 
@@ -65,6 +66,7 @@ const useStyles = createUseMultiStyles([
       border: 'none',
       display: 'inline-flex'
     },
+    picker: {},
     dynamic: {
       composes: '$section',
       overflow: 'hidden',
@@ -117,7 +119,7 @@ const useStyles = createUseMultiStyles([
           margin: 'revert'
         },
 
-        '& :last-child': {
+        '& $picker': {
           justifySelf: 'end'
         }
       },
@@ -126,7 +128,7 @@ const useStyles = createUseMultiStyles([
           gridArea: 'dimLabel'
         },
 
-        '& :last-child': {
+        '& $picker': {
           gridArea: 'dim'
         }
       },
@@ -135,7 +137,7 @@ const useStyles = createUseMultiStyles([
           gridArea: 'toWinLabel'
         },
 
-        '& :last-child': {
+        '& $picker': {
           gridArea: 'toWin'
         }
       },
@@ -144,7 +146,7 @@ const useStyles = createUseMultiStyles([
           gridArea: 'playersLabel'
         },
 
-        '& :last-child': {
+        '& $picker': {
           gridArea: 'players'
         }
       },
@@ -175,24 +177,10 @@ const useStyles = createUseMultiStyles([
       }
     }
   },
-  ({ app, config, config: { picker } }) => ({
+  ({ config }) => ({
     config: {
       color: config.color,
       backgroundColor: config.backgroundColor,
-    },
-    picker: {
-      color: config.color,
-      backgroundColor: picker.backgroundColor,
-      borderWidth: picker.borderWidth,
-      borderRadius: app.borderRadius
-    },
-    pickerItem: {
-      composes: '$picker',
-
-      '&:hover': {
-        color: picker.backgroundColor,
-        backgroundColor: config.color
-      }
     },
     playersIcon: {
       fill: config.color
@@ -220,16 +208,16 @@ const Config = ({
     <div ref={ref} className={classNames(c.config, className)}>
       <div className={c.static}>
         <div className={c.dim}>
-          <DimPicker className={c.picker} itemClassName={c.pickerItem} />
+          <DimPicker className={c.picker} />
         </div>
         <div className={c.toWin}>
-          <ToWinPicker className={c.picker} itemClassName={c.pickerItem} />
+          <ToWinPicker className={c.picker} />
         </div>
         <div className={c.players}>
           <Button className={c.playersButton} onClick={handleClickDynamic(PlayersConfig)}>
             <PlayersIcon className={c.playersIcon} />
           </Button>
-          <PlayersPicker className={c.picker} itemClassName={c.pickerItem} />
+          <PlayersPicker className={c.picker} />
         </div>
       </div>
       {DynamicConfig && (
@@ -241,4 +229,4 @@ const Config = ({
   );
 };
 
-export default Config;
+export default withThemingContext('config')(Config);

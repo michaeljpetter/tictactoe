@@ -35,7 +35,8 @@ const useStyles = flow(
       margin: 0,
       padding: 2,
       border: [1, 'solid'],
-      listStyle: 'none'
+      listStyle: 'none',
+      whiteSpace: 'nowrap'
     },
     option: {
       padding: [2, 7],
@@ -74,7 +75,8 @@ const getPopperOptions = (() => {
 
 const Select = forwardRef(({
   className,
-  itemClassName,
+  buttonClassName,
+  optionClassName,
   options,
   optionText,
   value,
@@ -101,19 +103,19 @@ const Select = forwardRef(({
   const c = useStyles({ options, optionText, buttonElement });
 
   return (
-    <div className={c.select}>
+    <div className={classNames(c.select, className)}>
       <Button ref={useMultiRef(ref, setButtonElement)}
-              className={classNames(c.button, className)}
+              className={classNames(c.button, buttonClassName)}
               onClick={handleClick}>
         {value !== undefined && optionText(value)}
       </Button>
 
       {isOpen &&
         <ul ref={setOptionsElement} style={popper.styles.popper} {...popper.attributes.popper}
-            className={classNames(c.options, className)}>
+            className={classNames(c.options, buttonClassName)}>
           {options.map(option =>
             <li key={option}>
-              <Button className={classNames(c.option, itemClassName)}
+              <Button className={classNames(c.option, optionClassName)}
                       onClick={handleClickOption(option)}>
                 {optionText(option)}
               </Button>

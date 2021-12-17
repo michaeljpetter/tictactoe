@@ -3,14 +3,12 @@ import { useSelector } from 'react-redux';
 import { useAction } from '#/ext/redux';
 import { dim, dimOptions } from '../[selectors]';
 import { changeDim } from '../[actions]';
-import { Select } from '#/ext/react';
+import { Select } from '#/theming/components';
 
 const optionText = value => `${value} x ${value}`;
 const changeValue = value => changeDim([value, value]);
 
-const LockedPicker = ({
-  ...props
-}) => {
+const LockedPicker = props => {
   const [value] = useSelector(dim);
 
   return (
